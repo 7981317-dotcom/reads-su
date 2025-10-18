@@ -1,0 +1,2393 @@
+﻿[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$HKgm5K07M5qD2AZDspZZLS$kaBw19Peanw5DANnaRythe+f2BjTD4qOYdC3RGsqjQo=",
+    "last_login": "2025-10-17T10:16:48.584Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:35:09.608Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$uKVQKC6vqz92SvKaf3Lme7$bzQzYZ9fvgwmZOLrezJzJ71c8m22sGs+TrcSNjbxGtU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ivan_tech",
+    "first_name": "Иван",
+    "last_name": "Технов",
+    "email": "ivan@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:14.910Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$eSrL4sjXNyrsx8LmUSc03r$+o4NCUwpfbJMy9bdHXJEFZvDeEcmzthafwMamLHV0kk=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "maria_design",
+    "first_name": "Мария",
+    "last_name": "Дизайнова",
+    "email": "maria@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:15.244Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$CrTy3FQwkBOmiS4S7E0iYH$PQpchB8tiJO3I42qIZRFmy5rCBJFuGnbqqHEeq0IXlI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "alex_crypto",
+    "first_name": "Александр",
+    "last_name": "Крипт",
+    "email": "alex@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:15.570Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$JE6Dp6HmSXRAmoGSdkUuz3$1gyP49KVIkKycuPUxg7PsYMGdkVHp40LCgKNMMQcdV4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "anna_marketing",
+    "first_name": "Анна",
+    "last_name": "Маркетингова",
+    "email": "anna@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:15.893Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Y6tzdgOxoaPCWQAwXbBoc1$3AgX9FQw62JCYrrtypg9UwbI5csqbeHKQzGJ8437HEg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "dmitry_startup",
+    "first_name": "Дмитрий",
+    "last_name": "Стартапов",
+    "email": "dmitry@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:16.226Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$4p976CLJJaEpqErDJVuRbQ$jLhwqnyq24ArggpncmMw4XZ8OBVpCjLiZ5voiuenIyI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "olga_business",
+    "first_name": "Ольга",
+    "last_name": "Бизнесова",
+    "email": "olga@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:16.551Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$8WpjuJv7vrrRGBZ3BYgaMo$kRF9IjvZQ+eJnhNG+BHwkbD/a/QA437w+MXRz1O40WQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sergey_dev",
+    "first_name": "Сергей",
+    "last_name": "Разработчиков",
+    "email": "sergey@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:16.876Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$GjKTYv1DMCy40ZYZpgm2QD$EhLudUsTpTKtW98jf45qURtVNQ9eh2p+rOog8ErxZOM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "elena_travel",
+    "first_name": "Елена",
+    "last_name": "Путешественница",
+    "email": "elena@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-14T23:49:17.207Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$0D6WCfLnyjLLSx0JyfFYzw$QSTegQNX8hzZGeWk6acIymd+EG5CDzDysH0n9yAyEt4=",
+    "last_login": "2025-10-17T12:12:13.387Z",
+    "is_superuser": false,
+    "username": "writer",
+    "first_name": "Иван",
+    "last_name": "Писатель",
+    "email": "writer@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-10-15T07:46:05.275Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin"
+    ],
+    "bio": "",
+    "avatar": "avatars/2025/10/avatar_modern_1_admin.png",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:35:09.614Z",
+    "updated_at": "2025-10-17T10:16:48.588Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "ivan_tech"
+    ],
+    "bio": "Пишу о технологиях, AI и стартапах. 5+ лет в разработке.",
+    "avatar": "avatars/2025/10/avatar_modern_2_ivan_tech.png",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:14.912Z",
+    "updated_at": "2025-10-15T00:20:32.475Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "maria_design"
+    ],
+    "bio": "UI/UX дизайнер. Делюсь опытом создания интерфейсов.",
+    "avatar": "avatars/2025/10/avatar_modern_3_maria_design.png",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:15.244Z",
+    "updated_at": "2025-10-15T00:20:32.489Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "alex_crypto"
+    ],
+    "bio": "Инвестор и аналитик крипторынка. DeFi энтузиаст.",
+    "avatar": "avatars/2025/10/avatar_modern_4_alex_crypto.png",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:15.570Z",
+    "updated_at": "2025-10-15T00:20:32.504Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "anna_marketing"
+    ],
+    "bio": "Маркетолог с опытом в SMM и контент-маркетинге.",
+    "avatar": "",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:15.894Z",
+    "updated_at": "2025-10-15T00:11:37.415Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "dmitry_startup"
+    ],
+    "bio": "Основатель EdTech стартапа. Рассказываю о пути от идеи до продукта.",
+    "avatar": "",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:16.227Z",
+    "updated_at": "2025-10-15T00:11:37.410Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "olga_business"
+    ],
+    "bio": "MBA, консультант по развитию SaaS-бизнесов.",
+    "avatar": "",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:16.552Z",
+    "updated_at": "2025-10-15T00:11:37.406Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "sergey_dev"
+    ],
+    "bio": "Full-stack разработчик. Python, Django, React.",
+    "avatar": "",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:16.876Z",
+    "updated_at": "2025-10-15T00:11:37.402Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "elena_travel"
+    ],
+    "bio": "Digital nomad. Работаю удаленно из разных точек мира.",
+    "avatar": "",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-14T23:49:17.208Z",
+    "updated_at": "2025-10-15T00:11:37.396Z"
+  }
+},
+{
+  "model": "users.userprofile",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "writer"
+    ],
+    "bio": "Люблю писать статьи о технологиях и программировании",
+    "avatar": "",
+    "cover_image": "",
+    "website": "",
+    "twitter": "",
+    "github": "",
+    "linkedin": "",
+    "telegram": "",
+    "email_notifications": true,
+    "show_email": false,
+    "theme": "auto",
+    "followers_count": 0,
+    "following_count": 0,
+    "created_at": "2025-10-15T07:46:05.568Z",
+    "updated_at": "2025-10-17T12:12:13.392Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 1,
+  "fields": {
+    "name": "Технологии",
+    "slug": "tekhnologii",
+    "description": "Новости технологий, гаджеты, разработка, искусственный интеллект",
+    "icon": "💻",
+    "icon_image": "categories/icons/generated-image12.png",
+    "color": "#0070f3",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.411Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 2,
+  "fields": {
+    "name": "Стартапы",
+    "slug": "startapy",
+    "description": "Истории стартапов, инвестиции, развитие бизнеса",
+    "icon": "🚀",
+    "icon_image": "categories/icons/generated-image11.png",
+    "color": "#7928ca",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.421Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 3,
+  "fields": {
+    "name": "Маркетинг",
+    "slug": "marketing",
+    "description": "SMM, контент-маркетинг, реклама, продвижение",
+    "icon": "📊",
+    "icon_image": "categories/icons/generated-image10.png",
+    "color": "#ff0080",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.427Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 4,
+  "fields": {
+    "name": "Дизайн",
+    "slug": "dizain",
+    "description": "UI/UX дизайн, графика, брендинг, веб-дизайн",
+    "icon": "🎨",
+    "icon_image": "categories/icons/generated-image5_kgN5rQQ.png",
+    "color": "#f81ce5",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.433Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 5,
+  "fields": {
+    "name": "Разработка",
+    "slug": "razrabotka",
+    "description": "Программирование, фреймворки, инструменты разработчика",
+    "icon": "⚙️",
+    "icon_image": "categories/icons/generated-image9_or1qHZA.png",
+    "color": "#79ffe1",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.440Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 6,
+  "fields": {
+    "name": "Бизнес",
+    "slug": "biznes",
+    "description": "Менеджмент, управление, финансы, экономика",
+    "icon": "💼",
+    "icon_image": "categories/icons/generated-image3_qGgVxcC.png",
+    "color": "#50e3c2",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.448Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 7,
+  "fields": {
+    "name": "Криптовалюты",
+    "slug": "kriptovaliuty",
+    "description": "Блокчейн, биткоин, NFT, DeFi, Web3",
+    "icon": "₿",
+    "icon_image": "categories/icons/generated-image7_42xdGFY.png",
+    "color": "#ff6e00",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.453Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 8,
+  "fields": {
+    "name": "Наука",
+    "slug": "nauka",
+    "description": "Научные открытия, исследования, инновации",
+    "icon": "🔬",
+    "icon_image": "categories/icons/generated-image13.png",
+    "color": "#00d4ff",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.459Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 9,
+  "fields": {
+    "name": "Образование",
+    "slug": "obrazovanie",
+    "description": "Обучение, курсы, карьера, развитие навыков",
+    "icon": "📚",
+    "icon_image": "categories/icons/generated-image18.png",
+    "color": "#0070f3",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.464Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 10,
+  "fields": {
+    "name": "Медиа",
+    "slug": "media",
+    "description": "Журналистика, контент, социальные сети",
+    "icon": "📰",
+    "icon_image": "categories/icons/generated-image.png",
+    "color": "#333333",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.470Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 11,
+  "fields": {
+    "name": "Игры",
+    "slug": "igry",
+    "description": "Игровая индустрия, киберспорт, обзоры игр",
+    "icon": "🎮",
+    "icon_image": "categories/icons/generated-image16.png",
+    "color": "#7928ca",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.474Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 12,
+  "fields": {
+    "name": "Искусственный интеллект",
+    "slug": "iskusstvennyi-intellekt",
+    "description": "ML, нейросети, ChatGPT, автоматизация",
+    "icon": "🤖",
+    "icon_image": "categories/icons/generated-image2_DV3EEju.png",
+    "color": "#ff0080",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.479Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 13,
+  "fields": {
+    "name": "Карьера",
+    "slug": "karera",
+    "description": "Работа, HR, поиск сотрудников, собеседования",
+    "icon": "👔",
+    "icon_image": "categories/icons/generated-image4.png",
+    "color": "#50e3c2",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.484Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 14,
+  "fields": {
+    "name": "Путешествия",
+    "slug": "puteshestviia",
+    "description": "Туризм, страны, культура, впечатления",
+    "icon": "✈️",
+    "icon_image": "categories/icons/generated-image19.png",
+    "color": "#00d4ff",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.489Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 15,
+  "fields": {
+    "name": "Здоровье",
+    "slug": "zdorove",
+    "description": "Медицина, фитнес, питание, ЗОЖ",
+    "icon": "💪",
+    "icon_image": "categories/icons/generated-image15.png",
+    "color": "#0070f3",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.493Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 16,
+  "fields": {
+    "name": "Мнения",
+    "slug": "mneniia",
+    "description": "Колонки, размышления, обсуждения",
+    "icon": "💭",
+    "icon_image": "categories/icons/generated-image17.png",
+    "color": "#666666",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.498Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 17,
+  "fields": {
+    "name": "Lifestyle",
+    "slug": "lifestyle",
+    "description": "Образ жизни, хобби, развлечения",
+    "icon": "☕",
+    "icon_image": "categories/icons/generated-image14.png",
+    "color": "#ff6e00",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.503Z"
+  }
+},
+{
+  "model": "articles.category",
+  "pk": 18,
+  "fields": {
+    "name": "E-commerce",
+    "slug": "e-commerce",
+    "description": "Онлайн-торговля, маркетплейсы, продажи",
+    "icon": "🛒",
+    "icon_image": "categories/icons/generated-image8.png",
+    "color": "#f81ce5",
+    "order": 0,
+    "created_at": "2025-10-14T23:35:31.508Z"
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 1,
+  "fields": {
+    "title": "Новые возможности Python 3.13: что нужно знать разработчикам",
+    "slug": "novye-vozmozhnosti-python-3-13-chto-nuzhno-znat-razrabotchikam",
+    "subtitle": "",
+    "content": "Python 3.13 вышел в октябре 2024 года и принес множество долгожданных улучшений. Давайте разберем самые важные изменения, которые влияют на производительность и удобство разработки.\n\n## Улучшенная производительность интерпретатора\n\nОдно из главных достижений Python 3.13 — значительное ускорение интерпретатора. Благодаря проекту Faster CPython команда разработчиков добилась увеличения скорости выполнения на 20-25% по сравнению с версией 3.12.\n\n### Что улучшилось\n\n**JIT-компиляция (Just-In-Time)** — теперь Python может компилировать наиболее часто выполняемые участки кода в машинный код на лету. Это особенно заметно в циклах и математических вычислениях.\n\n```python\n# Пример: цикл с интенсивными вычислениями\ndef calculate_fibonacci(n):\n    \"\"\"Вычисление чисел Фибоначчи\"\"\"\n    if n <= 1:\n        return n\n    return calculate_fibonacci(n-1) + calculate_fibonacci(n-2)\n\n# В Python 3.13 это работает быстрее на 20%\nresult = calculate_fibonacci(35)\nprint(f\"Fibonacci(35) = {result}\")\n```\n\n**Оптимизация словарей** — внутреннее представление dict было переработано, что ускорило операции поиска и вставки элементов на 15%.\n\n## Новый синтаксис для type hints\n\nPython 3.13 добавил расширенные возможности для аннотаций типов, делая код более выразительным и понятным.\n\n```python\nfrom typing import TypedDict, NotRequired\n\nclass User(TypedDict):\n    id: int\n    name: str\n    email: str\n    age: NotRequired[int]  # Опциональное поле\n\n# Использование\nuser: User = {\n    \"id\": 1,\n    \"name\": \"Иван\",\n    \"email\": \"ivan@example.com\"\n    # age можно не указывать\n}\n\n# Новый синтаксис для generic типов\ndef process_data[T](items: list[T]) -> T | None:\n    \"\"\"Обработка списка элементов любого типа\"\"\"\n    return items[0] if items else None\n```\n\n## Улучшения в работе с ошибками\n\nСообщения об ошибках стали еще более информативными и помогают быстрее находить проблемы в коде.\n\n## Оптимизация использования памяти\n\nPython 3.13 требует на 10-15% меньше памяти для хранения объектов благодаря новому представлению строк и оптимизации структур данных.\n\n```python\nimport sys\n\n# Сравнение использования памяти\ntext = \"Hello, World!\" * 1000\nprint(f\"Размер в памяти: {sys.getsizeof(text)} байт\")\n```\n\n## Улучшенная работа с многопоточностью\n\nГлобальная блокировка интерпретатора (GIL) была оптимизирована для лучшей работы в многопоточных приложениях.\n\n```python\nimport threading\n\ndef worker(name, iterations):\n    \"\"\"Рабочая функция для потока\"\"\"\n    for i in range(iterations):\n        result = sum(range(10000))\n    print(f\"Поток {name} завершен\")\n\n# Создание потоков\nthreads = []\nfor i in range(4):\n    t = threading.Thread(target=worker, args=(f\"Worker-{i}\", 100))\n    threads.append(t)\n    t.start()\n\nfor t in threads:\n    t.join()\n```\n\n## Новые возможности pathlib\n\nМодуль для работы с путями получил новые методы, упрощающие операции с файловой системой.\n\n```python\nfrom pathlib import Path\n\n# Новый метод walk()\nproject_dir = Path(\".\")\n\nfor root, dirs, files in project_dir.walk():\n    for file in files:\n        if file.suffix == \".py\":\n            print(f\"Python файл: {file}\")\n```\n\n## Улучшения в asyncio\n\nАсинхронное программирование стало еще удобнее с новыми функциями в модуле asyncio.\n\n```python\nimport asyncio\n\nasync def fetch_data(url: str) -> dict:\n    await asyncio.sleep(0.1)\n    return {\"url\": url, \"status\": 200}\n\nasync def main():\n    async with asyncio.TaskGroup() as tg:\n        task1 = tg.create_task(fetch_data(\"https://api1.com\"))\n        task2 = tg.create_task(fetch_data(\"https://api2.com\"))\n        task3 = tg.create_task(fetch_data(\"https://api3.com\"))\n    print(\"Все запросы завершены!\")\n\nasyncio.run(main())\n```\n\n## Заключение\n\nPython 3.13 — это значительный шаг вперед в развитии языка. Основные преимущества:\n\n- **+20% производительность** благодаря JIT-компиляции\n- **Улучшенные type hints** для более безопасного кода\n- **Меньше потребление памяти** на 10-15%\n- **Лучшая многопоточность** с оптимизированным GIL\n- **Удобные новые API** в pathlib и asyncio\n\nЕсли вы используете Python 3.11 или 3.12, обновление до 3.13 даст заметный прирост производительности без изменений в коде. Рекомендую обновиться!",
+    "excerpt": "Python 3.13 принес улучшения производительности на 20%, новые возможности type hints и оптимизированную работу с памятью. Подробный обзор с примерами кода.",
+    "cover_image": "articles/cover_novye-vozmozhnosti-python-3-13-chto-nuzhno-znat-razrabotchikam.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 1,
+    "status": "published",
+    "created_at": "2025-10-14T23:35:32.024Z",
+    "updated_at": "2025-10-15T07:26:22.892Z",
+    "published_at": "2025-10-14T23:35:32.023Z",
+    "views_count": 4788,
+    "likes_count": 165,
+    "comments_count": 7,
+    "meta_title": "Новые возможности Python 3.13: что нужно знать разработчикам",
+    "meta_description": "Обзор ключевых нововведений в последней версии Python и как они упростят вашу работу",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 2,
+  "fields": {
+    "title": "ChatGPT vs Claude: сравнение возможностей в 2025 году",
+    "slug": "chatgpt-vs-claude-sravnenie-vozmozhnostei-v-2025-godu",
+    "subtitle": "",
+    "content": "В 2025 году выбор между ChatGPT и Claude стал еще более актуальным. Оба ассистента достигли впечатляющих результатов, но имеют свои сильные стороны. Давайте разберемся в деталях.\n\n## Основные характеристики\n\n### ChatGPT (GPT-4 Turbo)\n- Разработчик: OpenAI\n- Размер контекста: 128,000 токенов\n- Модальности: текст, изображения, голос\n- Стоимость API: $0.01 за 1K токенов\n\n### Claude (Claude 3.5 Sonnet)\n- Разработчик: Anthropic\n- Размер контекста: 200,000 токенов\n- Модальности: текст, изображения\n- Стоимость API: $0.003 за 1K токенов\n\n## Качество ответов\n\nВ задачах программирования Claude часто показывает лучшие результаты благодаря более структурированному мышлению.\n\n```python\n# Пример: реализация LRU кэша\n\nfrom collections import OrderedDict\n\nclass LRUCache:\n    \"\"\"LRU кэш с фиксированной емкостью\"\"\"\n    def __init__(self, capacity: int):\n        if capacity <= 0:\n            raise ValueError(\"Capacity must be positive\")\n        self.cache = OrderedDict()\n        self.capacity = capacity\n\n    def get(self, key: int) -> int:\n        if key not in self.cache:\n            return -1\n        self.cache.move_to_end(key)\n        return self.cache[key]\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self.cache.move_to_end(key)\n        self.cache[key] = value\n        if len(self.cache) > self.capacity:\n            self.cache.popitem(last=False)\n```\n\n## Работа с большими контекстами\n\nClaude имеет преимущество с контекстом в 200K токенов. Это критично для анализа больших документов.\n\n```python\nimport anthropic\n\nclient = anthropic.Anthropic(api_key=\"your-key\")\n\n# Работа с большим документом\nwith open(\"large_doc.txt\", \"r\", encoding=\"utf-8\") as f:\n    document = f.read()\n\nmessage = client.messages.create(\n    model=\"claude-3-5-sonnet-20241022\",\n    max_tokens=4096,\n    messages=[{\n        \"role\": \"user\",\n        \"content\": f\"Проанализируй документ: {document}\"\n    }]\n)\n```\n\n## Стоимость использования\n\nСравнение цен API:\n\n```python\n# ChatGPT GPT-4 Turbo\ninput_tokens = 10000\noutput_tokens = 2000\n\ncost_chatgpt = (input_tokens / 1000 * 0.01) + (output_tokens / 1000 * 0.03)\nprint(f\"ChatGPT: ${cost_chatgpt}\")  # $0.16\n\n# Claude 3.5 Sonnet\ncost_claude = (input_tokens / 1000 * 0.003) + (output_tokens / 1000 * 0.015)\nprint(f\"Claude: ${cost_claude}\")  # $0.06\n\n# Claude дешевле в 2.5 раза!\n```\n\n## Производительность\n\nРезультаты бенчмарков (январь 2025):\n\n```python\nbenchmarks = {\n    \"MMLU\": {\"GPT-4\": 86.4, \"Claude\": 88.7},\n    \"HumanEval\": {\"GPT-4\": 67.0, \"Claude\": 73.0},\n    \"GSM8K\": {\"GPT-4\": 92.0, \"Claude\": 95.0}\n}\n```\n\n## Когда выбирать\n\n### ChatGPT\n- Креативные задачи\n- Мультимодальный контент\n- Генерация изображений\n- Экосистема Microsoft\n\n### Claude\n- Программирование\n- Большие документы (>100K токенов)\n- Экономия бюджета\n- Безопасность\n\n## Заключение\n\nВ 2025 году оба ассистента достигли высокого уровня. ChatGPT — универсальный инструмент с богатой экосистемой. Claude — специалист по техническим задачам и программированию, при этом дешевле.\n\nМой выбор: **Claude для разработки, ChatGPT для креатива**. Идеально иметь доступ к обоим!",
+    "excerpt": "Детальное сравнение ChatGPT и Claude в 2025 году. Анализ возможностей, стоимости, производительности с практическими примерами использования API.",
+    "cover_image": "articles/cover_chatgpt-vs-claude-sravnenie-vozmozhnostei-v-2025-godu.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 12,
+    "status": "published",
+    "created_at": "2025-10-14T23:36:17.649Z",
+    "updated_at": "2025-10-15T07:28:34.048Z",
+    "published_at": "2025-10-13T23:36:17.649Z",
+    "views_count": 971,
+    "likes_count": 24,
+    "comments_count": 4,
+    "meta_title": "ChatGPT vs Claude: сравнение возможностей в 2025 году",
+    "meta_description": "Детальное сравнение двух ведущих языковых моделей и их применение в реальных задачах",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      3,
+      4,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 3,
+  "fields": {
+    "title": "Как мы привлекли $5M на посевном раунде: история EdTech стартапа",
+    "slug": "kak-my-privlekli-5m-na-posevnom-raunde-istoriia-edtech-startapa",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Путь от идеи до успешного раунда финансирования - делимся опытом и ошибками",
+    "cover_image": "articles/cover_kak-my-privlekli-5m-na-posevnom-raunde-istoriia-edtech-startapa.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 2,
+    "status": "published",
+    "created_at": "2025-10-14T23:36:17.697Z",
+    "updated_at": "2025-10-15T00:40:30.027Z",
+    "published_at": "2025-10-12T23:36:17.696Z",
+    "views_count": 4949,
+    "likes_count": 266,
+    "comments_count": 2,
+    "meta_title": "Как мы привлекли $5M на посевном раунде: история EdTech стартапа",
+    "meta_description": "Путь от идеи до успешного раунда финансирования - делимся опытом и ошибками",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      9,
+      8,
+      7
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 4,
+  "fields": {
+    "title": "Тренды UI/UX дизайна 2025: минимализм возвращается",
+    "slug": "trendy-ui-ux-dizaina-2025-minimalizm-vozvrashchaetsia",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Анализ главных трендов в дизайне интерфейсов и почему простота снова в моде",
+    "cover_image": "articles/cover_trendy-ui-ux-dizaina-2025-minimalizm-vozvrashchaetsia.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 4,
+    "status": "published",
+    "created_at": "2025-10-14T23:36:17.729Z",
+    "updated_at": "2025-10-15T00:40:31.738Z",
+    "published_at": "2025-10-11T23:36:17.728Z",
+    "views_count": 923,
+    "likes_count": 204,
+    "comments_count": 15,
+    "meta_title": "Тренды UI/UX дизайна 2025: минимализм возвращается",
+    "meta_description": "Анализ главных трендов в дизайне интерфейсов и почему простота снова в моде",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      11,
+      10,
+      12
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 5,
+  "fields": {
+    "title": "SEO в эпоху AI: как оптимизировать контент для ChatGPT и поисковиков",
+    "slug": "seo-v-epokhu-ai-kak-optimizirovat-kontent-dlia-chatgpt-i-poiskovikov",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Новые правила продвижения контента, когда люди ищут информацию через AI-чаты",
+    "cover_image": "articles/cover_seo-v-epokhu-ai-kak-optimizirovat-kontent-dlia-chatgpt-i-poiskovikov.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 3,
+    "status": "published",
+    "created_at": "2025-10-14T23:36:17.761Z",
+    "updated_at": "2025-10-15T00:40:33.430Z",
+    "published_at": "2025-10-10T23:36:17.761Z",
+    "views_count": 4829,
+    "likes_count": 483,
+    "comments_count": 1,
+    "meta_title": "SEO в эпоху AI: как оптимизировать контент для ChatGPT и поисковиков",
+    "meta_description": "Новые правила продвижения контента, когда люди ищут информацию через AI-чаты",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      3,
+      13,
+      14
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 6,
+  "fields": {
+    "title": "DeFi 2.0: новая волна децентрализованных финансов",
+    "slug": "defi-2-0-novaia-volna-detsentralizovannykh-finansov",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Как развивается экосистема DeFi и какие протоколы стоит изучить в 2025",
+    "cover_image": "articles/cover_defi-2-0-novaia-volna-detsentralizovannykh-finansov.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 7,
+    "status": "published",
+    "created_at": "2025-10-14T23:36:17.792Z",
+    "updated_at": "2025-10-15T00:40:35.257Z",
+    "published_at": "2025-10-09T23:36:17.792Z",
+    "views_count": 4322,
+    "likes_count": 145,
+    "comments_count": 5,
+    "meta_title": "DeFi 2.0: новая волна децентрализованных финансов",
+    "meta_description": "Как развивается экосистема DeFi и какие протоколы стоит изучить в 2025",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      17,
+      15,
+      16
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 7,
+  "fields": {
+    "title": "Удаленная работа из Бали: полный гайд для digital nomads",
+    "slug": "udalennaia-rabota-iz-bali-polnyi-gaid-dlia-digital-nomads",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Практический опыт жизни и работы на Бали - от виз до коворкингов",
+    "cover_image": "articles/cover_udalennaia-rabota-iz-bali-polnyi-gaid-dlia-digital-nomads.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 13,
+    "status": "published",
+    "created_at": "2025-10-14T23:36:17.824Z",
+    "updated_at": "2025-10-15T00:40:37.172Z",
+    "published_at": "2025-10-08T23:36:17.824Z",
+    "views_count": 4057,
+    "likes_count": 437,
+    "comments_count": 1,
+    "meta_title": "Удаленная работа из Бали: полный гайд для digital nomads",
+    "meta_description": "Практический опыт жизни и работы на Бали - от виз до коворкингов",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      20,
+      19,
+      18
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 8,
+  "fields": {
+    "title": "Как масштабировать SaaS с $10K до $100K MRR: наш опыт",
+    "slug": "kak-masshtabirovat-saas-s-10k-do-100k-mrr-nash-opyt",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Конкретные шаги и метрики, которые помогли нам вырасти в 10 раз за год",
+    "cover_image": "articles/cover_kak-masshtabirovat-saas-s-10k-do-100k-mrr-nash-opyt.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 6,
+    "status": "published",
+    "created_at": "2025-10-14T23:36:17.857Z",
+    "updated_at": "2025-10-15T00:40:38.678Z",
+    "published_at": "2025-10-07T23:36:17.857Z",
+    "views_count": 818,
+    "likes_count": 351,
+    "comments_count": 3,
+    "meta_title": "Как масштабировать SaaS с $10K до $100K MRR: наш опыт",
+    "meta_description": "Конкретные шаги и метрики, которые помогли нам вырасти в 10 раз за год",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      21,
+      22,
+      23
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 9,
+  "fields": {
+    "title": "Figma или Adobe XD: что выбрать в 2025 году",
+    "slug": "figma-ili-adobe-xd-chto-vybrat-v-2025-godu",
+    "subtitle": "",
+    "content": "Выбор инструмента для UI/UX дизайна — важное решение для любой команды. В 2025 году на рынке доминируют два главных игрока: Figma и Adobe XD. Давайте разберемся, какой из них лучше подходит для ваших задач.\n\n## Что такое Figma и Adobe XD\n\n**Figma** — это облачный инструмент для дизайна интерфейсов, который работает прямо в браузере. Он был запущен в 2016 году и быстро завоевал популярность благодаря возможности совместной работы в реальном времени. В 2022 году Adobe объявила о покупке Figma за $20 млрд.\n\n**Adobe XD** — это настольное приложение от Adobe, интегрированное в экосистему Creative Cloud. Запущенный в 2016 году, XD позиционируется как быстрый и мощный инструмент для прототипирования.\n\n## Основные различия\n\n### Производительность\n\nFigma работает в браузере, что делает её доступной на любом устройстве без установки. Однако при работе со сложными файлами может наблюдаться небольшая задержка. Adobe XD — нативное приложение, которое обеспечивает более высокую производительность на мощных компьютерах.\n\n### Совместная работа\n\nЗдесь Figma безоговорочно лидирует. Возможность работать над одним файлом в режиме реального времени с комментариями и обновлениями — это то, что сделало Figma стандартом индустрии.\n\n```javascript\n// Пример интеграции Figma API для получения файла\nconst figmaToken = 'your-figma-token';\nconst fileKey = 'your-file-key';\n\nasync function getFigmaFile() {\n  const response = await fetch(\n    `https://api.figma.com/v1/files/${fileKey}`,\n    {\n      headers: {\n        'X-Figma-Token': figmaToken\n      }\n    }\n  );\n\n  const data = await response.json();\n  return data;\n}\n```\n\n### Плагины и расширения\n\nFigma предлагает огромную библиотеку плагинов, созданных сообществом. От автоматизации рутинных задач до интеграции с другими инструментами — возможности практически безграничны.\n\nAdobe XD также имеет плагины, но их экосистема значительно меньше. Однако XD отлично интегрируется с другими продуктами Adobe.\n\n## Цены и доступность\n\n### Figma\n- **Starter**: Бесплатно — 3 файла, неограниченное количество зрителей\n- **Professional**: $12/месяц — неограниченные файлы, расширенные функции\n- **Organization**: $45/месяц — для команд с продвинутыми возможностями\n\n### Adobe XD\n- **Starter**: Бесплатно — 2 активных документа\n- **Single App**: $9.99/месяц — только XD\n- **Creative Cloud**: $54.99/месяц — все приложения Adobe\n\n## Прототипирование\n\nОба инструмента предлагают мощные возможности для создания интерактивных прототипов. Adobe XD имеет преимущество в анимациях благодаря Auto-Animate, но Figma догоняет с функцией Smart Animate.\n\n```python\n# Пример скрипта для экспорта компонентов из Figma\nimport requests\n\ndef export_figma_component(file_key, node_id, token):\n    \"\"\"Экспортирует компонент из Figma в PNG\"\"\"\n    url = f\"https://api.figma.com/v1/images/{file_key}\"\n\n    params = {\n        'ids': node_id,\n        'format': 'png',\n        'scale': 2\n    }\n\n    headers = {\n        'X-Figma-Token': token\n    }\n\n    response = requests.get(url, params=params, headers=headers)\n\n    if response.status_code == 200:\n        return response.json()['images'][node_id]\n    else:\n        raise Exception(f\"Error: {response.status_code}\")\n\n# Использование\nimage_url = export_figma_component(\n    'your-file-key',\n    'node-id',\n    'your-token'\n)\nprint(f\"Image URL: {image_url}\")\n```\n\n## Когда выбрать Figma\n\n- Вы работаете в распределенной команде\n- Важна совместная работа в реальном времени\n- Нужен доступ к инструменту с любого устройства\n- Требуется богатая экосистема плагинов\n- Работаете с дизайн-системами\n\n## Когда выбрать Adobe XD\n\n- Вы уже используете продукты Adobe\n- Нужна максимальная производительность\n- Важны продвинутые анимации\n- Работаете преимущественно в одиночку\n- Требуется тесная интеграция с Photoshop и Illustrator\n\n## Заключение\n\nВ 2025 году **Figma остается лидером** для большинства команд благодаря облачной природе и возможностям совместной работы. Adobe XD — отличный выбор для тех, кто уже работает в экосистеме Adobe и не нуждается в активной коллаборации.\n\nМой совет: если вы только начинаете или работаете в команде — выбирайте Figma. Если вы сольный дизайнер с подпиской Creative Cloud — Adobe XD будет вполне достаточным решением.\n\nНезависимо от выбора, оба инструмента предлагают бесплатные версии — попробуйте оба и решите сами, что вам больше подходит!",
+    "excerpt": "Подробное сравнение Figma и Adobe XD в 2025 году. Узнайте, какой инструмент для UI/UX дизайна выбрать для вашей команды с примерами кода и практическими советами.",
+    "cover_image": "articles/cover_figma-ili-adobe-xd-chto-vybrat-v-2025-godu.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "maria_design"
+    ],
+    "category": 4,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.748Z",
+    "updated_at": "2025-10-15T07:18:27.678Z",
+    "published_at": "2025-10-14T23:51:10.747Z",
+    "views_count": 368,
+    "likes_count": 240,
+    "comments_count": 4,
+    "meta_title": "Figma или Adobe XD: что выбрать в 2025 году",
+    "meta_description": "Сравниваю два популярных инструмента для UI/UX дизайна на реальных проектах",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      25,
+      24,
+      10
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 10,
+  "fields": {
+    "title": "Django 5.0: обзор новых возможностей",
+    "slug": "django-5-0-obzor-novykh-vozmozhnostei",
+    "subtitle": "",
+    "content": "Django 5.0 вышел в декабре 2023 года и принес множество улучшений для разработчиков. Рассмотрим ключевые нововведения этой мажорной версии.\n\n## Основные изменения\n\n### Facet фильтры в Django Admin\n\nОдно из самых заметных обновлений — новая возможность faceted filtering в админке. Это позволяет добавлять фильтры с подсчетом количества элементов.\n\n```python\nfrom django.contrib import admin\nfrom .models import Article\n\n@admin.register(Article)\nclass ArticleAdmin(admin.ModelAdmin):\n    list_filter = ['category', 'status']\n\n    # Новое: автоматический подсчет\n    def get_list_filter(self, request):\n        return [\n            ('category', admin.RelatedFieldListFilter),\n            ('status', admin.ChoicesFieldListFilter),\n        ]\n```\n\n## Упрощенные формы\n\nDjango 5.0 упростил работу с формами, добавив новые возможности для валидации.\n\n```python\nfrom django import forms\n\nclass ContactForm(forms.Form):\n    name = forms.CharField(max_length=100)\n    email = forms.EmailField()\n    message = forms.CharField(widget=forms.Textarea)\n\n    # Новый синтаксис для валидации\n    def clean(self):\n        cleaned_data = super().clean()\n        # Валидация стала проще\n        return cleaned_data\n```\n\n## Улучшения в ORM\n\nДобавлены новые возможности для работы с базой данных.\n\n```python\nfrom django.db.models import Q, F\n\n# Новые возможности аннотаций\narticles = Article.objects.annotate(\n    is_popular=Q(views__gt=1000) & Q(likes__gt=100)\n).filter(is_popular=True)\n\n# Улучшенная работа с JSON полями\nArticle.objects.filter(\n    metadata__contains={'featured': True}\n)\n```\n\n## Асинхронные view\n\nDjango 5.0 улучшил поддержку асинхронных представлений.\n\n```python\nfrom django.http import JsonResponse\nimport asyncio\n\nasync def async_view(request):\n    # Асинхронные операции\n    data = await fetch_external_data()\n    return JsonResponse({'data': data})\n\nasync def fetch_external_data():\n    await asyncio.sleep(1)\n    return {'result': 'success'}\n```\n\n## Заключение\n\nDjango 5.0 — солидное обновление с улучшениями в админке, ORM и асинхронной поддержке. Рекомендуется для всех новых проектов.",
+    "excerpt": "Детальный разбор нововведений в Django 5.0 и примеры использования",
+    "cover_image": "articles/cover_django-5-0-obzor-novykh-vozmozhnostei.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "sergey_dev"
+    ],
+    "category": 5,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.778Z",
+    "updated_at": "2025-10-15T07:27:51.092Z",
+    "published_at": "2025-10-14T20:51:10.777Z",
+    "views_count": 286,
+    "likes_count": 55,
+    "comments_count": 2,
+    "meta_title": "Django 5.0: обзор новых возможностей",
+    "meta_description": "Детальный разбор нововведений в Django 5.0 и примеры использования",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      27,
+      26,
+      1
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 11,
+  "fields": {
+    "title": "Топ-10 городов для digital nomads в 2025",
+    "slug": "top-10-gorodov-dlia-digital-nomads-v-2025",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Мой рейтинг лучших городов для удаленной работы с учетом стоимости жизни",
+    "cover_image": "articles/cover_top-10-gorodov-dlia-digital-nomads-v-2025.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "elena_travel"
+    ],
+    "category": 13,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.807Z",
+    "updated_at": "2025-10-15T00:40:15.587Z",
+    "published_at": "2025-10-14T17:51:10.807Z",
+    "views_count": 2893,
+    "likes_count": 137,
+    "comments_count": 4,
+    "meta_title": "Топ-10 городов для digital nomads в 2025",
+    "meta_description": "Мой рейтинг лучших городов для удаленной работы с учетом стоимости жизни",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      19,
+      18
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 12,
+  "fields": {
+    "title": "Bitcoin ETF: что это значит для рынка",
+    "slug": "bitcoin-etf-chto-eto-znachit-dlia-rynka",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Анализ влияния одобрения Bitcoin ETF на криптовалютный рынок",
+    "cover_image": "articles/cover_bitcoin-etf-chto-eto-znachit-dlia-rynka.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "alex_crypto"
+    ],
+    "category": 7,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.822Z",
+    "updated_at": "2025-10-15T00:40:17.165Z",
+    "published_at": "2025-10-14T14:51:10.822Z",
+    "views_count": 1409,
+    "likes_count": 131,
+    "comments_count": 3,
+    "meta_title": "Bitcoin ETF: что это значит для рынка",
+    "meta_description": "Анализ влияния одобрения Bitcoin ETF на криптовалютный рынок",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      28,
+      15,
+      8
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 13,
+  "fields": {
+    "title": "Как я увеличила охват в Instagram на 300% за 2 месяца",
+    "slug": "kak-ia-uvelichila-okhvat-v-instagram-na-300-za-2-mesiatsa",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Пошаговая стратегия органического роста без накрутки и ботов",
+    "cover_image": "articles/cover_kak-ia-uvelichila-okhvat-v-instagram-na-300-za-2-mesiatsa.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "anna_marketing"
+    ],
+    "category": 3,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.847Z",
+    "updated_at": "2025-10-15T00:40:18.704Z",
+    "published_at": "2025-10-14T11:51:10.846Z",
+    "views_count": 562,
+    "likes_count": 231,
+    "comments_count": 2,
+    "meta_title": "Как я увеличила охват в Instagram на 300% за 2 месяца",
+    "meta_description": "Пошаговая стратегия органического роста без накрутки и ботов",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      30,
+      29,
+      14
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 14,
+  "fields": {
+    "title": "Ошибки при поиске product-market fit",
+    "slug": "oshibki-pri-poiske-product-market-fit",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Топ-5 ошибок, которые мы совершили при запуске стартапа",
+    "cover_image": "articles/cover_oshibki-pri-poiske-product-market-fit.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "dmitry_startup"
+    ],
+    "category": 2,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.875Z",
+    "updated_at": "2025-10-15T00:40:20.205Z",
+    "published_at": "2025-10-14T08:51:10.875Z",
+    "views_count": 2128,
+    "likes_count": 143,
+    "comments_count": 2,
+    "meta_title": "Ошибки при поиске product-market fit",
+    "meta_description": "Топ-5 ошибок, которые мы совершили при запуске стартапа",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      32,
+      31,
+      7
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 15,
+  "fields": {
+    "title": "Unit-экономика SaaS: гайд для основателей",
+    "slug": "unit-ekonomika-saas-gaid-dlia-osnovatelei",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Как правильно считать юнит-экономику и почему это важно",
+    "cover_image": "articles/cover_unit-ekonomika-saas-gaid-dlia-osnovatelei.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "olga_business"
+    ],
+    "category": 6,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.906Z",
+    "updated_at": "2025-10-15T00:40:21.807Z",
+    "published_at": "2025-10-14T05:51:10.906Z",
+    "views_count": 2880,
+    "likes_count": 185,
+    "comments_count": 2,
+    "meta_title": "Unit-экономика SaaS: гайд для основателей",
+    "meta_description": "Как правильно считать юнит-экономику и почему это важно",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      21,
+      22,
+      33
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 16,
+  "fields": {
+    "title": "Практическое применение LLM в продакшене",
+    "slug": "prakticheskoe-primenenie-llm-v-prodakshene",
+    "subtitle": "",
+    "content": "Применение больших языковых моделей (LLM) в production требует тщательного планирования и учета множества факторов. Рассмотрим практические аспекты внедрения.\n\n## Выбор модели\n\n### Варианты размещения\n\n**Cloud API:**\n- OpenAI GPT-4\n- Anthropic Claude\n- Google PaLM\n\n**Self-hosted:**\n- LLaMA 2\n- Mistral\n- Falcon\n\n```python\n# Пример работы с OpenAI API\nimport openai\n\nclient = openai.OpenAI(api_key=\"your-key\")\n\ndef generate_response(prompt):\n    response = client.chat.completions.create(\n        model=\"gpt-4-turbo\",\n        messages=[{\"role\": \"user\", \"content\": prompt}],\n        temperature=0.7,\n        max_tokens=500\n    )\n    return response.choices[0].message.content\n```\n\n## Управление контекстом\n\nКонтекст — ограниченный ресурс. Нужно управлять им эффективно.\n\n```python\nclass ContextManager:\n    def __init__(self, max_tokens=8000):\n        self.max_tokens = max_tokens\n        self.history = []\n\n    def add_message(self, role, content):\n        self.history.append({\"role\": role, \"content\": content})\n        self.trim_history()\n\n    def trim_history(self):\n        # Удаляем старые сообщения если превышен лимит\n        while self.count_tokens() > self.max_tokens:\n            if len(self.history) > 2:\n                self.history.pop(1)  # Сохраняем system prompt\n            else:\n                break\n\n    def count_tokens(self):\n        # Упрощенный подсчет\n        return sum(len(m['content']) // 4 for m in self.history)\n```\n\n## Кэширование\n\nКэширование ответов экономит деньги и время.\n\n```python\nimport redis\nimport hashlib\nimport json\n\nclass LLMCache:\n    def __init__(self):\n        self.redis = redis.Redis(host='localhost', port=6379)\n\n    def get_cache_key(self, prompt, model):\n        data = f\"{model}:{prompt}\"\n        return hashlib.md5(data.encode()).hexdigest()\n\n    def get(self, prompt, model):\n        key = self.get_cache_key(prompt, model)\n        cached = self.redis.get(key)\n        if cached:\n            return json.loads(cached)\n        return None\n\n    def set(self, prompt, model, response, ttl=3600):\n        key = self.get_cache_key(prompt, model)\n        self.redis.setex(key, ttl, json.dumps(response))\n\n# Использование\ncache = LLMCache()\n\ndef get_response(prompt):\n    cached = cache.get(prompt, \"gpt-4\")\n    if cached:\n        return cached\n\n    response = generate_response(prompt)\n    cache.set(prompt, \"gpt-4\", response)\n    return response\n```\n\n## Обработка ошибок\n\nВажно правильно обрабатывать ошибки API.\n\n```python\nimport time\nfrom openai import OpenAIError\n\ndef generate_with_retry(prompt, max_retries=3):\n    for attempt in range(max_retries):\n        try:\n            return generate_response(prompt)\n        except OpenAIError as e:\n            if attempt == max_retries - 1:\n                raise\n            time.sleep(2 ** attempt)  # Exponential backoff\n```\n\n## Мониторинг и метрики\n\nОтслеживание использования критично для production.\n\n```python\nfrom prometheus_client import Counter, Histogram\n\nllm_requests = Counter('llm_requests_total', 'Total LLM requests')\nllm_latency = Histogram('llm_request_duration_seconds', 'LLM request duration')\nllm_tokens = Counter('llm_tokens_used', 'Total tokens used')\n\ndef monitored_generate(prompt):\n    llm_requests.inc()\n\n    with llm_latency.time():\n        response = generate_response(prompt)\n\n    # Подсчет токенов\n    tokens_used = len(prompt) // 4 + len(response) // 4\n    llm_tokens.inc(tokens_used)\n\n    return response\n```\n\n## Стоимость\n\nРасчет затрат важен для бюджетирования.\n\n```python\n# Цены на январь 2025\nPRICING = {\n    'gpt-4-turbo': {\n        'input': 0.01,   # за 1K токенов\n        'output': 0.03\n    },\n    'claude-3-sonnet': {\n        'input': 0.003,\n        'output': 0.015\n    }\n}\n\ndef calculate_cost(input_tokens, output_tokens, model='gpt-4-turbo'):\n    prices = PRICING[model]\n    cost = (input_tokens / 1000) * prices['input']\n    cost += (output_tokens / 1000) * prices['output']\n    return cost\n\n# Пример\ncost = calculate_cost(1000, 500, 'gpt-4-turbo')\nprint(f\"Стоимость запроса: ${cost:.4f}\")\n```\n\n## Заключение\n\nИспользование LLM в production требует:\n- Правильного выбора модели\n- Управления контекстом\n- Кэширования\n- Обработки ошибок\n- Мониторинга\n\nПри правильном подходе LLM становятся мощным инструментом для решения бизнес-задач.",
+    "excerpt": "Опыт внедрения больших языковых моделей в реальные приложения",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "ivan_tech"
+    ],
+    "category": 12,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.932Z",
+    "updated_at": "2025-10-15T07:27:51.102Z",
+    "published_at": "2025-10-14T02:51:10.932Z",
+    "views_count": 1235,
+    "likes_count": 129,
+    "comments_count": 4,
+    "meta_title": "Практическое применение LLM в продакшене",
+    "meta_description": "Опыт внедрения больших языковых моделей в реальные приложения",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      3,
+      34,
+      35
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 17,
+  "fields": {
+    "title": "Чистая архитектура: от теории к практике",
+    "slug": "chistaia-arkhitektura-ot-teorii-k-praktike",
+    "subtitle": "",
+    "content": "Чистая архитектура (Clean Architecture) — это подход к проектированию программного обеспечения, предложенный Робертом Мартином (Uncle Bob). Давайте разберем основные принципы и их практическое применение.\n\n## Основные принципы\n\n### Слои приложения\n\nЧистая архитектура разделяет приложение на концентрические слои:\n\n1. **Entities** — бизнес-логика\n2. **Use Cases** — прикладная логика\n3. **Interface Adapters** — адаптеры (контроллеры, презентеры)\n4. **Frameworks & Drivers** — внешние инструменты\n\n```python\n# Entities - чистая бизнес-логика\nclass User:\n    def __init__(self, email, password):\n        self.email = email\n        self.password = password\n\n    def is_valid_email(self):\n        return '@' in self.email\n\n# Use Cases\nclass UserRegistration:\n    def __init__(self, user_repository):\n        self.repository = user_repository\n\n    def execute(self, email, password):\n        user = User(email, password)\n        if not user.is_valid_email():\n            raise ValueError(\"Invalid email\")\n        return self.repository.save(user)\n\n# Interface Adapters\nclass UserController:\n    def __init__(self, registration_use_case):\n        self.use_case = registration_use_case\n\n    def register(self, request_data):\n        try:\n            user = self.use_case.execute(\n                request_data['email'],\n                request_data['password']\n            )\n            return {'success': True, 'user_id': user.id}\n        except ValueError as e:\n            return {'success': False, 'error': str(e)}\n```\n\n## Dependency Inversion\n\nКлючевой принцип — зависимости направлены внутрь, к бизнес-логике.\n\n```python\nfrom abc import ABC, abstractmethod\n\n# Абстракция (в слое Use Cases)\nclass UserRepository(ABC):\n    @abstractmethod\n    def save(self, user):\n        pass\n\n    @abstractmethod\n    def find_by_email(self, email):\n        pass\n\n# Реализация (во внешнем слое)\nclass SQLUserRepository(UserRepository):\n    def __init__(self, db_connection):\n        self.db = db_connection\n\n    def save(self, user):\n        # Сохранение в SQL\n        pass\n\n    def find_by_email(self, email):\n        # Поиск в SQL\n        pass\n```\n\n## Тестируемость\n\nЧистая архитектура делает код легко тестируемым.\n\n```python\n# Тестирование без реальной БД\nclass MockUserRepository(UserRepository):\n    def __init__(self):\n        self.users = []\n\n    def save(self, user):\n        user.id = len(self.users) + 1\n        self.users.append(user)\n        return user\n\n    def find_by_email(self, email):\n        return next((u for u in self.users if u.email == email), None)\n\n# Тест\ndef test_user_registration():\n    repo = MockUserRepository()\n    use_case = UserRegistration(repo)\n\n    result = use_case.execute(\"test@example.com\", \"password123\")\n    assert result.id == 1\n```\n\n## Преимущества\n\n- **Независимость от фреймворков** — бизнес-логика не зависит от Django/Flask\n- **Тестируемость** — легко писать юнит-тесты\n- **Независимость от БД** — можно менять базу данных\n- **Масштабируемость** — код легко расширяется\n\n## Недостатки\n\n- **Больше кода** — требуется больше классов и интерфейсов\n- **Сложность** — нужно понимание архитектурных паттернов\n- **Overkill для малых проектов** — избыточно для простых приложений\n\n## Заключение\n\nЧистая архитектура — мощный инструмент для больших и сложных проектов. Она обеспечивает гибкость, тестируемость и долгосрочную поддерживаемость кода.",
+    "excerpt": "Как применить принципы Clean Architecture в реальных проектах",
+    "cover_image": "articles/cover_chistaia-arkhitektura-ot-teorii-k-praktike.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "sergey_dev"
+    ],
+    "category": 5,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.962Z",
+    "updated_at": "2025-10-15T07:27:51.097Z",
+    "published_at": "2025-10-13T23:51:10.962Z",
+    "views_count": 2965,
+    "likes_count": 111,
+    "comments_count": 1,
+    "meta_title": "Чистая архитектура: от теории к практике",
+    "meta_description": "Как применить принципы Clean Architecture в реальных проектах",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      27,
+      37,
+      36
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 18,
+  "fields": {
+    "title": "Дизайн-система с нуля: чек-лист",
+    "slug": "dizain-sistema-s-nulia-chek-list",
+    "subtitle": "",
+    "content": "Это полноценная статья с подробным содержанием, примерами кода и практическими советами. Контент обновляется.",
+    "excerpt": "Пошаговое руководство по созданию дизайн-системы для продукта",
+    "cover_image": "articles/cover_dizain-sistema-s-nulia-chek-list.jpg",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "maria_design"
+    ],
+    "category": 4,
+    "status": "published",
+    "created_at": "2025-10-14T23:51:10.989Z",
+    "updated_at": "2025-10-15T00:40:28.486Z",
+    "published_at": "2025-10-13T20:51:10.989Z",
+    "views_count": 2179,
+    "likes_count": 247,
+    "comments_count": 2,
+    "meta_title": "Дизайн-система с нуля: чек-лист",
+    "meta_description": "Пошаговое руководство по созданию дизайн-системы для продукта",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": [
+      38,
+      39,
+      10
+    ]
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 19,
+  "fields": {
+    "title": "Ответ на пост «В Госдуме предложили ввести уголовную ответственность за оборот вейпов»",
+    "slug": "otvet-na-post-v-gosdume-predlozhili-vvesti-ugolovnuiu-otvetstvennost-za-oborot-veipov",
+    "subtitle": "",
+    "content": "**[*МОСКВА, 14 октября. /ТАСС/.*](https://pikabu.ru/)** Первый замруководителя фракции \"Справедливая Россия - За правду\" Дмитрий Гусев и замруководителя фракции Елена Драпеко направили обращение на имя министра внутренних дел Владимира Колокольцева с предложением ввести уголовную ответственность за изготовление, хранение, распространение и использование вейпов. Текст письма есть в распоряжении ТАСС.\r\n\r\n\"Предлагается рассмотреть возможность внесения поправок в Уголовный кодекс Российской Федерации, которые бы устанавливали четкие меры ответственности за изготовление, хранение, распространение и употребление вейпов и жидкостей к ним по аналогии с составами преступлений в сфере оборота наркотических средств\", - говорится в документе.\r\n\r\nТакже депутаты просят направить в Госдуму предложения МВД по формированию системы ответственности за незаконное обращение вейпов. По мнению депутатов, это позволит закрыть серую зону и предотвратить злоупотребления.\r\n\r\n\"Сегодня мы видим, как вейпы превращаются из модного аксессуара в инструмент распространения опасных веществ. Необходимо выработать четкую систему ответственности, которая бы обеспечивала защиту здоровья граждан, прежде всего детей и молодежи\", - сказал ТАСС Гусев.\r\n\r\nВ свою очередь Драпеко отметила, что вопрос не только в борьбе с зависимостью, но и в культурном выборе общества. \"Мы должны поставить точку в этой теме и защитить будущее поколение от разрушительных привычек\", - сказала она ТАСС.",
+    "excerpt": "**[**МОСКВА, 14 октября. /ТАСС/.*](https://pikabu.ru/)*** Первый замруководителя фракции \"Справедливая Россия - За правду\" Дмитрий Гусев и замруководителя фракции Елена Драпеко направили обращение на имя министра внутренних дел Владимира Колокольцева с предложением ввести уголовную ответственность з...",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "writer"
+    ],
+    "category": 6,
+    "status": "published",
+    "created_at": "2025-10-15T08:15:20.060Z",
+    "updated_at": "2025-10-15T17:05:57.634Z",
+    "published_at": "2025-10-15T08:19:26.672Z",
+    "views_count": 14,
+    "likes_count": 0,
+    "comments_count": 0,
+    "meta_title": "Ответ на пост «В Госдуме предложили ввести уголовную ответственность з",
+    "meta_description": "**[**МОСКВА, 14 октября. /ТАСС/.*](https://pikabu.ru/)*** Первый замруководителя фракции \"Справедливая Россия - За правду\" Дмитрий Гусев и замруководителя фракц",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": []
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 21,
+  "fields": {
+    "title": "Тестирование видео и медиа на платформе - Демо",
+    "slug": "testirovanie-video-i-media-na-platforme-demo",
+    "subtitle": "Полное руководство по новым возможностям ArticleHub с примерами видео и изображений",
+    "content": "\n# Новые медиа-возможности ArticleHub\n\nТеперь наша платформа поддерживает **видео и изображения** прямо в контенте статей, как на VC.ru и Дзен!\n\n## 📸 Вставка изображений\n\nВы можете легко добавлять изображения используя Markdown синтаксис:\n\n![Пример изображения](https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800)\n\nИзображения автоматически адаптируются под размер экрана и красиво оформляются.\n\n## 🎥 Вставка видео\n\n### HTML5 видео\n\nВы можете встраивать видео файлы напрямую:\n\n<video controls width=\"100%\" poster=\"https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800\">\n  <source src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\" type=\"video/mp4\">\n  Ваш браузер не поддерживает видео HTML5.\n</video>\n\n*Демо видео \"Big Buck Bunny\"*\n\n### YouTube видео\n\nЛегко встраивайте YouTube видео:\n\n<iframe width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/dQw4w9WgXcQ\" frameborder=\"0\" allowfullscreen></iframe>\n\n### Vimeo видео\n\nИли видео с Vimeo:\n\n<iframe src=\"https://player.vimeo.com/video/148751763\" width=\"100%\" height=\"400\" frameborder=\"0\" allowfullscreen></iframe>\n\n## 🖼️ Галерея изображений\n\nСоздавайте красивые галереи:\n\n![Технологии 1](https://images.unsplash.com/photo-1518770660439-4636190af475?w=800)\n\n![Технологии 2](https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800)\n\n![Технологии 3](https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800)\n\n## 💻 Код + изображения\n\nКомбинируйте код и изображения для создания туториалов:\n\n```python\n# Пример кода\ndef upload_media(file):\n    # Загружаем файл\n    media = ArticleMedia.objects.create(\n        file=file,\n        media_type='video' if file.name.endswith('.mp4') else 'image'\n    )\n    return media.file_url\n```\n\n![Архитектура системы](https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800)\n\n## ✨ Особенности\n\n- ✅ Поддержка MP4, WebM видео\n- ✅ Автовоспроизведение видео при наведении на главной\n- ✅ Полноэкранный режим для видео\n- ✅ Адаптивные изображения\n- ✅ YouTube и Vimeo embed\n- ✅ Markdown + HTML5\n- ✅ Как на VC.ru и Дзен!\n\n## 🎬 Еще одно видео\n\n<video controls width=\"100%\" loop muted autoplay>\n  <source src=\"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4\" type=\"video/mp4\">\n</video>\n\n*\"Elephant's Dream\" - короткометражка с открытым исходным кодом*\n\n## 📊 Заключение\n\nТеперь вы можете создавать **полноценные мультимедийные статьи** с видео, изображениями, кодом и текстом!\n\n![Финальное изображение](https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800)\n\n**Попробуйте сами!** Перейдите на страницу создания статьи и добавьте свои медиа-файлы.\n",
+    "excerpt": "Демонстрация новых возможностей платформы: видео обложки, HTML5 видео в контенте, изображения в Markdown, YouTube и Vimeo embed. Полноценная поддержка мультимедиа как на VC.ru!",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "Демонстрация медиа-возможностей",
+    "author": [
+      "admin"
+    ],
+    "category": 1,
+    "status": "published",
+    "created_at": "2025-10-16T20:07:14.630Z",
+    "updated_at": "2025-10-16T20:07:14.630Z",
+    "published_at": "2025-10-16T20:07:14.630Z",
+    "views_count": 1,
+    "likes_count": 0,
+    "comments_count": 0,
+    "meta_title": "Тестирование видео и медиа на платформе - Демо",
+    "meta_description": "Демонстрация новых возможностей платформы: видео обложки, HTML5 видео в контенте, изображения в Markdown, YouTube и Vimeo embed. Полноценная поддержка мультимед",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": []
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 24,
+  "fields": {
+    "title": "Как создавать киношные видео в Sora 2 Pro: полное руководство по структуре промптов",
+    "slug": "kak-sozdavat-kinoshnye-video-v-sora-2-pro-polnoe-rukovodstvo-po-strukture-promptov",
+    "subtitle": "",
+    "content": "<div style=\"position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1rem 0;\">\n  <iframe style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;\" src=\"https://www.youtube.com/embed/rmpnHBha3EQ\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n\nSora 2 Pro от OpenAI демонстрирует революционный уровень генерации видео, буквально стирая грань между нейросетью и профессиональным кино. Модель способна создавать синематографические ролики с точным следованием сложным сценариям, что открывает новые возможности для создателей контента.\n\n## Почему нужен сценарий\n\nДля получения действительно качественного результата в Sora 2 Pro требуется не просто хороший запрос, а полноценный сценарий. Модель должна получить структурированное описание, разбитое по времени, с указанием звука, движения камеры, эмоций и атмосферы. Это позволяет системе мыслить целой сценой, а не отдельными кадрами.\n\n### Структура промпта для Sora 2 Pro\n\nЭффективный промпт для Sora 2 Pro строится как раскадровка короткометражного фильма. Каждую сцену необходимо делить на временные отрезки по 2-3 секунды. В каждом блоке прописывается:\n\n- **Визуал** — параметры камеры, движение, освещение, фокус\n- **SFX** (звуковые эффекты) — шаги, шум ветра, улицы, щелчки и другие звуки\n- **VO** (голос за кадром) — интонация и характер озвучки\n- **Музыка** — настроение сцены, ритм, эмоциональный фон\n- **Диалоги** — внутренний монолог или реплики персонажей\n\n## Использование GPT агентов для создания промптов\n\nПлатформа SYNTX AI предлагает использовать GPT агентов для автоматизации создания структурированных промптов. Агент обучается на основе системных инструкций, которые включают правила форматирования и примеры успешных промптов.\n\nНачните работать с Sora 2 Pro прямо сейчас — **[перейдите в SYNTX Telegram-бот](https://t.me/syntxaibot?start=aff_5339755022)** и получите доступ к 90+ AI-инструментам в одном месте. Первые 50 человек получают скидку 15% по промокоду KINO15.\n\n### Процесс работы с агентом\n\nСоздание промпта с помощью агента происходит в несколько этапов:\n\n1. **Обучение агента** — загрузка системных инструкций и примеров структуры промптов\n2. **Базовая идея** — описание основной концепции видео (например, \"девушка бежит по лабиринту, пугается и не знает, как выбраться\")\n3. **Детализация** — добавление информации об эстетике, саундтреке, художественном описании, цветовой палитре, стиле съемки и настроении\n4. **Генерация** — агент создает структурированный промпт с разбивкой по секундам\n\n## Расширенные параметры промпта\n\nДля получения максимально кинематографичного результата в промпт необходимо включить дополнительные элементы:\n\n- **Эстетика** — общая визуальная концепция (киноязык, жанр)\n- **Художественное описание** — детали визуальных эффектов\n- **Цветовая палитра** — доминирующие цвета и их настроение\n- **Стиль съемки** — тип камеры, объектив, движение\n- **Настроение** — эмоциональная атмосфера сцены\n\n### Настройки модели\n\nПри генерации видео в Sora 2 можно выбрать несколько ключевых параметров:\n\n- **Длительность** — 10 секунд для базовой версии, до 15 секунд для Pro\n- **Качество** — 720p или 1080p (Pro версия)\n- **Формат** — 16:9, 9:16 и другие соотношения сторон\n- **Водяной знак** — возможность генерации без watermark\n\n## Почему Sora 2 Pro требует структурированных промптов\n\nSora 2 Pro — единственная модель на сегодняшний день, которая настолько четко следует запросу с полноценным переключением кадров. Модель анализирует временные блоки и создает видео с точными переходами между сценами. Переключение кадров происходит буквально посекундно, соблюдая заданные таймблоки.\n\n### Преимущества структурированного подхода\n\nВ отличие от других моделей генерации видео (Runway, Kling), где достаточно общего описания ситуации, Sora 2 Pro любит структурированные запросы. Модель ожидает получить детальную раскадровку с указанием, что происходит в каждый момент времени, какой мотив, какая история, какие звуки.\n\n## Примеры успешной генерации\n\nВидео, созданные по структурированным промптам, демонстрируют киноуровень качества. Модель точно воспроизводит:\n\n- Внутренние монологи персонажей в заданные моменты\n- Плавные переходы между планами (общий, средний, крупный)\n- Атмосферное освещение и цветокоррекцию\n- Естественное движение камеры\n- Эмоциональную динамику сцены\n\n## SYNTX AI как платформа для работы\n\nSYNTX AI представляет собой агрегатор, объединяющий более 90 топовых нейросетей в одном месте. Платформа доступна как через веб-версию, так и через Telegram-бот. GPT агенты доступны только в веб-версии, что делает её предпочтительным выбором для профессиональной работы с Sora 2.\n\n### Особенности платформы\n\nПлатформа работает в России без VPN и не требует зарубежных карт для оплаты. Хотите протестировать все возможности? Присоединяйтесь к SYNTX и получите 15% скидку на первую подписку с промокодом KINO15.\n\n## Сравнение Sora 2 и Sora 2 Pro\n\nРазница между базовой версией Sora 2 и профессиональной становится очевидной при сравнении результатов:\n\n- **Sora 2** — разрешение 720p, длительность до 10 секунд, время генерации несколько минут\n- **Sora 2 Pro** — поддержка 720p и 1080p, длительность до 15 секунд, повышенная детализация, время ожидания 5-10 минут\n\nPro версия демонстрирует значительно более высокую точность в деталях, переходах и физической реалистичности.\n\n## Практические рекомендации\n\nДля достижения лучших результатов при работе с Sora 2 Pro следует:\n\n1. **Не бояться дорабатывать** — промпты от GPT агента можно и нужно редактировать\n2. **Экспериментировать** — один промпт может давать разные результаты\n3. **Использовать примеры** — изучать успешные структуры и адаптировать их\n4. **Детализировать звук** — модель отлично работает с звуковыми описаниями\n5. **Прописывать эмоции** — эмоциональный контекст существенно влияет на результат\n\n## SYNTX Creators и возможности для создателей\n\nПлатформа SYNTX запускает конкурс SYNTX Creators с призовым фондом $11,000. Участники могут выиграть iPhone 17, iPad, денежные призы и получить статус амбассадора платформы. Это отличная возможность для создателей контента продемонстрировать свои навыки работы с AI-инструментами.\n\nГотовы создавать видео киноуровня? Начните работу с Sora 2 Pro в SYNTX — доступ ко всем топовым нейросетям для генерации видео, изображений и музыки в одном Telegram-боте. Платформа предлагает реферальную программу с начислением до 15% от покупок приглашенных пользователей.\n\nSora 2 Pro открывает новую эру в создании AI-видео, где качественный структурированный промпт становится ключом к получению кинематографического результата. Использование GPT агентов значительно упрощает процесс создания таких промптов, делая профессиональную видеогенерацию доступной широкому кругу пользователей.",
+    "excerpt": "Sora 2 Pro от OpenAI демонстрирует революционный уровень генерации видео, буквально стирая грань между нейросетью и профессиональным кино. Модель способна создавать синематографические ролики с точным следованием сложным сценариям, что открывает новые возможности для создателей контента. Почему нуже...",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "youtube:rmpnHBha3EQ",
+    "cover_alt": "",
+    "author": [
+      "writer"
+    ],
+    "category": 18,
+    "status": "published",
+    "created_at": "2025-10-16T21:03:42.225Z",
+    "updated_at": "2025-10-17T12:36:53.840Z",
+    "published_at": "2025-10-16T21:03:42Z",
+    "views_count": 67,
+    "likes_count": 0,
+    "comments_count": 0,
+    "meta_title": "Как создавать промпты для Sora 2 Pro: структура, звук, эмоции?",
+    "meta_description": "Как создавать промпты для Sora 2 Pro: структура, звук, эмоции?",
+    "featured": true,
+    "allow_comments": true,
+    "is_pinned": true,
+    "pin_order": 1,
+    "tags": []
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 25,
+  "fields": {
+    "title": "Онлайн-образование в 2025: лучшие платформы и курсы",
+    "slug": "onlain-obrazovanie-v-2025-luchshie-platformy-i-kursy",
+    "subtitle": "",
+    "content": "\n# Онлайн-образование в 2025: лучшие платформы и курсы\n\nВ 2025 году онлайн-образование достигло невиданных высот. С развитием AI и интерактивных технологий обучение стало более персонализированным и эффективным.\n\n## Топ платформ для обучения\n\n### 1. Coursera\nCoursera продолжает оставаться лидером в сфере онлайн-образования. Платформа предлагает:\n- Курсы от ведущих университетов мира\n- Специализации и профессиональные сертификаты\n- AI-ассистенты для персонализированного обучения\n\n### 2. Udacity\nUdacity специализируется на технических навыках:\n- Наноградусы по AI и машинному обучению\n- Курсы по разработке и DevOps\n- Практические проекты с реальными компаниями\n\n### 3. Skillbox\nРоссийская платформа с актуальными курсами:\n- Маркетинг и дизайн\n- Программирование\n- Управление проектами\n\n## Тренды в образовании\n\n1. **Микрообучение** - короткие уроки по 5-10 минут\n2. **VR/AR обучение** - погружение в виртуальную среду\n3. **AI-менторы** - персональные помощники в обучении\n4. **Геймификация** - игровые элементы в курсах\n\n## Советы по выбору курса\n\n- Читайте отзывы студентов\n- Проверяйте квалификацию преподавателей\n- Обращайте внимание на практическую часть\n- Сравнивайте цены и варианты оплаты\n\nОнлайн-образование открывает безграничные возможности для развития. Главное - правильно выбрать платформу и курс под свои цели!\n",
+    "excerpt": "Обзор лучших платформ онлайн-обучения, которые помогут прокачать навыки в 2025 году",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 9,
+    "status": "published",
+    "created_at": "2025-10-16T23:28:09.070Z",
+    "updated_at": "2025-10-16T23:28:09.070Z",
+    "published_at": "2025-10-16T23:28:09.070Z",
+    "views_count": 1,
+    "likes_count": 0,
+    "comments_count": 0,
+    "meta_title": "Онлайн-образование в 2025: лучшие платформы и курсы",
+    "meta_description": "Обзор лучших платформ онлайн-обучения, которые помогут прокачать навыки в 2025 году",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": []
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 26,
+  "fields": {
+    "title": "Игровая индустрия 2025: главные релизы и тренды",
+    "slug": "igrovaia-industriia-2025-glavnye-relizy-i-trendy",
+    "subtitle": "",
+    "content": "\n# Игровая индустрия 2025: главные релизы и тренды\n\n2025 год обещает быть революционным для игровой индустрии. С развитием технологий и новых консолей, игроков ждут невероятные приключения.\n\n## Самые ожидаемые релизы\n\n### GTA VI\nRockstar Games наконец-то анонсировала долгожданную GTA VI:\n- Действие развернется в современном Вайс-Сити\n- Два главных героя с уникальными историями\n- Фотореалистичная графика на движке RAGE 9\n- Онлайн-режим нового поколения\n\n### Elder Scrolls VI\nBethesda работает над следующей частью культовой серии:\n- Огромный открытый мир\n- Улучшенная система крафта\n- Глубокая система выборов и последствий\n\n### Fable 4\nПерезапуск легендарной серии от Playground Games:\n- Британский фольклор и юмор\n- Моральная система выборов\n- Красивейшие локации\n\n## Тренды игровой индустрии\n\n### 1. Cloud Gaming\nОблачный гейминг становится массовым:\n- Xbox Cloud Gaming\n- GeForce NOW\n- PlayStation Plus Premium\n\n### 2. AI в играх\nИскусственный интеллект меняет игры:\n- Умные NPC с реалистичным поведением\n- Процедурная генерация контента\n- Адаптивная сложность\n\n### 3. VR и AR\nВиртуальная реальность набирает обороты:\n- Meta Quest 4 с улучшенной графикой\n- PlayStation VR 3\n- AR-игры нового поколения\n\n### 4. Кроссплатформенная игра\nБарьеры между платформами исчезают:\n- Играйте с друзьями на любых устройствах\n- Единый прогресс на всех платформах\n- Crossplay по умолчанию\n\n## Заключение\n\nИгровая индустрия продолжает расти и развиваться. 2025 год станет знаковым благодаря выходу культовых игр и развитию новых технологий!\n",
+    "excerpt": "Обзор самых ожидаемых игровых релизов и трендов игровой индустрии в 2025 году",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 11,
+    "status": "published",
+    "created_at": "2025-10-16T23:28:43.720Z",
+    "updated_at": "2025-10-16T23:28:43.720Z",
+    "published_at": "2025-10-16T23:28:43.720Z",
+    "views_count": 3,
+    "likes_count": 0,
+    "comments_count": 0,
+    "meta_title": "Игровая индустрия 2025: главные релизы и тренды",
+    "meta_description": "Обзор самых ожидаемых игровых релизов и трендов игровой индустрии в 2025 году",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": []
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 27,
+  "fields": {
+    "title": "Цифровое здоровье: как технологии помогают следить за самочувствием",
+    "slug": "tsifrovoe-zdorove-kak-tekhnologii-pomogaiut-sledit-za-samochuvstviem",
+    "subtitle": "",
+    "content": "\n# Цифровое здоровье: как технологии помогают следить за самочувствием\n\nВ 2025 году технологии стали неотъемлемой частью заботы о здоровье. Умные устройства и приложения помогают отслеживать показатели и вовремя реагировать на изменения.\n\n## Умные часы и фитнес-трекеры\n\n### Apple Watch Series 10\nФлагман среди умных часов:\n- ЭКГ и мониторинг сердечного ритма 24/7\n- Датчик уровня кислорода в крови\n- Отслеживание качества сна\n- Детектор падений и SOS\n- Мониторинг стресса\n\n### Samsung Galaxy Watch 7\nМощный конкурент Apple Watch:\n- Измерение артериального давления\n- Биоимпедансный анализ состава тела\n- Отслеживание менструального цикла\n- Коучинг по сну\n\n## Приложения для здоровья\n\n### MyFitnessPal\nЛучшее приложение для питания:\n- База из 14 млн продуктов\n- Подсчет калорий и макронутриентов\n- Дневник питания\n- Интеграция с фитнес-трекерами\n\n### Headspace\nМедитация и осознанность:\n- Сотни медитаций на разные темы\n- Упражнения для сна\n- Техники снижения стресса\n- Mindfulness для детей\n\n### Strava\nДля любителей бега и велоспорта:\n- Отслеживание тренировок\n- Анализ производительности\n- Социальная сеть спортсменов\n- Соревнования и челленджи\n\n## Умные гаджеты\n\n### Умные весы\n- Измерение веса, жира, мышечной массы\n- Синхронизация с приложениями\n- Отслеживание динамики\n\n### Тонометры\n- Автоматическое измерение давления\n- Bluetooth-синхронизация\n- История измерений\n\n### Глюкометры\n- Непрерывный мониторинг глюкозы\n- Оповещения о критических значениях\n- Анализ трендов\n\n## Телемедицина\n\nОнлайн-консультации с врачами:\n- Консультации в удобное время\n- Рецепты и больничные онлайн\n- Доступ к медицинской карте\n\n## Советы по использованию\n\n1. **Регулярность** - носите гаджеты постоянно\n2. **Анализ данных** - следите за трендами\n3. **Консультации** - показывайте данные врачу\n4. **Комплексный подход** - используйте несколько инструментов\n\nТехнологии делают заботу о здоровье проще и эффективнее. Главное - правильно использовать возможности!\n",
+    "excerpt": "Обзор лучших приложений и гаджетов для мониторинга здоровья в 2025 году",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 15,
+    "status": "published",
+    "created_at": "2025-10-16T23:28:43.725Z",
+    "updated_at": "2025-10-16T23:28:43.725Z",
+    "published_at": "2025-10-16T23:28:43.725Z",
+    "views_count": 3,
+    "likes_count": 0,
+    "comments_count": 0,
+    "meta_title": "Цифровое здоровье: как технологии помогают следить за самочувствием",
+    "meta_description": "Обзор лучших приложений и гаджетов для мониторинга здоровья в 2025 году",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": []
+  }
+},
+{
+  "model": "articles.article",
+  "pk": 28,
+  "fields": {
+    "title": "Минимализм в 2025: как упростить жизнь и стать счастливее",
+    "slug": "minimalizm-v-2025-kak-uprostit-zhizn-i-stat-schastlivee",
+    "subtitle": "",
+    "content": "\n# Минимализм в 2025: как упростить жизнь и стать счастливее\n\nВ мире информационного шума и избытка потребления минимализм становится философией осознанной жизни. Давайте разберемся, как упростить свою жизнь.\n\n## Что такое минимализм?\n\nМинимализм - это не отказ от всего, а осознанный выбор того, что действительно важно:\n- Меньше вещей, больше впечатлений\n- Качество важнее количества\n- Фокус на главном\n- Свобода от лишнего\n\n## Преимущества минимализма\n\n### 1. Больше времени\n- Меньше уборки\n- Не нужно искать вещи\n- Проще принимать решения\n\n### 2. Больше денег\n- Меньше импульсивных покупок\n- Фокус на качественных вещах\n- Экономия на ненужном\n\n### 3. Меньше стресса\n- Порядок в доме = порядок в голове\n- Нет чувства захламленности\n- Легче сосредоточиться\n\n### 4. Экологичность\n- Меньше отходов\n- Осознанное потребление\n- Забота о планете\n\n## Как начать путь к минимализму\n\n### Шаг 1: Разбор гардероба\n- Избавьтесь от вещей, которые не носили год\n- Создайте капсульный гардероб\n- Покупайте базовые качественные вещи\n\n### Шаг 2: Цифровой минимализм\n- Удалите ненужные приложения\n- Отпишитесь от лишних рассылок\n- Организуйте файлы на компьютере\n- Ограничьте время в соцсетях\n\n### Шаг 3: Дом\n- Применяйте правило \"один пришел - один ушел\"\n- Оставляйте только нужные вещи\n- Организуйте систему хранения\n- Убирайте регулярно\n\n### Шаг 4: Отношения\n- Окружайте себя позитивными людьми\n- Отпускайте токсичные отношения\n- Цените качество общения\n\n### Шаг 5: Работа\n- Фокусируйтесь на главных задачах\n- Откажитесь от многозадачности\n- Делегируйте второстепенное\n\n## Популярные методы\n\n### Метод Мари Кондо (KonMari)\n1. Оставляйте только то, что вызывает радость\n2. Сортируйте по категориям, а не по комнатам\n3. Благодарите вещи перед расставанием\n\n### Правило 90/90\nЕсли вы не использовали вещь 90 дней и не будете 90 дней - избавьтесь от нее\n\n### Цифровой детокс\nРегулярные перерывы от гаджетов и интернета\n\n## Минимализм в разных сферах\n\n### Минимализм в питании\n- Простые натуральные продукты\n- Меньше готовых блюд\n- Осознанное питание\n\n### Минимализм в планировании\n- Простой планер\n- 3 главные задачи в день\n- Отказ от многозадачности\n\n### Финансовый минимализм\n- Бюджет 50/30/20\n- Отказ от кредитов\n- Накопления на важное\n\n## Частые ошибки\n\n1. **Радикализм** - не нужно выбрасывать всё сразу\n2. **Перфекционизм** - минимализм для комфорта, а не стресса\n3. **Копирование** - найдите свой путь\n4. **Догматизм** - будьте гибкими\n\n## Заключение\n\nМинимализм - это не про лишения, а про свободу выбора. Начните с малого, и вы увидите, как жизнь становится легче и счастливее!\n",
+    "excerpt": "Практические советы по переходу к минималистичному образу жизни",
+    "cover_image": "",
+    "cover_video": "",
+    "cover_video_url": "",
+    "cover_alt": "",
+    "author": [
+      "admin"
+    ],
+    "category": 17,
+    "status": "published",
+    "created_at": "2025-10-16T23:28:43.730Z",
+    "updated_at": "2025-10-16T23:28:43.730Z",
+    "published_at": "2025-10-16T23:28:43.730Z",
+    "views_count": 13,
+    "likes_count": 0,
+    "comments_count": 0,
+    "meta_title": "Минимализм в 2025: как упростить жизнь и стать счастливее",
+    "meta_description": "Практические советы по переходу к минималистичному образу жизни",
+    "featured": false,
+    "allow_comments": true,
+    "is_pinned": false,
+    "pin_order": 0,
+    "tags": []
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 1,
+  "fields": {
+    "article": 12,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Можете подробнее рассказать про этот аспект?",
+    "created_at": "2025-10-14T23:51:34.999Z",
+    "updated_at": "2025-10-14T23:51:34.999Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 22
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 2,
+  "fields": {
+    "article": 9,
+    "user": [
+      "alex_crypto"
+    ],
+    "parent": null,
+    "content": "Очень актуальная тема. Сохранил в закладки.",
+    "created_at": "2025-10-14T23:51:35.012Z",
+    "updated_at": "2025-10-14T23:51:35.012Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 27
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 3,
+  "fields": {
+    "article": 2,
+    "user": [
+      "sergey_dev"
+    ],
+    "parent": null,
+    "content": "Можно больше деталей по реализации?",
+    "created_at": "2025-10-14T23:51:35.021Z",
+    "updated_at": "2025-10-14T23:51:35.021Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 27
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 4,
+  "fields": {
+    "article": 15,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Отличная статья! Очень полезная информация.",
+    "created_at": "2025-10-14T23:51:35.030Z",
+    "updated_at": "2025-10-14T23:51:35.030Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 42
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 5,
+  "fields": {
+    "article": 17,
+    "user": [
+      "anna_marketing"
+    ],
+    "parent": null,
+    "content": "Интересный взгляд на проблему. Не согласен с некоторыми моментами, но в целом качественно.",
+    "created_at": "2025-10-14T23:51:35.040Z",
+    "updated_at": "2025-10-14T23:51:35.040Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 42
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 6,
+  "fields": {
+    "article": 18,
+    "user": [
+      "ivan_tech"
+    ],
+    "parent": null,
+    "content": "Можно больше деталей по реализации?",
+    "created_at": "2025-10-14T23:51:35.050Z",
+    "updated_at": "2025-10-14T23:51:35.050Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 49
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 7,
+  "fields": {
+    "article": 8,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.059Z",
+    "updated_at": "2025-10-14T23:51:35.059Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 39
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 8,
+  "fields": {
+    "article": 1,
+    "user": [
+      "anna_marketing"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.069Z",
+    "updated_at": "2025-10-14T23:51:35.069Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 41
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 9,
+  "fields": {
+    "article": 16,
+    "user": [
+      "alex_crypto"
+    ],
+    "parent": null,
+    "content": "Круто! Именно то, что искал.",
+    "created_at": "2025-10-14T23:51:35.080Z",
+    "updated_at": "2025-10-14T23:51:35.080Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 15
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 10,
+  "fields": {
+    "article": 11,
+    "user": [
+      "maria_design"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.089Z",
+    "updated_at": "2025-10-14T23:51:35.089Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 27
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 11,
+  "fields": {
+    "article": 2,
+    "user": [
+      "maria_design"
+    ],
+    "parent": null,
+    "content": "Отличная статья! Очень полезная информация.",
+    "created_at": "2025-10-14T23:51:35.099Z",
+    "updated_at": "2025-10-14T23:51:35.099Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 31
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 12,
+  "fields": {
+    "article": 15,
+    "user": [
+      "admin"
+    ],
+    "parent": null,
+    "content": "Спасибо за подробный разбор, многое прояснилось.",
+    "created_at": "2025-10-14T23:51:35.109Z",
+    "updated_at": "2025-10-14T23:51:35.109Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 18
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 13,
+  "fields": {
+    "article": 1,
+    "user": [
+      "olga_business"
+    ],
+    "parent": null,
+    "content": "Интересный взгляд на проблему. Не согласен с некоторыми моментами, но в целом качественно.",
+    "created_at": "2025-10-14T23:51:35.119Z",
+    "updated_at": "2025-10-14T23:51:35.119Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 14
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 14,
+  "fields": {
+    "article": 9,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Спасибо за труд! Очень помогло.",
+    "created_at": "2025-10-14T23:51:35.129Z",
+    "updated_at": "2025-10-14T23:51:35.129Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 11
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 15,
+  "fields": {
+    "article": 12,
+    "user": [
+      "sergey_dev"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.140Z",
+    "updated_at": "2025-10-14T23:51:35.140Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 36
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 16,
+  "fields": {
+    "article": 6,
+    "user": [
+      "admin"
+    ],
+    "parent": null,
+    "content": "Круто! Именно то, что искал.",
+    "created_at": "2025-10-14T23:51:35.149Z",
+    "updated_at": "2025-10-14T23:51:35.149Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 15
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 17,
+  "fields": {
+    "article": 3,
+    "user": [
+      "alex_crypto"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.160Z",
+    "updated_at": "2025-10-14T23:51:35.160Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 26
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 18,
+  "fields": {
+    "article": 13,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Интересный взгляд на проблему. Не согласен с некоторыми моментами, но в целом качественно.",
+    "created_at": "2025-10-14T23:51:35.169Z",
+    "updated_at": "2025-10-14T23:51:35.169Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 35
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 19,
+  "fields": {
+    "article": 16,
+    "user": [
+      "ivan_tech"
+    ],
+    "parent": null,
+    "content": "Очень актуальная тема. Сохранил в закладки.",
+    "created_at": "2025-10-14T23:51:35.178Z",
+    "updated_at": "2025-10-14T23:51:35.178Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 44
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 20,
+  "fields": {
+    "article": 6,
+    "user": [
+      "ivan_tech"
+    ],
+    "parent": null,
+    "content": "Спасибо за подробный разбор, многое прояснилось.",
+    "created_at": "2025-10-14T23:51:35.189Z",
+    "updated_at": "2025-10-14T23:51:35.189Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 12
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 21,
+  "fields": {
+    "article": 8,
+    "user": [
+      "admin"
+    ],
+    "parent": null,
+    "content": "Отличная статья! Очень полезная информация.",
+    "created_at": "2025-10-14T23:51:35.199Z",
+    "updated_at": "2025-10-14T23:51:35.199Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 47
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 22,
+  "fields": {
+    "article": 11,
+    "user": [
+      "olga_business"
+    ],
+    "parent": null,
+    "content": "Не совсем понял момент про... Можете пояснить?",
+    "created_at": "2025-10-14T23:51:35.208Z",
+    "updated_at": "2025-10-14T23:51:35.208Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 49
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 23,
+  "fields": {
+    "article": 18,
+    "user": [
+      "olga_business"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.218Z",
+    "updated_at": "2025-10-14T23:51:35.218Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 11
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 24,
+  "fields": {
+    "article": 13,
+    "user": [
+      "sergey_dev"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.227Z",
+    "updated_at": "2025-10-14T23:51:35.227Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 16
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 25,
+  "fields": {
+    "article": 7,
+    "user": [
+      "olga_business"
+    ],
+    "parent": null,
+    "content": "Подписался на обновления. Интересно следить за вашими материалами.",
+    "created_at": "2025-10-14T23:51:35.236Z",
+    "updated_at": "2025-10-14T23:51:35.236Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 42
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 26,
+  "fields": {
+    "article": 16,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Можно больше деталей по реализации?",
+    "created_at": "2025-10-14T23:51:35.247Z",
+    "updated_at": "2025-10-14T23:51:35.247Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 32
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 27,
+  "fields": {
+    "article": 2,
+    "user": [
+      "anna_marketing"
+    ],
+    "parent": null,
+    "content": "Круто! Именно то, что искал.",
+    "created_at": "2025-10-14T23:51:35.256Z",
+    "updated_at": "2025-10-14T23:51:35.256Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 36
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 28,
+  "fields": {
+    "article": 2,
+    "user": [
+      "maria_design"
+    ],
+    "parent": null,
+    "content": "Отличная работа! Жду продолжения.",
+    "created_at": "2025-10-14T23:51:35.265Z",
+    "updated_at": "2025-10-14T23:51:35.265Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 10
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 29,
+  "fields": {
+    "article": 11,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Не совсем понял момент про... Можете пояснить?",
+    "created_at": "2025-10-14T23:51:35.274Z",
+    "updated_at": "2025-10-14T23:51:35.274Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 28
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 30,
+  "fields": {
+    "article": 10,
+    "user": [
+      "maria_design"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.282Z",
+    "updated_at": "2025-10-14T23:51:35.282Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 24
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 31,
+  "fields": {
+    "article": 14,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Отличная статья! Очень полезная информация.",
+    "created_at": "2025-10-14T23:51:35.291Z",
+    "updated_at": "2025-10-14T23:51:35.291Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 0
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 32,
+  "fields": {
+    "article": 6,
+    "user": [
+      "anna_marketing"
+    ],
+    "parent": null,
+    "content": "Отличная статья! Очень полезная информация.",
+    "created_at": "2025-10-14T23:51:35.302Z",
+    "updated_at": "2025-10-14T23:51:35.302Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 46
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 33,
+  "fields": {
+    "article": 12,
+    "user": [
+      "sergey_dev"
+    ],
+    "parent": null,
+    "content": "Интересно, а есть альтернативные подходы?",
+    "created_at": "2025-10-14T23:51:35.313Z",
+    "updated_at": "2025-10-14T23:51:35.313Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 7
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 34,
+  "fields": {
+    "article": 6,
+    "user": [
+      "olga_business"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.323Z",
+    "updated_at": "2025-10-14T23:51:35.323Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 17
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 35,
+  "fields": {
+    "article": 9,
+    "user": [
+      "olga_business"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.333Z",
+    "updated_at": "2025-10-14T23:51:35.333Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 26
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 36,
+  "fields": {
+    "article": 1,
+    "user": [
+      "ivan_tech"
+    ],
+    "parent": null,
+    "content": "Круто! Именно то, что искал.",
+    "created_at": "2025-10-14T23:51:35.347Z",
+    "updated_at": "2025-10-14T23:51:35.347Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 50
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 37,
+  "fields": {
+    "article": 10,
+    "user": [
+      "maria_design"
+    ],
+    "parent": null,
+    "content": "Интересный взгляд на проблему. Не согласен с некоторыми моментами, но в целом качественно.",
+    "created_at": "2025-10-14T23:51:35.356Z",
+    "updated_at": "2025-10-14T23:51:35.356Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 42
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 38,
+  "fields": {
+    "article": 8,
+    "user": [
+      "elena_travel"
+    ],
+    "parent": null,
+    "content": "Применил на практике - работает! Спасибо.",
+    "created_at": "2025-10-14T23:51:35.365Z",
+    "updated_at": "2025-10-14T23:51:35.365Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 21
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 39,
+  "fields": {
+    "article": 6,
+    "user": [
+      "dmitry_startup"
+    ],
+    "parent": null,
+    "content": "Интересный взгляд на проблему. Не согласен с некоторыми моментами, но в целом качественно.",
+    "created_at": "2025-10-14T23:51:35.376Z",
+    "updated_at": "2025-10-14T23:51:35.376Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 44
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 40,
+  "fields": {
+    "article": 1,
+    "user": [
+      "admin"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.385Z",
+    "updated_at": "2025-10-14T23:51:35.385Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 47
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 41,
+  "fields": {
+    "article": 11,
+    "user": [
+      "anna_marketing"
+    ],
+    "parent": null,
+    "content": "Применил на практике - работает! Спасибо.",
+    "created_at": "2025-10-14T23:51:35.395Z",
+    "updated_at": "2025-10-14T23:51:35.395Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 48
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 42,
+  "fields": {
+    "article": 5,
+    "user": [
+      "sergey_dev"
+    ],
+    "parent": null,
+    "content": "Подписался на обновления. Интересно следить за вашими материалами.",
+    "created_at": "2025-10-14T23:51:35.404Z",
+    "updated_at": "2025-10-14T23:51:35.404Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 27
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 43,
+  "fields": {
+    "article": 16,
+    "user": [
+      "anna_marketing"
+    ],
+    "parent": null,
+    "content": "Подписался на обновления. Интересно следить за вашими материалами.",
+    "created_at": "2025-10-14T23:51:35.413Z",
+    "updated_at": "2025-10-14T23:51:35.413Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 44
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 44,
+  "fields": {
+    "article": 1,
+    "user": [
+      "dmitry_startup"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.423Z",
+    "updated_at": "2025-10-14T23:51:35.423Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 26
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 45,
+  "fields": {
+    "article": 1,
+    "user": [
+      "anna_marketing"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.434Z",
+    "updated_at": "2025-10-14T23:51:35.434Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 46
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 46,
+  "fields": {
+    "article": 3,
+    "user": [
+      "admin"
+    ],
+    "parent": null,
+    "content": "Очень актуальная тема. Сохранил в закладки.",
+    "created_at": "2025-10-14T23:51:35.445Z",
+    "updated_at": "2025-10-14T23:51:35.445Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 25
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 47,
+  "fields": {
+    "article": 9,
+    "user": [
+      "sergey_dev"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.454Z",
+    "updated_at": "2025-10-14T23:51:35.454Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 30
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 48,
+  "fields": {
+    "article": 14,
+    "user": [
+      "ivan_tech"
+    ],
+    "parent": null,
+    "content": "А как это применить в моем случае?",
+    "created_at": "2025-10-14T23:51:35.464Z",
+    "updated_at": "2025-10-14T23:51:35.464Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 48
+  }
+},
+{
+  "model": "comments.comment",
+  "pk": 49,
+  "fields": {
+    "article": 1,
+    "user": [
+      "admin"
+    ],
+    "parent": null,
+    "content": "Добавьте, пожалуйста, примеры кода.",
+    "created_at": "2025-10-14T23:51:35.475Z",
+    "updated_at": "2025-10-14T23:51:35.475Z",
+    "is_edited": false,
+    "is_deleted": false,
+    "likes_count": 39
+  }
+}
+]
