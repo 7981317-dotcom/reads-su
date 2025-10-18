@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+{% load static humanize markdown_extras %}
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block title2 %}{{ article.title }}{% endblock %}
+{% block meta_title %}{{ article.meta_title|default:article.title }}{% endblock %}
+{% block description %}{{ article.meta_description|default:article.excerpt|truncatewords:30 }}{% endblock %}
+{% block keywords %}{{ article.tags.all|join:", " }}{% if article.category %}, {{ article.category.name }}{% endif %}{% endblock %}
+{% block author %}{{ article.author.get_full_name|default:article.author.username }}{% endblock %}
+
+<!-- Open Graph -->
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ article.title }}{% endblock %}
+{% block og_description %}{{ article.excerpt|truncatewords:30 }}{% endblock %}
+{% block og_image %}{% if article.cover_image %}{{ request.scheme }}://{{ request.get_host }}{{ article.cover_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.png' %}{% endif %}{% endblock %}
+
+<!-- Twitter -->
+{% block twitter_title %}{{ article.title }}{% endblock %}
+{% block twitter_description %}{{ article.excerpt|truncatewords:30 }}{% endblock %}
+{% block twitter_image %}{% if article.cover_image %}{{ request.scheme }}://{{ request.get_host }}{{ article.cover_image.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.png' %}{% endif %}{% endblock %}
+
+<!-- Canonical URL -->
+{% block canonical_url %}{{ request.scheme }}://{{ request.get_host }}{{ article.get_absolute_url }}{% endblock %}
+
+<!-- JSON-LD Structured Data -->
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ request.build_absolute_uri }}"
+    },
+    "headline": "{{ article.title|escapejs }}",
+    "description": "{{ article.excerpt|escapejs }}",
+    {% if article.cover_image %}
+    "image": "{{ request.scheme }}://{{ request.get_host }}{{ article.cover_image.url }}",
+    {% endif %}
+    "author": {
+        "@type": "Person",
+        "name": "{{ article.author.get_full_name|default:article.author.username|escapejs }}",
+        "url": "{{ request.scheme }}://{{ request.get_host }}{% url 'users:profile' article.author.username %}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "ArticleHub",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %}"
+        }
+    },
+    "datePublished": "{{ article.published_at|date:'c' }}",
+    "dateModified": "{{ article.updated_at|date:'c' }}",
+    "articleSection": "{{ article.category.name|escapejs }}",
+    "keywords": [{% for tag in article.tags.all %}"{{ tag.name|escapejs }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+    "wordCount": {{ article.content|wordcount }},
+    "commentCount": {{ article.comments_count }}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <!-- Left Sidebar - Categories & Popular Posts -->
+    <aside class="sidebar-left">
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="categories-menu-title">Темы</div>
+            <ul class="categories-list" id="categoriesList">
+                {% for category in categories %}
+                <li class="category-list-item {% if forloop.counter > 10 %}category-hidden{% endif %}">
+                    <a href="{% url 'articles:category' category.slug %}" class="category-item {% if article.category.id == category.id %}active{% endif %}">
+                        {% if category.icon_image %}
+                            <img src="{{ category.icon_image.url }}" alt="{{ category.name }}" class="category-icon-img">
+                        {% else %}
+                            <span class="category-icon">{{ category.icon }}</span>
+                        {% endif %}
+                        <span class="category-name">{{ category.name }}</span>
+                        <span class="category-count">{{ category.article_count }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% if categories|length > 10 %}
+            <button class="show-all-categories-btn" id="showAllCategoriesBtn" onclick="toggleAllCategories()">
+                <span class="show-all-icon">▼</span>
+                <span class="show-all-text">Показать все</span>
+            </button>
+            {% endif %}
+        </div>
+
+        <!-- Popular Posts Widget -->
+        <div class="popular-posts-widget">
+            <div class="widget-title">Популярное</div>
+            {% for pop_article in popular_articles|slice:":5" %}
+            <a href="{{ pop_article.get_absolute_url }}" class="popular-post-item">
+                <div class="popular-post-title">{{ pop_article.title|truncatewords:8 }}</div>
+                <div class="popular-post-stats">
+                    <span>👁 {{ pop_article.views_count }}</span>
+                    <span>❤️ {{ pop_article.likes_count }}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </aside>
+
+    <!-- Center Content - Article Detail -->
+    <main class="article-detail-content">
+                {% if article.category %}
+                <a href="{% url 'articles:category' article.category.slug %}" class="article-category-badge">
+                    {% if article.category.icon_image %}
+                        <img src="{{ article.category.icon_image.url }}" alt="{{ article.category.name }}" class="category-badge-icon-img" style="width: 20px; height: 20px; margin-right: 6px; border-radius: 50%; object-fit: cover;">
+                    {% else %}
+                        <span>{{ article.category.icon }}</span>
+                    {% endif %}
+                    {{ article.category.name }}
+                </a>
+                {% endif %}
+
+        <article class="article-detail">
+            <!-- Article Header -->
+            <header class="article-header">
+                <h1 class="article-title-main">{{ article.title }}</h1>
+
+                {% if article.subtitle %}
+                <p class="article-subtitle-main">{{ article.subtitle }}</p>
+                {% endif %}
+
+                <!-- Author & Meta Info -->
+                <div class="article-author-section">
+                    <a href="{% url 'users:profile' article.author.username %}" class="article-author-link">
+                        <div class="article-author-avatar">
+                            {% if article.author.profile.avatar %}
+                            <img src="{{ article.author.profile.avatar.url }}" alt="{{ article.author.username }}">
+                            {% else %}
+                            <div class="avatar-placeholder">{{ article.author.username|first|upper }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="article-author-info">
+                            <div class="article-author-name">{{ article.author.get_full_name|default:article.author.username }}</div>
+                            <div class="article-publish-date">{{ article.published_at|naturaltime }}</div>
+                        </div>
+                    </a>
+
+                    <div class="article-meta-stats">
+                        <span class="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            {{ article.views_count }}
+                        </span>
+                        <span class="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            {{ article.likes_count }}
+                        </span>
+                        <span class="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            {{ article.comments_count }}
+                        </span>
+                        <span class="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {{ article.reading_time }} мин
+                        </span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Large Cover Media (Video or Image) -->
+            {% if article.cover_video %}
+            <figure class="article-cover-figure">
+                <video class="article-cover-video" controls autoplay muted loop playsinline>
+                    <source src="{{ article.cover_video.url }}" type="video/mp4">
+                    <source src="{{ article.cover_video.url }}" type="video/webm">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                {% if article.cover_alt %}
+                <figcaption class="article-cover-caption">{{ article.cover_alt }}</figcaption>
+                {% endif %}
+            </figure>
+            {% elif article.cover_image %}
+            <figure class="article-cover-figure">
+                <img src="{{ article.cover_image.url }}" alt="{{ article.cover_alt|default:article.title }}" class="article-cover-image">
+                {% if article.cover_alt %}
+                <figcaption class="article-cover-caption">{{ article.cover_alt }}</figcaption>
+                {% endif %}
+            </figure>
+            {% endif %}
+
+            <!-- Article Body -->
+            <div class="article-content markdown-content">
+                {{ article.content|markdown }}
+            </div>
+
+            {% if article.tags.all %}
+            <div class="article-tags">
+                {% for tag in article.tags.all %}
+                    {% if tag.slug %}
+                    <a href="{% url 'articles:tag' tag.slug %}" class="tag">#{{ tag.name }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Related Articles -->
+            {% if related_articles %}
+            <div class="related-articles">
+                <h3 class="related-title">Похожие статьи</h3>
+                <div class="related-articles-grid">
+                    {% for rel_article in related_articles %}
+                    <a href="{{ rel_article.get_absolute_url }}" class="related-article-card">
+                        {% if rel_article.cover_image %}
+                        <div class="related-article-cover">
+                            <img src="{{ rel_article.cover_image.url }}" alt="{{ rel_article.title }}" loading="lazy">
+                        </div>
+                        {% endif %}
+                        <div class="related-article-body">
+                            <h4 class="related-article-title">{{ rel_article.title|truncatewords:10 }}</h4>
+                            <p class="related-article-excerpt">{{ rel_article.excerpt|truncatewords:15 }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <h3 class="comments-title">
+                    Комментарии
+                    {% if article.comments_count %}
+                        <span class="comments-count">({{ article.comments_count }})</span>
+                    {% endif %}
+                </h3>
+
+                {% if user.is_authenticated %}
+                <div class="comment-form-placeholder">
+                    <p>Форма комментирования будет добавлена позже</p>
+                </div>
+                {% else %}
+                <div class="comment-auth-required">
+                    <p><a href="{% url 'users:login' %}">Войдите</a>, чтобы оставить комментарий</p>
+                </div>
+                {% endif %}
+
+                {% if comments %}
+                <div class="comments-list">
+                    {% for comment in comments %}
+                    <div class="comment-item" id="comment-{{ comment.id }}">
+                        <div class="comment-author-avatar">
+                            {% if comment.user.profile.avatar %}
+                            <img src="{{ comment.user.profile.avatar.url }}" alt="{{ comment.user.username }}">
+                            {% else %}
+                            <div class="avatar-placeholder">{{ comment.user.username|first|upper }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="comment-body">
+                            <div class="comment-header">
+                                <a href="{% url 'users:profile' comment.user.username %}" class="comment-author-name">
+                                    {{ comment.user.get_full_name|default:comment.user.username }}
+                                </a>
+                                <span class="comment-date">{{ comment.created_at|naturaltime }}</span>
+                            </div>
+                            <p class="comment-text">{{ comment.content }}</p>
+                            <div class="comment-actions">
+                                <span class="comment-likes">❤️ {{ comment.likes_count }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="no-comments">
+                    <p>Будьте первым, кто оставит комментарий!</p>
+                </div>
+                {% endif %}
+            </div>
+        </article>
+    </main>
+
+    <!-- Right Sidebar - Top Bloggers & Popular Comments -->
+    <aside class="sidebar-right">
+        <!-- Top Bloggers -->
+        <div class="sidebar-widget">
+            <div class="widget-title">Топ блогеры</div>
+            {% for blogger in top_bloggers %}
+            <div class="blogger-item">
+                <span class="blogger-rank">{{ forloop.counter }}</span>
+                <a href="{% url 'users:profile' blogger.username %}" class="blogger-avatar">
+                    {% if blogger.profile.avatar %}
+                    <img src="{{ blogger.profile.avatar.url }}" alt="{{ blogger.username }}">
+                    {% else %}
+                    <div class="avatar-placeholder">{{ blogger.username|first|upper }}</div>
+                    {% endif %}
+                </a>
+                <div class="blogger-info">
+                    <a href="{% url 'users:profile' blogger.username %}" class="blogger-name">
+                        {{ blogger.get_full_name|default:blogger.username }}
+                    </a>
+                    <div class="blogger-stats">{{ blogger.article_count }} статей</div>
+                </div>
+                <button class="blogger-follow">+</button>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Popular Comments -->
+        <div class="sidebar-widget">
+            <div class="widget-title">Популярные комментарии</div>
+            {% for comment in popular_comments %}
+            <div class="comment-item">
+                <div class="comment-header">
+                    <div class="comment-author-avatar">
+                        {% if comment.user.profile.avatar %}
+                        <img src="{{ comment.user.profile.avatar.url }}" alt="{{ comment.user.username }}">
+                        {% else %}
+                        <div class="avatar-placeholder">{{ comment.user.username|first|upper }}</div>
+                        {% endif %}
+                    </div>
+                    <span class="comment-author-name">{{ comment.user.get_full_name|default:comment.user.username }}</span>
+                </div>
+                <p class="comment-text">{{ comment.content|truncatewords:15 }}</p>
+                <a href="{{ comment.article.get_absolute_url }}#comment-{{ comment.id }}" class="comment-link">
+                    Перейти к статье →
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </aside>
+</div>
+{% endblock %}

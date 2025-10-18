@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить статью{% endblock %}
+
+{% block extra_css %}
+<style>
+.delete-container {
+    max-width: 600px;
+    margin: var(--space-8) auto;
+    padding: var(--space-4);
+}
+
+.delete-card {
+    background: var(--bg-primary);
+    border: 2px solid #d32f2f;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}
+
+.delete-icon {
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+}
+
+.delete-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-4);
+    color: #d32f2f;
+}
+
+.article-info {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.article-name {
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+}
+
+.warning-text {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+.delete-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: center;
+}
+
+.btn-delete {
+    background: #d32f2f;
+    color: white;
+    padding: var(--space-3) var(--space-6);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: #b71c1c;
+}
+
+.btn-cancel {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-cancel:hover {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="delete-card">
+        <div class="delete-icon">⚠️</div>
+        <h1 class="delete-title">Удалить статью?</h1>
+
+        <div class="article-info">
+            <div class="article-name">{{ article.title }}</div>
+            <div style="color: var(--text-secondary); font-size: 0.875rem;">
+                Создано: {{ article.created_at|date:"d.m.Y H:i" }}
+            </div>
+        </div>
+
+        <p class="warning-text">
+            Это действие нельзя отменить. Статья будет удалена безвозвратно.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="delete-actions">
+                <a href="{% url 'articles:my_articles' %}" class="btn-cancel">
+                    Отмена
+                </a>
+                <button type="submit" class="btn-delete">
+                    Удалить статью
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

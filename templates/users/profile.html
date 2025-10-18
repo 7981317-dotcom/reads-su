@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ profile_user.get_full_name|default:profile_user.username }} - Профиль{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <!-- Left Sidebar -->
+    <aside class="sidebar-left">
+        <div class="categories-menu">
+            <div class="categories-menu-title">Навигация</div>
+            <ul class="categories-list">
+                <li>
+                    <a href="{% url 'articles:home' %}" class="category-item">
+                        <span class="category-icon">🏠</span>
+                        <span class="category-name">Главная</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'articles:categories' %}" class="category-item">
+                        <span class="category-icon">📁</span>
+                        <span class="category-name">Категории</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="articles-feed">
+        <!-- Profile Header -->
+        <div class="article-detail">
+            <div class="article-header">
+                <div style="display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-4);">
+                    <div class="blogger-avatar" style="width: 80px; height: 80px;">
+                        {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="{{ profile_user.username }}">
+                        {% else %}
+                        <div class="avatar-placeholder" style="width: 100%; height: 100%; font-size: 2rem;">
+                            {{ profile_user.username|first|upper }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div style="flex: 1;">
+                        <h1 style="font-size: 1.75rem; margin-bottom: var(--space-2);">
+                            {{ profile_user.get_full_name|default:profile_user.username }}
+                        </h1>
+                        {% if profile.bio %}
+                        <p style="color: var(--text-secondary); margin-bottom: var(--space-3);">
+                            {{ profile.bio }}
+                        </p>
+                        {% endif %}
+                        <div style="display: flex; gap: var(--space-6); font-size: 0.875rem;">
+                            <span><strong>{{ stats.articles_count }}</strong> статей</span>
+                            <span><strong>{{ stats.followers_count }}</strong> подписчиков</span>
+                            <span><strong>{{ stats.following_count }}</strong> подписок</span>
+                        </div>
+                    </div>
+                    {% if user.is_authenticated and user != profile_user %}
+                    <div>
+                        {% if is_following %}
+                        <button class="btn btn-secondary">Отписаться</button>
+                        {% else %}
+                        <button class="btn btn-primary">Подписаться</button>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% if user == profile_user %}
+                    <div>
+                        <a href="{% url 'users:settings' %}" class="btn btn-secondary">Настройки</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Articles Section -->
+        <div style="margin-top: var(--space-6);">
+            <h2 style="font-size: 1.25rem; margin-bottom: var(--space-4);">Статьи автора</h2>
+
+            {% if articles %}
+                {% for article in articles %}
+                <div class="article-card">
+                    <a href="{{ article.get_absolute_url }}" class="article-link">
+                        <div class="article-body">
+                            <div class="article-author">
+                                <span class="category-badge">{{ article.category.name }}</span>
+                                <span style="color: var(--text-tertiary);">{{ article.published_at|date:"d M Y" }}</span>
+                            </div>
+                            <h3 class="article-title">{{ article.title }}</h3>
+                            <p class="article-excerpt">{{ article.excerpt|default:article.content|truncatewords:20 }}</p>
+                            <div class="article-meta-footer">
+                                <div class="article-stats">
+                                    <span class="stat-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        {{ article.views_count }}
+                                    </span>
+                                    <span class="stat-item">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        </svg>
+                                        {{ article.likes_count }}
+                                    </span>
+                                </div>
+                                <span class="article-time">{{ article.reading_time }} мин чтения</span>
+                            </div>
+                        </div>
+                        {% if article.cover_image %}
+                        <div class="article-cover">
+                            <img src="{{ article.cover_image.url }}" alt="{{ article.title }}" loading="lazy">
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <p>У этого пользователя пока нет опубликованных статей</p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="sidebar-right">
+        <div class="sidebar-widget">
+            <div class="widget-title">Информация</div>
+            <div style="padding: var(--space-2) 0;">
+                <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">
+                    {% if profile.bio %}
+                        {{ profile.bio }}
+                    {% else %}
+                        Пользователь еще не добавил информацию о себе
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        {% if profile.website or profile.twitter or profile.github %}
+        <div class="sidebar-widget">
+            <div class="widget-title">Ссылки</div>
+            <div style="display: flex; flex-direction: column; gap: var(--space-2);">
+                {% if profile.website %}
+                <a href="{{ profile.website }}" target="_blank" style="font-size: 0.875rem; color: var(--color-primary);">
+                    🌐 Сайт
+                </a>
+                {% endif %}
+                {% if profile.twitter %}
+                <a href="https://twitter.com/{{ profile.twitter }}" target="_blank" style="font-size: 0.875rem; color: var(--color-primary);">
+                    🐦 Twitter
+                </a>
+                {% endif %}
+                {% if profile.github %}
+                <a href="https://github.com/{{ profile.github }}" target="_blank" style="font-size: 0.875rem; color: var(--color-primary);">
+                    💻 GitHub
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </aside>
+</div>
+{% endblock %}

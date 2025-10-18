@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static humanize %}
+
+{% block title %}Поиск{% if query %}: {{ query }}{% endif %}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <div class="header-content">
+            <h1 class="page-title">Результаты поиска{% if query %}: "{{ query }}"{% endif %}</h1>
+            <p class="page-subtitle">Найдено: {{ articles.paginator.count }} результатов</p>
+        </div>
+
+        <div class="search-box">
+            <form action="{% url 'articles:search' %}" method="get" class="search-form">
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Поиск статей..."
+                    class="search-input"
+                    value="{{ query|default:'' }}"
+                    autofocus
+                >
+                <button type="submit" class="btn btn-primary">Искать</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="articles-section">
+    <div class="container">
+        <div class="articles-grid">
+            {% for article in articles %}
+                <article class="article-card">
+                    {% if article.cover_image %}
+                        <a href="{{ article.get_absolute_url }}" class="article-cover">
+                            <img src="{{ article.cover_image.url }}" alt="{{ article.cover_alt|default:article.title }}" loading="lazy">
+                        </a>
+                    {% endif %}
+
+                    <div class="article-body">
+                        {% if article.category %}
+                            <a href="{% url 'articles:category' article.category.slug %}" class="article-category" style="color: {{ article.category.color }}">
+                                <span>{{ article.category.icon }}</span>
+                                {{ article.category.name }}
+                            </a>
+                        {% endif %}
+
+                        <h3 class="article-title">
+                            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                        </h3>
+
+                        <p class="article-excerpt">{{ article.excerpt|truncatewords:30 }}</p>
+
+                        <div class="article-meta">
+                            <div class="author-info">
+                                <a href="{% url 'users:profile' article.author.username %}" class="author-avatar">
+                                    {% if article.author.profile.avatar %}
+                                        <img src="{{ article.author.profile.avatar.url }}" alt="{{ article.author.username }}">
+                                    {% else %}
+                                        <div class="avatar-placeholder">{{ article.author.username|first|upper }}</div>
+                                    {% endif %}
+                                </a>
+                                <div class="author-details">
+                                    <a href="{% url 'users:profile' article.author.username %}" class="author-name">
+                                        {{ article.author.get_full_name|default:article.author.username }}
+                                    </a>
+                                    <div class="article-stats">
+                                        <span>{{ article.published_at|naturaltime }}</span>
+                                        <span>•</span>
+                                        <span>{{ article.reading_time }} мин</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="article-actions">
+                                <span class="action-stat">
+                                    <span class="icon">👁</span> {{ article.views_count }}
+                                </span>
+                                <span class="action-stat">
+                                    <span class="icon">❤️</span> {{ article.likes_count }}
+                                </span>
+                            </div>
+                        </div>
+
+                        {% if article.tags.all %}
+                            <div class="article-tags">
+                                {% for tag in article.tags.all|slice:":3" %}
+                                    {% if tag.slug %}
+                                        <a href="{% url 'articles:tag' tag.slug %}" class="tag">#{{ tag.name }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </article>
+            {% empty %}
+                <div class="empty-state">
+                    <p>Ничего не найдено по запросу "{{ query }}"</p>
+                    <a href="{% url 'articles:home' %}" class="btn btn-primary">Вернуться на главную</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if articles.has_other_pages %}
+            <nav class="pagination">
+                {% if articles.has_previous %}
+                    <a href="?q={{ query }}&page={{ articles.previous_page_number }}" class="pagination-btn">← Назад</a>
+                {% endif %}
+
+                <span class="pagination-info">
+                    Страница {{ articles.number }} из {{ articles.paginator.num_pages }}
+                </span>
+
+                {% if articles.has_next %}
+                    <a href="?q={{ query }}&page={{ articles.next_page_number }}" class="pagination-btn">Вперёд →</a>
+                {% endif %}
+            </nav>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

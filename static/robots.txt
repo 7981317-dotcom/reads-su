@@ -1,0 +1,58 @@
+# Robots.txt for article platform
+# Allow all search engines
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /users/login/
+Disallow: /users/register/
+Disallow: /users/logout/
+Disallow: /articles/create/
+Disallow: /articles/*/edit/
+Disallow: /articles/*/delete/
+Disallow: /media/
+Disallow: /static/admin/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*page=
+Allow: /*?page=1$
+
+# Crawl delay for politeness
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://reads.su/sitemap.xml
+
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /users/
+Crawl-delay: 0
+
+# Yandex bot
+User-agent: Yandexbot
+Allow: /
+Disallow: /admin/
+Disallow: /users/
+Crawl-delay: 1
+
+# Bing bot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /users/
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

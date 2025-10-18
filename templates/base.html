@@ -1,0 +1,336 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Primary SEO Meta Tags -->
+    <title>{% block title %}Главная{% endblock %} | reads.su - Платформа для публикации статей</title>
+    <meta name="title" content="{% block meta_title %}{% block title2 %}Главная{% endblock %} | reads.su{% endblock %}">
+    <meta name="description" content="{% block description %}Современная платформа для публикации и чтения статей на различные темы. Технологии, бизнес, дизайн, маркетинг и многое другое.{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}статьи, блог, публикации, технологии, бизнес, дизайн, маркетинг, стартапы{% endblock %}">
+    <meta name="author" content="{% block author %}reads.su{% endblock %}">
+    <meta name="robots" content="{% block robots %}index, follow{% endblock %}">
+    <meta name="language" content="Russian">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{% block og_title %}reads.su - Платформа для публикации статей{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Современная платформа для публикации и чтения статей на различные темы. Технологии, бизнес, дизайн, маркетинг.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.png' %}{% endblock %}">
+    <meta property="og:site_name" content="reads.su">
+    <meta property="og:locale" content="ru_RU">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
+    <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
+    <meta name="twitter:title" content="{% block twitter_title %}reads.su - Платформа для публикации статей{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Современная платформа для публикации и чтения статей на различные темы.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.png' %}{% endblock %}">
+    <meta name="twitter:site" content="@readssu">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=11">
+    {% block extra_css %}{% endblock %}
+
+    <!-- JSON-LD Structured Data -->
+    {% block structured_data %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "reads.su",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "description": "Современная платформа для публикации и чтения статей",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "{{ request.scheme }}://{{ request.get_host }}/search/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    {% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+    <!-- Header - Minimalist VC.ru Style -->
+    <header class="header-minimal">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="{% url 'articles:home' %}" class="header-logo">
+                <span class="logo-icon">VC</span>
+            </a>
+
+            <!-- Spacer -->
+            <div style="flex: 1;"></div>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <!-- Search Icon Button -->
+                <button class="search-icon-btn" onclick="openSearchOverlay()" aria-label="Поиск">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <!-- Write Button -->
+                {% if user.is_authenticated %}
+                    <a href="{% url 'articles:create' %}" class="btn-write">Написать</a>
+                {% endif %}
+
+                <!-- Login/User Menu -->
+                {% if user.is_authenticated %}
+                    <div class="user-menu-minimal">
+                        <button class="user-avatar-btn" onclick="toggleUserDropdown()">
+                            {% if user.profile.avatar %}
+                                <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="avatar-img">
+                            {% else %}
+                                <div class="avatar-placeholder-minimal">{{ user.username|first|upper }}</div>
+                            {% endif %}
+                        </button>
+                        <div class="dropdown-menu-minimal" id="userDropdown">
+                            <div class="dropdown-header">
+                                <div class="dropdown-user-info">
+                                    {% if user.profile.avatar %}
+                                        <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="dropdown-avatar">
+                                    {% else %}
+                                        <div class="dropdown-avatar-placeholder">{{ user.username|first|upper }}</div>
+                                    {% endif %}
+                                    <div class="dropdown-user-text">
+                                        <div class="dropdown-username">{{ user.get_full_name|default:user.username }}</div>
+                                        <div class="dropdown-email">@{{ user.username }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="{% url 'users:profile' user.username %}" class="dropdown-item-minimal">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M13 14v-1.5a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3V14M8 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Профиль
+                            </a>
+                            <a href="{% url 'articles:my_articles' %}" class="dropdown-item-minimal">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M14 2H2v12h12V2zM5 5h6M5 8h6M5 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Мои статьи
+                            </a>
+                            <a href="{% url 'users:settings' %}" class="dropdown-item-minimal">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12.93 10a1.11 1.11 0 0 0 .22 1.22l.04.04a1.34 1.34 0 0 1 0 1.9 1.34 1.34 0 0 1-1.9 0l-.04-.04a1.11 1.11 0 0 0-1.22-.22 1.11 1.11 0 0 0-.67 1.01v.12a1.34 1.34 0 0 1-2.68 0v-.06a1.11 1.11 0 0 0-.73-1.01 1.11 1.11 0 0 0-1.22.22l-.04.04a1.34 1.34 0 0 1-1.9 0 1.34 1.34 0 0 1 0-1.9l.04-.04a1.11 1.11 0 0 0 .22-1.22 1.11 1.11 0 0 0-1.01-.67h-.12a1.34 1.34 0 0 1 0-2.68h.06a1.11 1.11 0 0 0 1.01-.73 1.11 1.11 0 0 0-.22-1.22l-.04-.04a1.34 1.34 0 0 1 1.9-1.9l.04.04a1.11 1.11 0 0 0 1.22.22h.05a1.11 1.11 0 0 0 .67-1.01v-.12a1.34 1.34 0 0 1 2.68 0v.06a1.11 1.11 0 0 0 .67 1.01 1.11 1.11 0 0 0 1.22-.22l.04-.04a1.34 1.34 0 0 1 1.9 0 1.34 1.34 0 0 1 0 1.9l-.04.04a1.11 1.11 0 0 0-.22 1.22v.05a1.11 1.11 0 0 0 1.01.67h.12a1.34 1.34 0 0 1 0 2.68h-.06a1.11 1.11 0 0 0-1.01.73z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Настройки
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{% url 'users:logout' %}" class="dropdown-item-minimal dropdown-item-danger">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M6 14H3.33A1.33 1.33 0 0 1 2 12.67V3.33A1.33 1.33 0 0 1 3.33 2H6M10.67 11.33L14 8l-3.33-3.33M14 8H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Выход
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <button class="btn-login" onclick="openLoginModal()">Войти</button>
+                {% endif %}
+
+                <!-- Theme Toggle -->
+                <button class="theme-toggle-minimal" onclick="toggleTheme()" aria-label="Переключить тему">
+                    <svg class="theme-icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M10 1v2M10 17v2M19 10h-2M3 10H1M16.66 16.66l-1.42-1.42M4.76 4.76L3.34 3.34M16.66 3.34l-1.42 1.42M4.76 15.24l-1.42 1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="theme-icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none" style="display: none;">
+                        <path d="M17 10.68A7 7 0 1 1 9.32 3a5.5 5.5 0 0 0 7.68 7.68z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Modal (VC.ru Style with Form) -->
+    {% if not user.is_authenticated %}
+    <div class="modal-overlay" id="loginModal" onclick="closeLoginModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+
+            <div class="modal-logo">
+                <span class="logo-icon">VC</span>
+            </div>
+
+            <!-- Login Form -->
+            <div id="loginFormContainer">
+                <h2 class="modal-title">Вход в систему</h2>
+                <p class="modal-subtitle">Войдите, чтобы публиковать статьи</p>
+
+                <form method="post" action="{% url 'users:login' %}" class="login-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+
+                    <div class="form-group">
+                        <label for="id_username" class="form-label">Имя пользователя</label>
+                        <input type="text" name="username" id="id_username" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label-row">
+                            <label for="id_password" class="form-label">Пароль</label>
+                            <a href="#" class="forgot-password-link" onclick="showPasswordReset(event)">Забыли пароль?</a>
+                        </div>
+                        <input type="password" name="password" id="id_password" class="form-input" required>
+                    </div>
+
+                    <button type="submit" class="modal-btn modal-btn-primary">Войти</button>
+                </form>
+
+                <div class="modal-footer">
+                    <span>Нет аккаунта?</span> <a href="#" class="modal-link" onclick="showRegisterForm(event)">Зарегистрируйтесь</a>
+                </div>
+            </div>
+
+            <!-- Password Reset Form -->
+            <div id="passwordResetContainer" style="display: none;">
+                <h2 class="modal-title">Восстановление пароля</h2>
+                <p class="modal-subtitle">Введите ваш email, и мы отправим вам ссылку для сброса пароля</p>
+
+                <form class="login-form" id="passwordResetForm" onsubmit="submitPasswordReset(event)">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="id_reset_email" class="form-label">Email</label>
+                        <input type="email" name="email" id="id_reset_email" class="form-input" required>
+                    </div>
+
+                    <button type="submit" class="modal-btn modal-btn-primary">Отправить ссылку</button>
+                </form>
+
+                <div class="modal-footer">
+                    <a href="#" class="modal-link" onclick="showLoginForm(event)">Вернуться ко входу</a>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="registerFormContainer" style="display: none;">
+                <h2 class="modal-title">Регистрация</h2>
+                <p class="modal-subtitle">Создайте аккаунт, чтобы публиковать статьи</p>
+
+                <form class="login-form" id="registerForm" onsubmit="submitRegistration(event)">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="id_register_email" class="form-label">Email</label>
+                        <input type="email" name="email" id="id_register_email" class="form-input" required>
+                        <small class="form-help-text">Будет использоваться как логин</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_register_username" class="form-label">Имя пользователя</label>
+                        <input type="text" name="username" id="id_register_username" class="form-input" required>
+                        <small class="form-help-text">Будет отображаться в профиле</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_register_password1" class="form-label">Пароль</label>
+                        <input type="password" name="password1" id="id_register_password1" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_register_password2" class="form-label">Подтверждение пароля</label>
+                        <input type="password" name="password2" id="id_register_password2" class="form-input" required>
+                    </div>
+
+                    <div id="registerError" class="form-error" style="display: none;"></div>
+
+                    <button type="submit" class="modal-btn modal-btn-primary">Зарегистрироваться</button>
+                </form>
+
+                <div class="modal-footer">
+                    <span>Уже есть аккаунт?</span> <a href="#" class="modal-link" onclick="showLoginForm(event)">Войти</a>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div id="passwordResetSuccess" style="display: none;">
+                <h2 class="modal-title">Проверьте вашу почту</h2>
+                <p class="modal-subtitle">
+                    Мы отправили вам инструкции по восстановлению пароля на указанный email.
+                    <br><br>
+                    Если вы не получили письмо в течение нескольких минут, проверьте папку "Спам".
+                </p>
+
+                <div class="modal-footer" style="margin-top: 2rem;">
+                    <a href="#" class="modal-link" onclick="showLoginForm(event)">Вернуться ко входу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Search Overlay (VC.ru Style) -->
+    <div class="search-overlay" id="searchOverlay" onclick="closeSearchOverlay(event)">
+        <div class="search-overlay-content" onclick="event.stopPropagation()">
+            <div class="search-overlay-header">
+                <div class="search-overlay-input-wrapper">
+                    <svg class="search-overlay-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="text" class="search-overlay-input" placeholder="Поиск по статьям..." id="searchOverlayInput" autofocus>
+                    <button class="search-overlay-close" onclick="closeSearchOverlay()" aria-label="Закрыть">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="search-overlay-body">
+                <div class="search-suggestions-section">
+                    <h3 class="search-section-title">Популярные темы</h3>
+                    <div class="search-popular-tags">
+                        {% for category in categories %}
+                            <a href="{% url 'articles:category' category.slug %}" class="search-tag">{{ category.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="search-results-container" id="searchResults" style="display: none;">
+                    <!-- Search results will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{ message }}
+                    <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static humanize markdown_extras %}
+
+{% block title %}{{ current_category.name }}{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <!-- Left Sidebar - Categories & Popular Posts -->
+    <aside class="sidebar-left">
+        <!-- Categories Menu -->
+        <div class="categories-menu">
+            <div class="categories-menu-title">Темы</div>
+            <ul class="categories-list" id="categoriesList">
+                {% for category in categories %}
+                <li class="category-list-item {% if forloop.counter > 10 %}category-hidden{% endif %}">
+                    <a href="{% url 'articles:category' category.slug %}" class="category-item {% if current_category.id == category.id %}active{% endif %}">
+                        {% if category.icon_image %}
+                            <img src="{{ category.icon_image.url }}" alt="{{ category.name }}" class="category-icon-img">
+                        {% else %}
+                            <span class="category-icon">{{ category.icon }}</span>
+                        {% endif %}
+                        <span class="category-name">{{ category.name }}</span>
+                        <span class="category-count">{{ category.article_count }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% if categories|length > 10 %}
+            <button class="show-all-categories-btn" id="showAllCategoriesBtn" onclick="toggleAllCategories()">
+                <span class="show-all-icon">▼</span>
+                <span class="show-all-text">Показать все</span>
+            </button>
+            {% endif %}
+        </div>
+
+        <!-- Popular Posts Widget -->
+        <div class="popular-posts-widget">
+            <div class="widget-title">Популярное</div>
+            {% for article in popular_articles|slice:":5" %}
+            <a href="{{ article.get_absolute_url }}" class="popular-post-item">
+                <div class="popular-post-title">{{ article.title|truncatewords:8 }}</div>
+                <div class="popular-post-stats">
+                    <span>👁 {{ article.views_count }}</span>
+                    <span>❤️ {{ article.likes_count }}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </aside>
+
+    <!-- Center Content - Articles Feed -->
+    <main class="articles-feed">
+        <div class="feed-header">
+            <h1 class="feed-title">
+                {% if current_category.icon_image %}
+                    <img src="{{ current_category.icon_image.url }}" alt="{{ current_category.name }}" class="category-header-icon">
+                {% else %}
+                    <span class="category-icon">{{ current_category.icon }}</span>
+                {% endif %}
+                {{ current_category.name }}
+            </h1>
+            <p class="feed-subtitle">{{ current_category.description }}</p>
+        </div>
+
+        <!-- Articles List -->
+        {% for article in articles %}
+        <article class="article-card">
+            <!-- Author Info First -->
+            <div class="article-author">
+                <div class="author-avatar">
+                    {% if article.author.profile.avatar %}
+                    <img src="{{ article.author.profile.avatar.url }}" alt="{{ article.author.username }}">
+                    {% else %}
+                    <div class="avatar-placeholder">{{ article.author.username|first|upper }}</div>
+                    {% endif %}
+                </div>
+                <div class="author-details">
+                    <span class="author-name">{{ article.author.get_full_name|default:article.author.username }}</span>
+                    <span class="article-time">{{ article.published_at|naturaltime }}</span>
+                </div>
+                {% if article.category %}
+                <span class="category-badge">
+                    {% if article.category.icon_image %}
+                        <img src="{{ article.category.icon_image.url }}" alt="{{ article.category.name }}" class="category-badge-icon">
+                    {% endif %}
+                    {{ article.category.name }}
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- Title - full width -->
+            <a href="{{ article.get_absolute_url }}" class="article-title-link">
+                <h2 class="article-title-vk">
+                    {% if article.is_pinned and article.pin_order > 0 %}
+                    <span class="pin-badge" title="Закреплено ({{ article.pin_order }})">📌</span>
+                    {% endif %}
+                    {{ article.title|striptags }}
+                </h2>
+            </a>
+
+            <!-- Cover Image/Video - full width -->
+            {% if article.cover_video %}
+            <a href="{{ article.get_absolute_url }}" class="article-cover-link">
+                <div class="article-cover-vk article-cover-has-video">
+                    <video class="article-cover-video-preview" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()">
+                        <source src="{{ article.cover_video.url }}" type="video/mp4">
+                    </video>
+                    <div class="video-play-icon">▶</div>
+                </div>
+            </a>
+            {% elif article.cover_video_url %}
+                {% if 'youtube:' in article.cover_video_url or 'youtube.com' in article.cover_video_url or 'youtu.be' in article.cover_video_url %}
+                    {# YouTube видео - показываем превью #}
+                    <a href="{{ article.get_absolute_url }}" class="article-cover-link">
+                        <div class="article-cover-vk article-cover-has-video">
+                            {% if 'youtube:' in article.cover_video_url %}
+                                <img src="https://img.youtube.com/vi/{{ article.cover_video_url|slice:'8:' }}/maxresdefault.jpg" alt="{{ article.cover_alt|default:article.title }}" loading="lazy">
+                            {% else %}
+                                {# Извлечь ID из URL - упрощенный вариант #}
+                                <img src="https://img.youtube.com/vi/{{ article.cover_video_url|slice:'-11:' }}/maxresdefault.jpg" alt="{{ article.cover_alt|default:article.title }}" loading="lazy">
+                            {% endif %}
+                            <div class="video-play-icon">▶</div>
+                        </div>
+                    </a>
+                {% else %}
+                    {# Обычное видео по URL #}
+                    <a href="{{ article.get_absolute_url }}" class="article-cover-link">
+                        <div class="article-cover-vk article-cover-has-video">
+                            <video class="article-cover-video-preview" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()">
+                                <source src="{{ article.cover_video_url }}" type="video/mp4">
+                            </video>
+                            <div class="video-play-icon">▶</div>
+                        </div>
+                    </a>
+                {% endif %}
+            {% elif article.cover_image %}
+            <a href="{{ article.get_absolute_url }}" class="article-cover-link">
+                <div class="article-cover-vk">
+                    <img src="{{ article.cover_image.url }}" alt="{{ article.cover_alt|default:article.title }}" loading="lazy">
+                </div>
+            </a>
+            {% endif %}
+
+            <!-- Excerpt Text - full width -->
+            <div class="article-excerpt-vk">
+                <p>{{ article.excerpt|markdown|striptags|truncatewords:50 }}</p>
+            </div>
+
+            <!-- Show More Button & Stats -->
+            <div class="article-footer-vk">
+                <a href="{{ article.get_absolute_url }}" class="show-more-btn">Показать полностью...</a>
+
+                <div class="article-stats-vk">
+                    <span class="stat-item">
+                        💬 {{ article.comments_count }}
+                    </span>
+                    <span class="stat-item">
+                        👁 {{ article.views_count }}
+                    </span>
+                    <span class="stat-item">
+                        ❤️ {{ article.likes_count }}
+                    </span>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="empty-state">
+            <p>Статьи в этой категории не найдены</p>
+            <a href="{% url 'articles:home' %}" class="btn btn-primary">Показать все статьи</a>
+        </div>
+        {% endfor %}
+    </main>
+
+    <!-- Right Sidebar - Top Bloggers & Comments -->
+    <aside class="sidebar-right">
+        <!-- Top Bloggers -->
+        <div class="sidebar-widget">
+            <div class="widget-title">Топ блогеры</div>
+            {% for blogger in top_bloggers %}
+            <div class="blogger-item">
+                <span class="blogger-rank">{{ forloop.counter }}</span>
+                <a href="{% url 'users:profile' blogger.username %}" class="blogger-avatar">
+                    {% if blogger.profile.avatar %}
+                        <img src="{{ blogger.profile.avatar.url }}" alt="{{ blogger.username }}">
+                    {% else %}
+                        <div class="avatar-placeholder">{{ blogger.username|first|upper }}</div>
+                    {% endif %}
+                </a>
+                <div class="blogger-info">
+                    <a href="{% url 'users:profile' blogger.username %}" class="blogger-name">
+                        {{ blogger.get_full_name|default:blogger.username }}
+                    </a>
+                    <div class="blogger-stats">{{ blogger.article_count }} статей</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Popular Comments -->
+        <div class="sidebar-widget">
+            <div class="widget-title">Популярные комментарии</div>
+            {% for comment in popular_comments %}
+            <div class="comment-item">
+                <div class="comment-header">
+                    <div class="comment-author-avatar">
+                        {% if comment.user.profile.avatar %}
+                            <img src="{{ comment.user.profile.avatar.url }}" alt="{{ comment.user.username }}">
+                        {% else %}
+                            <div class="avatar-placeholder">{{ comment.user.username|first|upper }}</div>
+                        {% endif %}
+                    </div>
+                    <span class="comment-author-name">{{ comment.user.get_full_name|default:comment.user.username }}</span>
+                </div>
+                <p class="comment-text">{{ comment.content|truncatewords:15 }}</p>
+                <a href="{{ comment.article.get_absolute_url }}#comment-{{ comment.id }}" class="comment-link">
+                    Перейти к статье →
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </aside>
+</div>
+{% endblock %}

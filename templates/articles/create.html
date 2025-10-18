@@ -1,0 +1,880 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+.editor-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-4);
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+}
+
+.editor-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.editor-actions {
+    display: flex;
+    gap: var(--space-3);
+}
+
+.editor-form {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}
+
+.form-group {
+    margin-bottom: var(--space-4);
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    font-size: 0.875rem;
+}
+
+.form-label-required::after {
+    content: ' *';
+    color: #EF4444;
+}
+
+.form-help {
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    margin-top: var(--space-1);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.9375rem;
+    font-family: inherit;
+    transition: border-color var(--transition-fast);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.form-textarea {
+    font-family: 'Monaco', 'Consolas', monospace;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+.editor-toolbar {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    padding: var(--space-3);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+}
+
+.toolbar-btn {
+    padding: var(--space-1) var(--space-2);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.toolbar-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--color-primary);
+}
+
+.toolbar-separator {
+    width: 1px;
+    background: var(--border-color);
+    margin: 0 var(--space-1);
+}
+
+.split-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+.preview-panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.preview-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+    color: var(--text-secondary);
+}
+
+.tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--space-2);
+}
+
+.tag-checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.tag-checkbox:hover {
+    background: var(--bg-tertiary);
+}
+
+.tag-checkbox input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.image-upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    text-align: center;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.image-upload-area:hover {
+    border-color: var(--color-primary);
+    background: var(--bg-secondary);
+}
+
+.image-preview {
+    margin-top: var(--space-3);
+    max-width: 100%;
+    border-radius: var(--radius-md);
+}
+
+.error-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0;
+}
+
+.error-list li {
+    color: #EF4444;
+    font-size: 0.8125rem;
+    padding: var(--space-1) 0;
+}
+
+@media (max-width: 768px) {
+    .split-view {
+        grid-template-columns: 1fr;
+    }
+
+    .editor-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .editor-actions button {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="editor-container">
+    <div class="editor-header">
+        <h1 class="editor-title">{{ title }}</h1>
+        <div class="editor-actions">
+            <a href="{% url 'articles:my_articles' %}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="editor-form" id="article-form">
+        {% csrf_token %}
+
+        <!-- Заголовок -->
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}" class="form-label form-label-required">
+                {{ form.title.label }}
+            </label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <ul class="error-list">
+                    {% for error in form.title.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Подзаголовок -->
+        <div class="form-group">
+            <label for="{{ form.subtitle.id_for_label }}" class="form-label">
+                {{ form.subtitle.label }}
+            </label>
+            {{ form.subtitle }}
+            {% if form.subtitle.errors %}
+                <ul class="error-list">
+                    {% for error in form.subtitle.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Категория -->
+        <div class="form-group">
+            <label for="{{ form.category.id_for_label }}" class="form-label form-label-required">
+                {{ form.category.label }}
+            </label>
+            {{ form.category }}
+            {% if form.category.errors %}
+                <ul class="error-list">
+                    {% for error in form.category.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Содержание с toolbar -->
+        <div class="form-group">
+            <label for="{{ form.content.id_for_label }}" class="form-label form-label-required">
+                {{ form.content.label }}
+            </label>
+            <p class="form-help">{{ form.content.help_text }}</p>
+
+            <!-- Панель инструментов -->
+            <div class="editor-toolbar">
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('**', '**')" title="Жирный">
+                    <strong>B</strong>
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('*', '*')" title="Курсив">
+                    <em>I</em>
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('`', '`')" title="Код">
+                    &lt;/&gt;
+                </button>
+                <div class="toolbar-separator"></div>
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('# ', '')" title="Заголовок 1">
+                    H1
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('## ', '')" title="Заголовок 2">
+                    H2
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('### ', '')" title="Заголовок 3">
+                    H3
+                </button>
+                <div class="toolbar-separator"></div>
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('- ', '')" title="Список">
+                    • Список
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertMarkdown('[', '](url)')" title="Ссылка">
+                    🔗 Ссылка
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertImage()" title="Вставить изображение">
+                    🖼️ Картинка
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertVideo()" title="Вставить видео">
+                    🎥 Видео
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertCodeBlock()" title="Блок кода">
+                    📝 Код
+                </button>
+            </div>
+
+            <div class="split-view">
+                <div>
+                    {{ form.content }}
+                    {% if form.content.errors %}
+                        <ul class="error-list">
+                            {% for error in form.content.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div class="preview-panel">
+                    <div class="preview-title">📖 Предпросмотр</div>
+                    <div id="markdown-preview" class="article-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Краткое описание -->
+        <div class="form-group">
+            <label for="{{ form.excerpt.id_for_label }}" class="form-label">
+                {{ form.excerpt.label }}
+            </label>
+            <p class="form-help">{{ form.excerpt.help_text }}</p>
+            {{ form.excerpt }}
+            {% if form.excerpt.errors %}
+                <ul class="error-list">
+                    {% for error in form.excerpt.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Теги -->
+        <div class="form-group">
+            <label class="form-label">{{ form.tags.label }}</label>
+            <div class="tags-grid">
+                {% for checkbox in form.tags %}
+                    <label class="tag-checkbox">
+                        {{ checkbox.tag }}
+                        {{ checkbox.choice_label }}
+                    </label>
+                {% endfor %}
+            </div>
+            {% if form.tags.errors %}
+                <ul class="error-list">
+                    {% for error in form.tags.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Обложка (изображение) -->
+        <div class="form-group">
+            <label for="{{ form.cover_image.id_for_label }}" class="form-label">
+                {{ form.cover_image.label }}
+            </label>
+
+            {% if form.instance.cover_image %}
+            <div style="margin-bottom: var(--space-3); padding: var(--space-3); background: var(--bg-secondary); border-radius: var(--radius-md);">
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: var(--space-2);">
+                    📌 Текущая обложка:
+                </p>
+                <img src="{{ form.instance.cover_image.url }}" alt="Current cover" class="image-preview">
+
+                <label style="display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); padding: var(--space-2); background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: var(--radius-sm); cursor: pointer;">
+                    <input type="checkbox" name="delete_cover_image" id="delete-cover-image" style="cursor: pointer;">
+                    <span style="font-size: 0.875rem; color: #991B1B;">🗑️ Удалить текущую обложку</span>
+                </label>
+
+                <p style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: var(--space-2);">
+                    Чтобы изменить обложку, выберите новое изображение ниже
+                </p>
+            </div>
+            {% endif %}
+
+            <div class="image-upload-area" onclick="document.getElementById('cover-upload').click()">
+                <p>📷 Нажмите для выбора изображения</p>
+                <p style="font-size: 0.8125rem; color: var(--text-tertiary);">или перетащите файл сюда</p>
+            </div>
+            {{ form.cover_image }}
+            <div id="image-preview-container"></div>
+            {% if form.cover_image.errors %}
+                <ul class="error-list">
+                    {% for error in form.cover_image.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Обложка (видео) -->
+        <div class="form-group">
+            <label for="{{ form.cover_video.id_for_label }}" class="form-label">
+                {{ form.cover_video.label }}
+            </label>
+            <p class="form-help">{{ form.cover_video.help_text }}</p>
+
+            {% if form.instance.cover_video %}
+            <div style="margin-bottom: var(--space-3); padding: var(--space-3); background: var(--bg-secondary); border-radius: var(--radius-md);">
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: var(--space-2);">
+                    📌 Текущая видео-обложка (файл):
+                </p>
+                <video controls class="image-preview">
+                    <source src="{{ form.instance.cover_video.url }}" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+
+                <label style="display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); padding: var(--space-2); background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: var(--radius-sm); cursor: pointer;">
+                    <input type="checkbox" name="delete_cover_video" id="delete-cover-video" style="cursor: pointer;">
+                    <span style="font-size: 0.875rem; color: #991B1B;">🗑️ Удалить текущее видео</span>
+                </label>
+
+                <p style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: var(--space-2);">
+                    Чтобы изменить видео, выберите новое ниже
+                </p>
+            </div>
+            {% elif form.instance.cover_video_url %}
+            <div style="margin-bottom: var(--space-3); padding: var(--space-3); background: var(--bg-secondary); border-radius: var(--radius-md);">
+                <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: var(--space-2);">
+                    📌 Текущая видео-обложка (URL):
+                </p>
+                {% if 'youtube:' in form.instance.cover_video_url %}
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+                        <iframe
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: var(--radius-md);"
+                            src="https://www.youtube.com/embed/{{ form.instance.cover_video_url|slice:'8:' }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: var(--space-2);">
+                        YouTube ID: {{ form.instance.cover_video_url|slice:'8:' }}
+                    </p>
+                {% else %}
+                    <video controls class="image-preview">
+                        <source src="{{ form.instance.cover_video_url }}" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <p style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: var(--space-2);">
+                        URL: {{ form.instance.cover_video_url }}
+                    </p>
+                {% endif %}
+
+                <label style="display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); padding: var(--space-2); background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: var(--radius-sm); cursor: pointer;">
+                    <input type="checkbox" name="delete_cover_video_url" id="delete-cover-video-url" style="cursor: pointer;">
+                    <span style="font-size: 0.875rem; color: #991B1B;">🗑️ Удалить текущее видео</span>
+                </label>
+
+                <p style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: var(--space-2);">
+                    Чтобы изменить видео, выберите новое ниже
+                </p>
+            </div>
+            {% endif %}
+
+            <!-- Кнопки выбора способа загрузки видео -->
+            <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-3);">
+                <button type="button" class="btn btn-secondary" onclick="selectCoverVideoFromComputer()" style="flex: 1;">
+                    💻 С компьютера
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="selectCoverVideoFromUrl()" style="flex: 1;">
+                    🔗 По URL
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="selectCoverVideoFromYouTube()" style="flex: 1;">
+                    📺 YouTube
+                </button>
+            </div>
+
+            <div class="image-upload-area" id="video-drop-area" style="display: none;">
+                <p>🎥 Нажмите для выбора видео или перетащите файл сюда</p>
+                <p style="font-size: 0.8125rem; color: var(--text-tertiary);">Поддерживаются форматы: MP4, WebM, OGG</p>
+            </div>
+
+            {{ form.cover_video }}
+            <input type="hidden" id="cover-video-url" name="cover_video_url" value="{% if form.instance.cover_video_url %}{{ form.instance.cover_video_url }}{% endif %}">
+            <div id="video-preview-container"></div>
+            {% if form.cover_video.errors %}
+                <ul class="error-list">
+                    {% for error in form.cover_video.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Alt текст обложки -->
+        <div class="form-group">
+            <label for="{{ form.cover_alt.id_for_label }}" class="form-label">
+                {{ form.cover_alt.label }}
+            </label>
+            <p class="form-help">{{ form.cover_alt.help_text }}</p>
+            {{ form.cover_alt }}
+            {% if form.cover_alt.errors %}
+                <ul class="error-list">
+                    {% for error in form.cover_alt.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Кнопки -->
+        <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+            <button type="submit" name="status" value="published" class="btn btn-primary" style="flex: 1;">
+                📤 Опубликовать статью
+            </button>
+            <button type="submit" name="status" value="draft" class="btn btn-secondary">
+                💾 Сохранить как черновик
+            </button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+// Markdown preview
+const contentTextarea = document.getElementById('editor-content');
+const previewDiv = document.getElementById('markdown-preview');
+
+function updatePreview() {
+    const markdown = contentTextarea.value;
+    previewDiv.innerHTML = marked.parse(markdown);
+}
+
+contentTextarea.addEventListener('input', updatePreview);
+updatePreview(); // Initial render
+
+// Вставка Markdown
+function insertMarkdown(before, after) {
+    const textarea = contentTextarea;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = textarea.value.substring(start, end);
+    const newText = before + selectedText + after;
+
+    textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
+
+    // Установить курсор
+    const newCursorPos = start + before.length + selectedText.length;
+    textarea.setSelectionRange(newCursorPos, newCursorPos);
+    textarea.focus();
+
+    updatePreview();
+}
+
+// Вставка блока кода
+function insertCodeBlock() {
+    const textarea = contentTextarea;
+    const start = textarea.selectionStart;
+    const codeBlock = '\n```python\n# Ваш код здесь\n```\n';
+
+    textarea.value = textarea.value.substring(0, start) + codeBlock + textarea.value.substring(start);
+    textarea.focus();
+    updatePreview();
+}
+
+// Вставка изображения
+function insertImage() {
+    const textarea = contentTextarea;
+    const start = textarea.selectionStart;
+
+    const choice = prompt('Выберите способ вставки изображения:\n1 - Загрузить с компьютера\n2 - Вставить URL', '1');
+
+    if (choice === '1') {
+        // Создать input для выбора файла
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/jpeg,image/png,image/gif,image/webp';
+        input.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                // Показать индикатор загрузки
+                const loadingText = '\n![Загрузка изображения...]()\n';
+                textarea.value = textarea.value.substring(0, start) + loadingText + textarea.value.substring(start);
+                updatePreview();
+
+                // Загрузить файл
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    const response = await fetch('/upload-media/', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        }
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        const imageMarkdown = `\n![${data.filename}](${data.url})\n`;
+                        textarea.value = textarea.value.replace(loadingText, imageMarkdown);
+                        updatePreview();
+                    } else {
+                        alert('Ошибка загрузки: ' + data.error);
+                        textarea.value = textarea.value.replace(loadingText, '');
+                        updatePreview();
+                    }
+                } catch (error) {
+                    alert('Ошибка загрузки файла: ' + error.message);
+                    textarea.value = textarea.value.replace(loadingText, '');
+                    updatePreview();
+                }
+            }
+        };
+        input.click();
+    } else if (choice === '2') {
+        const imageUrl = prompt('Введите URL изображения:', 'https://example.com/image.jpg');
+        if (imageUrl) {
+            const imageMarkdown = `\n![Описание изображения](${imageUrl})\n`;
+            textarea.value = textarea.value.substring(0, start) + imageMarkdown + textarea.value.substring(start);
+            textarea.focus();
+            updatePreview();
+        }
+    }
+}
+
+// Вставка видео
+function insertVideo() {
+    const textarea = contentTextarea;
+    const start = textarea.selectionStart;
+
+    const videoType = prompt('Выберите тип видео:\n1 - Загрузить с компьютера (mp4, webm)\n2 - HTML5 видео по URL\n3 - YouTube\n4 - Vimeo', '1');
+
+    if (videoType === '1') {
+        // Загрузка видео с компьютера
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'video/mp4,video/webm,video/ogg';
+        input.onchange = async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                // Показать индикатор загрузки
+                const loadingText = '\n[Загрузка видео... Пожалуйста, подождите]\n';
+                textarea.value = textarea.value.substring(0, start) + loadingText + textarea.value.substring(start);
+                updatePreview();
+
+                // Загрузить файл
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    const response = await fetch('/upload-media/', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        }
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        const videoHtml = `\n<video controls width="100%">\n  <source src="${data.url}" type="video/mp4">\n  Ваш браузер не поддерживает видео.\n</video>\n`;
+                        textarea.value = textarea.value.replace(loadingText, videoHtml);
+                        updatePreview();
+                    } else {
+                        alert('Ошибка загрузки: ' + data.error);
+                        textarea.value = textarea.value.replace(loadingText, '');
+                        updatePreview();
+                    }
+                } catch (error) {
+                    alert('Ошибка загрузки файла: ' + error.message);
+                    textarea.value = textarea.value.replace(loadingText, '');
+                    updatePreview();
+                }
+            }
+        };
+        input.click();
+    } else if (videoType === '2') {
+        const videoUrl = prompt('Введите URL видео файла:', 'https://example.com/video.mp4');
+        if (videoUrl) {
+            const videoHtml = `\n<video controls width="100%">\n  <source src="${videoUrl}" type="video/mp4">\n  Ваш браузер не поддерживает видео.\n</video>\n`;
+            textarea.value = textarea.value.substring(0, start) + videoHtml + textarea.value.substring(start);
+            textarea.focus();
+            updatePreview();
+        }
+    } else if (videoType === '3') {
+        const videoId = prompt('Введите ID YouTube видео (например: dQw4w9WgXcQ):\n\nВНИМАНИЕ: Некоторые владельцы видео запрещают встраивание.\nЕсли видео не отображается, используйте другое видео или загрузите файл.', 'dQw4w9WgXcQ');
+        if (videoId) {
+            const youtubeEmbed = `\n<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 1rem 0;">\n  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n</div>\n`;
+            textarea.value = textarea.value.substring(0, start) + youtubeEmbed + textarea.value.substring(start);
+            textarea.focus();
+            updatePreview();
+        }
+    } else if (videoType === '4') {
+        const videoId = prompt('Введите ID Vimeo видео:', '123456789');
+        if (videoId) {
+            const vimeoEmbed = `\n<iframe src="https://player.vimeo.com/video/${videoId}" width="100%" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>\n`;
+            textarea.value = textarea.value.substring(0, start) + vimeoEmbed + textarea.value.substring(start);
+            textarea.focus();
+            updatePreview();
+        }
+    }
+}
+
+// Предпросмотр изображения
+const coverInput = document.getElementById('cover-upload');
+const previewContainer = document.getElementById('image-preview-container');
+
+coverInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            previewContainer.innerHTML = `<img src="${e.target.result}" class="image-preview" alt="Preview">`;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Предпросмотр видео
+const coverVideoInput = document.getElementById('cover-video-upload');
+const videoPreviewContainer = document.getElementById('video-preview-container');
+
+coverVideoInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('video/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            videoPreviewContainer.innerHTML = `
+                <video controls class="image-preview" style="margin-top: var(--space-3);">
+                    <source src="${e.target.result}" type="${file.type}">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            `;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Автосохранение в localStorage
+let autoSaveTimeout;
+function autoSave() {
+    clearTimeout(autoSaveTimeout);
+    autoSaveTimeout = setTimeout(() => {
+        localStorage.setItem('article_draft_title', document.getElementById('id_title').value);
+        localStorage.setItem('article_draft_content', contentTextarea.value);
+        console.log('Автосохранение выполнено');
+    }, 2000);
+}
+
+contentTextarea.addEventListener('input', autoSave);
+document.getElementById('id_title').addEventListener('input', autoSave);
+
+// Восстановление из автосохранения
+window.addEventListener('load', () => {
+    const savedTitle = localStorage.getItem('article_draft_title');
+    const savedContent = localStorage.getItem('article_draft_content');
+
+    if (savedTitle && !document.getElementById('id_title').value) {
+        if (confirm('Найдено автосохраненное содержимое. Восстановить?')) {
+            document.getElementById('id_title').value = savedTitle;
+            contentTextarea.value = savedContent;
+            updatePreview();
+        }
+    }
+});
+
+// Очистка автосохранения при успешной отправке
+document.getElementById('article-form').addEventListener('submit', () => {
+    localStorage.removeItem('article_draft_title');
+    localStorage.removeItem('article_draft_content');
+});
+
+// ===== Функции для выбора обложки-видео =====
+
+// 1. Загрузка видео с компьютера
+function selectCoverVideoFromComputer() {
+    const input = document.getElementById('cover-video-upload');
+    input.click();
+}
+
+// 2. Загрузка видео по URL
+async function selectCoverVideoFromUrl() {
+    const videoUrl = prompt('Введите URL видео файла (MP4, WebM, OGG):', 'https://example.com/video.mp4');
+
+    if (videoUrl) {
+        // Показать предпросмотр
+        const videoPreviewContainer = document.getElementById('video-preview-container');
+        videoPreviewContainer.innerHTML = `
+            <video controls class="image-preview" style="margin-top: var(--space-3);">
+                <source src="${videoUrl}" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            <p style="margin-top: var(--space-2); font-size: 0.875rem; color: var(--text-secondary);">
+                Видео по URL: ${videoUrl}
+            </p>
+        `;
+
+        // Сохранить URL в скрытое поле
+        document.getElementById('cover-video-url').value = videoUrl;
+
+        // Очистить файловый input если был
+        document.getElementById('cover-video-upload').value = '';
+    }
+}
+
+// 3. Встраивание YouTube видео
+async function selectCoverVideoFromYouTube() {
+    const youtubeInput = prompt(
+        'Введите ссылку на YouTube видео или ID:\n\n' +
+        'Примеры:\n' +
+        '• https://www.youtube.com/watch?v=dQw4w9WgXcQ\n' +
+        '• https://youtu.be/dQw4w9WgXcQ\n' +
+        '• dQw4w9WgXcQ',
+        'https://www.youtube.com/watch?v='
+    );
+
+    if (youtubeInput) {
+        // Извлечь ID из разных форматов YouTube URL
+        let videoId = youtubeInput;
+
+        // Если это полная ссылка youtube.com
+        if (youtubeInput.includes('youtube.com/watch?v=')) {
+            const urlParams = new URLSearchParams(new URL(youtubeInput).search);
+            videoId = urlParams.get('v');
+        }
+        // Если это короткая ссылка youtu.be
+        else if (youtubeInput.includes('youtu.be/')) {
+            videoId = youtubeInput.split('youtu.be/')[1].split('?')[0];
+        }
+        // Если это встроенная ссылка
+        else if (youtubeInput.includes('youtube.com/embed/')) {
+            videoId = youtubeInput.split('youtube.com/embed/')[1].split('?')[0];
+        }
+
+        if (videoId) {
+            // Показать предпросмотр
+            const videoPreviewContainer = document.getElementById('video-preview-container');
+            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+            videoPreviewContainer.innerHTML = `
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin-top: var(--space-3); border-radius: var(--radius-md);">
+                    <iframe
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: var(--radius-md);"
+                        src="${embedUrl}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="margin-top: var(--space-2); font-size: 0.875rem; color: var(--text-secondary);">
+                    YouTube видео ID: ${videoId}
+                </p>
+            `;
+
+            // Сохранить YouTube URL в скрытое поле с префиксом
+            document.getElementById('cover-video-url').value = 'youtube:' + videoId;
+
+            // Очистить файловый input если был
+            document.getElementById('cover-video-upload').value = '';
+        } else {
+            alert('Не удалось определить ID видео. Проверьте ссылку.');
+        }
+    }
+}
+</script>
+{% endblock %}

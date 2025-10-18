@@ -1,0 +1,48 @@
+# Django Core
+Django==5.2.7
+djangorestframework==3.14.0
+
+# Production Server
+gunicorn==23.0.0
+# uwsgi==2.0.28  # Только для Linux-серверов (Timeweb). На Windows не работает!
+
+# Database
+# psycopg2-binary==2.9.9  # Только для PostgreSQL на продакшене. На Windows может не устанавливаться!
+dj-database-url==2.3.0
+
+# Environment Variables
+django-environ==0.11.2
+python-decouple==3.8
+
+# Static Files
+whitenoise==6.8.2
+
+# Images
+Pillow==11.0.0
+
+# Tags
+django-taggit==5.0.1
+
+# Markdown Support
+markdown==3.9
+
+# Slugs (для транслитерации)
+python-slugify==8.0.4
+Unidecode==1.4.0
+
+# SEO
+# django-sitemap==2.3  # Не нужен, sitemap встроен в Django!
+
+# Performance & Caching
+django-redis==5.4.0
+redis==5.2.1
+
+# Code Highlighting
+Pygments==2.17.2
+
+# Security
+django-cors-headers==4.6.0
+
+# Utilities
+python-dateutil==2.9.0.post0
+pytz==2025.2
