@@ -1872,7 +1872,7 @@ a:hover {
 }
 
 .header-container {
-    max-width: var(--max-width);
+    max-width: calc(var(--sidebar-left-width) + var(--content-width) + var(--sidebar-right-width) + 32px);
     margin: 0 auto;
     display: flex;
     align-items: center;
