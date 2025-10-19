@@ -213,7 +213,7 @@
             <!-- Related Articles -->
             {% if related_articles %}
             <div class="related-articles">
-                <h3 class="related-title">Похожие статьи</h3>
+                <h3 class="related-title" style="padding-left: 16px;">Похожие статьи</h3>
                 <div class="related-articles-grid">
                     {% for rel_article in related_articles %}
                     <a href="{{ rel_article.get_absolute_url }}" class="related-article-card">
@@ -223,8 +223,8 @@
                         </div>
                         {% endif %}
                         <div class="related-article-body">
-                            <h4 class="related-article-title">{{ rel_article.title|truncatewords:10 }}</h4>
-                            <p class="related-article-excerpt">{{ rel_article.excerpt|truncatewords:15 }}</p>
+                            <h4 class="related-article-title">{{ rel_article.title|striptags|truncatewords:10 }}</h4>
+                            <p class="related-article-excerpt">{{ rel_article.excerpt|striptags|truncatewords:15 }}</p>
                         </div>
                     </a>
                     {% endfor %}
