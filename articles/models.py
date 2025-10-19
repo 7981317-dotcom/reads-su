@@ -5,6 +5,7 @@ from slugify import slugify  # Используем python-slugify для тра
 from django.utils import timezone
 from django.utils.html import strip_tags
 import re
+from .utils.image_optimizer import optimize_image, optimize_icon
 
 
 def create_slug(text):
@@ -36,6 +37,25 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = create_slug(self.name)
+
+        # Оптимизация иконки категории
+        if self.icon_image:
+            try:
+                # Проверяем, что это новое изображение
+                if not self.pk or self._state.adding:
+                    self.icon_image = optimize_icon(self.icon_image, size=200, quality=90)
+                else:
+                    # Проверяем, изменилось ли изображение
+                    try:
+                        old_instance = Category.objects.get(pk=self.pk)
+                        if old_instance.icon_image != self.icon_image:
+                            self.icon_image = optimize_icon(self.icon_image, size=200, quality=90)
+                    except Category.DoesNotExist:
+                        self.icon_image = optimize_icon(self.icon_image, size=200, quality=90)
+            except Exception as e:
+                # Если оптимизация не удалась, просто сохраняем оригинал
+                print(f"Ошибка оптимизации иконки категории: {e}")
+
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -145,6 +165,24 @@ class Article(models.Model):
         # Генерация slug из заголовка с транслитерацией
         if not self.slug:
             self.slug = create_slug(self.title)
+
+        # Оптимизация обложки статьи
+        if self.cover_image:
+            try:
+                # Проверяем, что это новое изображение
+                if not self.pk or self._state.adding:
+                    self.cover_image = optimize_image(self.cover_image, max_width=1920, max_height=1080, quality=85)
+                else:
+                    # Проверяем, изменилось ли изображение
+                    try:
+                        old_instance = Article.objects.get(pk=self.pk)
+                        if old_instance.cover_image != self.cover_image:
+                            self.cover_image = optimize_image(self.cover_image, max_width=1920, max_height=1080, quality=85)
+                    except Article.DoesNotExist:
+                        self.cover_image = optimize_image(self.cover_image, max_width=1920, max_height=1080, quality=85)
+            except Exception as e:
+                # Если оптимизация не удалась, просто сохраняем оригинал
+                print(f"Ошибка оптимизации обложки статьи: {e}")
 
         # Автоматическая генерация excerpt из content
         if not self.excerpt and self.content:
@@ -266,6 +304,27 @@ class ArticleMedia(models.Model):
         verbose_name = 'Медиа-файл'
         verbose_name_plural = 'Медиа-файлы'
         ordering = ['order', '-created_at']
+
+    def save(self, *args, **kwargs):
+        # Оптимизация изображений в контенте
+        if self.media_type == 'image' and self.file:
+            try:
+                # Проверяем, что это новое изображение
+                if not self.pk or self._state.adding:
+                    self.file = optimize_image(self.file, max_width=1920, max_height=1080, quality=85)
+                else:
+                    # Проверяем, изменилось ли изображение
+                    try:
+                        old_instance = ArticleMedia.objects.get(pk=self.pk)
+                        if old_instance.file != self.file:
+                            self.file = optimize_image(self.file, max_width=1920, max_height=1080, quality=85)
+                    except ArticleMedia.DoesNotExist:
+                        self.file = optimize_image(self.file, max_width=1920, max_height=1080, quality=85)
+            except Exception as e:
+                # Если оптимизация не удалась, просто сохраняем оригинал
+                print(f"Ошибка оптимизации медиа-файла: {e}")
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.get_media_type_display()} - {self.article.title}'

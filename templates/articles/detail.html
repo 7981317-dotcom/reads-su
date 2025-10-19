@@ -72,7 +72,7 @@
                 <li class="category-list-item {% if forloop.counter > 10 %}category-hidden{% endif %}">
                     <a href="{% url 'articles:category' category.slug %}" class="category-item {% if article.category.id == category.id %}active{% endif %}">
                         {% if category.icon_image %}
-                            <img src="{{ category.icon_image.url }}" alt="{{ category.name }}" class="category-icon-img">
+                            <img src="{{ category.icon_image.url }}" alt="{{ category.name }}" class="category-icon-img" loading="lazy">
                         {% else %}
                             <span class="category-icon">{{ category.icon }}</span>
                         {% endif %}
@@ -110,7 +110,7 @@
                 {% if article.category %}
                 <a href="{% url 'articles:category' article.category.slug %}" class="article-category-badge">
                     {% if article.category.icon_image %}
-                        <img src="{{ article.category.icon_image.url }}" alt="{{ article.category.name }}" class="category-badge-icon-img" style="width: 20px; height: 20px; margin-right: 6px; border-radius: 50%; object-fit: cover;">
+                        <img src="{{ article.category.icon_image.url }}" alt="{{ article.category.name }}" class="category-badge-icon-img" style="width: 20px; height: 20px; margin-right: 6px; border-radius: 50%; object-fit: cover;" loading="lazy">
                     {% else %}
                         <span>{{ article.category.icon }}</span>
                     {% endif %}
@@ -132,7 +132,7 @@
                     <a href="{% url 'users:profile' article.author.username %}" class="article-author-link">
                         <div class="article-author-avatar">
                             {% if article.author.profile.avatar %}
-                            <img src="{{ article.author.profile.avatar.url }}" alt="{{ article.author.username }}">
+                            <img src="{{ article.author.profile.avatar.url }}" alt="{{ article.author.username }}" loading="lazy">
                             {% else %}
                             <div class="avatar-placeholder">{{ article.author.username|first|upper }}</div>
                             {% endif %}
