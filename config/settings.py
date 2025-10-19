@@ -219,15 +219,24 @@ if IS_PRODUCTION:
     # Additional security
     SECURE_REFERRER_POLICY = 'same-origin'
 
-# Caching (optional, можно включить позже)
-if IS_PRODUCTION and os.environ.get('REDIS_URL'):
+# Caching with Redis
+if IS_PRODUCTION:
     CACHES = {
         'default': {
             'BACKEND': 'django_redis.cache.RedisCache',
-            'LOCATION': os.environ.get('REDIS_URL'),
+            'LOCATION': 'redis://127.0.0.1:6379/1',
             'OPTIONS': {
                 'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            }
+                'PARSER_CLASS': 'redis.connection.HiredisParser',
+                'CONNECTION_POOL_CLASS_KWARGS': {
+                    'max_connections': 50,
+                    'retry_on_timeout': True,
+                },
+                'SOCKET_CONNECT_TIMEOUT': 5,
+                'SOCKET_TIMEOUT': 5,
+            },
+            'KEY_PREFIX': 'reads',
+            'TIMEOUT': 300,  # 5 минут по умолчанию
         }
     }
 else:
@@ -236,6 +245,10 @@ else:
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         }
     }
+
+# Cache time settings
+CACHE_MIDDLEWARE_SECONDS = 300  # 5 минут
+CACHE_MIDDLEWARE_KEY_PREFIX = 'reads'
 
 # Logging configuration
 LOGGING = {

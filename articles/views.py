@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from django.core.cache import cache
 import os
 from .models import Article, Category, Tag, Reaction
 from comments.models import Comment
@@ -44,30 +45,45 @@ def home(request):
     page = request.GET.get('page')
     articles = paginator.get_page(page)
 
-    # Популярные статьи
-    popular_articles = Article.objects.filter(
-        status='published'
-    ).order_by('-views_count')[:5]
+    # Популярные статьи (кешируем на 5 минут)
+    popular_articles = cache.get('popular_articles')
+    if popular_articles is None:
+        popular_articles = list(Article.objects.filter(
+            status='published'
+        ).order_by('-views_count')[:5])
+        cache.set('popular_articles', popular_articles, 300)
 
-    # Категории с количеством статей (сортированные по количеству статей)
-    categories = Category.objects.annotate(
-        article_count=Count('articles', filter=Q(articles__status='published'))
-    ).filter(article_count__gt=0).order_by('-article_count')
+    # Категории с количеством статей (кешируем на 10 минут)
+    categories = cache.get('categories_with_count')
+    if categories is None:
+        categories = list(Category.objects.annotate(
+            article_count=Count('articles', filter=Q(articles__status='published'))
+        ).filter(article_count__gt=0).order_by('-article_count'))
+        cache.set('categories_with_count', categories, 600)
 
-    # Популярные теги
-    popular_tags = Tag.objects.annotate(
-        article_count=Count('articles', filter=Q(articles__status='published'))
-    ).filter(article_count__gt=0).order_by('-article_count')[:20]
+    # Популярные теги (кешируем на 10 минут)
+    popular_tags = cache.get('popular_tags')
+    if popular_tags is None:
+        popular_tags = list(Tag.objects.annotate(
+            article_count=Count('articles', filter=Q(articles__status='published'))
+        ).filter(article_count__gt=0).order_by('-article_count')[:20])
+        cache.set('popular_tags', popular_tags, 600)
 
-    # Топ блогеры (пользователи с наибольшим количеством статей)
-    top_bloggers = User.objects.annotate(
-        article_count=Count('articles', filter=Q(articles__status='published'))
-    ).filter(article_count__gt=0).order_by('-article_count')[:5]
+    # Топ блогеры (кешируем на 15 минут)
+    top_bloggers = cache.get('top_bloggers')
+    if top_bloggers is None:
+        top_bloggers = list(User.objects.annotate(
+            article_count=Count('articles', filter=Q(articles__status='published'))
+        ).filter(article_count__gt=0).order_by('-article_count')[:5])
+        cache.set('top_bloggers', top_bloggers, 900)
 
-    # Популярные комментарии
-    popular_comments = Comment.objects.filter(
-        is_deleted=False
-    ).select_related('user', 'user__profile', 'article').order_by('-likes_count')[:5]
+    # Популярные комментарии (кешируем на 5 минут)
+    popular_comments = cache.get('popular_comments')
+    if popular_comments is None:
+        popular_comments = list(Comment.objects.filter(
+            is_deleted=False
+        ).select_related('user', 'user__profile', 'article').order_by('-likes_count')[:5])
+        cache.set('popular_comments', popular_comments, 300)
 
     # Общее количество статей
     total_articles = Article.objects.filter(status='published').count()
