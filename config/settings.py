@@ -60,6 +60,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
 
+    # Third-party apps
+    'compressor',
+
     # Local apps
     'articles.apps.ArticlesConfig',
     'users.apps.UsersConfig',
@@ -149,8 +152,25 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',  # django-compressor
+]
+
 # WhiteNoise configuration for serving static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Django Compressor settings
+COMPRESS_ENABLED = IS_PRODUCTION
+COMPRESS_OFFLINE = IS_PRODUCTION
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.rCSSMinFilter',
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.rJSMinFilter',
+]
 
 # Media files
 MEDIA_URL = '/media/'

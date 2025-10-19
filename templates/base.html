@@ -1,4 +1,4 @@
-{% load static %}
+{% load static compress %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -45,7 +45,9 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=11">
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endcompress %}
     {% block extra_css %}{% endblock %}
 
     <!-- JSON-LD Structured Data -->
@@ -331,7 +333,9 @@
     </main>
 
     <!-- JavaScript -->
-    <script src="{% static 'js/main.js' %}"></script>
+    {% compress js %}
+    <script src="{% static 'js/main.js' %}" defer></script>
+    {% endcompress %}
     {% block extra_js %}{% endblock %}
 </body>
 </html>
