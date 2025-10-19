@@ -198,6 +198,14 @@ class Article(models.Model):
             # Удаляем markdown ссылки [text](url)
             clean_content = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', clean_content)
 
+            # Удаляем markdown жирный текст **text** или __text__
+            clean_content = re.sub(r'\*\*([^\*]+)\*\*', r'\1', clean_content)
+            clean_content = re.sub(r'__([^_]+)__', r'\1', clean_content)
+
+            # Удаляем markdown курсив *text* или _text_
+            clean_content = re.sub(r'\*([^\*]+)\*', r'\1', clean_content)
+            clean_content = re.sub(r'_([^_]+)_', r'\1', clean_content)
+
             # Удаляем markdown заголовки (#, ##, ###)
             clean_content = re.sub(r'^#+\s+', '', clean_content, flags=re.MULTILINE)
 
