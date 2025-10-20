@@ -2897,32 +2897,3 @@ a:hover {
 [data-theme="dark"] .show-all-categories-btn:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
-
-
-/* ============================================ */
-/* Pinned Article Badge */
-/* ============================================ */
-.pin-badge {
-    display: inline-block;
-    margin-right: var(--space-2);
-    font-size: 1.2em;
-    color: #3B82F6;
-    animation: pinPulse 2s ease-in-out infinite;
-    cursor: help;
-}
-
-@keyframes pinPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-.pin-badge:hover {
-    animation: pinRotate 0.5s ease-in-out;
-}
-
-@keyframes pinRotate {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(-10deg); }
-    75% { transform: rotate(10deg); }
-    100% { transform: rotate(0deg); }
-}

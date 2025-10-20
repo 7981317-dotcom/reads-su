@@ -84,12 +84,7 @@
 
             <!-- Title - full width -->
             <a href="{{ article.get_absolute_url }}" class="article-title-link">
-                <h2 class="article-title-vk">
-                    {% if article.is_pinned and article.pin_order > 0 %}
-                    <span class="pin-badge" title="Закреплено ({{ article.pin_order }})">📌</span>
-                    {% endif %}
-                    {{ article.title|striptags }}
-                </h2>
+                <h2 class="article-title-vk">{{ article.title|striptags }}</h2>
             </a>
 
             <!-- Cover Image/Video - full width -->
