@@ -370,17 +370,31 @@
         let currentImageIndex = 0;
 
         function initLightbox() {
-            // Get all images in article content
-            const articleImages = document.querySelectorAll('.article-content img');
+            // Get all images ONLY in article content (not on home page)
+            const articleImages = document.querySelectorAll('.article-content img, .markdown-content img');
+
+            // Only initialize if we're on article page (not home page)
+            if (articleImages.length === 0) {
+                return;
+            }
+
             lightboxImages = Array.from(articleImages);
 
             // Add click event to each image
             lightboxImages.forEach((img, index) => {
-                img.addEventListener('click', () => openLightbox(index));
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openLightbox(index);
+                });
             });
 
-            // Close on ESC key
+            // Close on ESC key and arrow navigation
             document.addEventListener('keydown', (e) => {
+                const lightbox = document.getElementById('imageLightbox');
+                if (!lightbox.classList.contains('active')) return;
+
                 if (e.key === 'Escape') closeLightbox(e);
                 if (e.key === 'ArrowLeft') navigateLightbox(-1);
                 if (e.key === 'ArrowRight') navigateLightbox(1);
