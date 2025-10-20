@@ -101,7 +101,7 @@
             <!-- Right Actions -->
             <div class="header-actions">
                 <!-- Search Icon Button -->
-                <button class="search-icon-btn" onclick="openSearchOverlay()" aria-label="Поиск">
+                <button class="search-icon-btn" aria-label="Поиск">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -114,7 +114,7 @@
                 <!-- Login/User Menu -->
                 {% if user.is_authenticated %}
                     <div class="user-menu-minimal">
-                        <button class="user-avatar-btn" onclick="toggleUserDropdown()">
+                        <button class="user-avatar-btn">
                             {% if user.profile.avatar %}
                                 <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="avatar-img">
                             {% else %}
@@ -165,11 +165,11 @@
                         </div>
                     </div>
                 {% else %}
-                    <button class="btn-login" onclick="openLoginModal()">Войти</button>
+                    <button class="btn-login">Войти</button>
                 {% endif %}
 
                 <!-- Theme Toggle -->
-                <button class="theme-toggle-minimal" onclick="toggleTheme()" aria-label="Переключить тему">
+                <button class="theme-toggle-minimal" aria-label="Переключить тему">
                     <svg class="theme-icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>
                         <path d="M10 1v2M10 17v2M19 10h-2M3 10H1M16.66 16.66l-1.42-1.42M4.76 4.76L3.34 3.34M16.66 3.34l-1.42 1.42M4.76 15.24l-1.42 1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -184,9 +184,9 @@
 
     <!-- Login Modal (VC.ru Style with Form) -->
     {% if not user.is_authenticated %}
-    <div class="modal-overlay" id="loginModal" onclick="closeLoginModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
 
             <div class="modal-logo">
                 <span class="logo-icon">VC</span>
@@ -209,7 +209,7 @@
                     <div class="form-group">
                         <div class="form-label-row">
                             <label for="id_password" class="form-label">Пароль</label>
-                            <a href="#" class="forgot-password-link" onclick="showPasswordReset(event)">Забыли пароль?</a>
+                            <a href="#" class="forgot-password-link">Забыли пароль?</a>
                         </div>
                         <input type="password" name="password" id="id_password" class="form-input" required>
                     </div>
@@ -218,7 +218,7 @@
                 </form>
 
                 <div class="modal-footer">
-                    <span>Нет аккаунта?</span> <a href="#" class="modal-link" onclick="showRegisterForm(event)">Зарегистрируйтесь</a>
+                    <span>Нет аккаунта?</span> <a href="#" class="modal-link">Зарегистрируйтесь</a>
                 </div>
             </div>
 
@@ -239,7 +239,7 @@
                 </form>
 
                 <div class="modal-footer">
-                    <a href="#" class="modal-link" onclick="showLoginForm(event)">Вернуться ко входу</a>
+                    <a href="#" class="modal-link">Вернуться ко входу</a>
                 </div>
             </div>
 
@@ -279,7 +279,7 @@
                 </form>
 
                 <div class="modal-footer">
-                    <span>Уже есть аккаунт?</span> <a href="#" class="modal-link" onclick="showLoginForm(event)">Войти</a>
+                    <span>Уже есть аккаунт?</span> <a href="#" class="modal-link">Войти</a>
                 </div>
             </div>
 
@@ -293,7 +293,7 @@
                 </p>
 
                 <div class="modal-footer" style="margin-top: 2rem;">
-                    <a href="#" class="modal-link" onclick="showLoginForm(event)">Вернуться ко входу</a>
+                    <a href="#" class="modal-link">Вернуться ко входу</a>
                 </div>
             </div>
         </div>
@@ -301,15 +301,15 @@
     {% endif %}
 
     <!-- Search Overlay (VC.ru Style) -->
-    <div class="search-overlay" id="searchOverlay" onclick="closeSearchOverlay(event)">
-        <div class="search-overlay-content" onclick="event.stopPropagation()">
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-overlay-content">
             <div class="search-overlay-header">
                 <div class="search-overlay-input-wrapper">
                     <svg class="search-overlay-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <input type="text" class="search-overlay-input" placeholder="Поиск по статьям..." id="searchOverlayInput" autofocus>
-                    <button class="search-overlay-close" onclick="closeSearchOverlay()" aria-label="Закрыть">
+                    <button class="search-overlay-close" aria-label="Закрыть">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
@@ -338,7 +338,7 @@
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}" role="alert">
                     {{ message }}
-                    <button class="alert-close" onclick="this.parentElement.remove()">&times;</button>
+                    <button class="alert-close">&times;</button>
                 </div>
             {% endfor %}
         </div>
@@ -350,122 +350,19 @@
     </main>
 
     <!-- Image Lightbox -->
-    <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
-        <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+    <div id="imageLightbox" class="lightbox">
+        <button class="lightbox-close" aria-label="Close">&times;</button>
         <div class="lightbox-counter" id="lightboxCounter" style="display: none;"></div>
-        <button class="lightbox-nav lightbox-nav-prev" id="lightboxPrev" onclick="navigateLightbox(-1)" style="display: none;" aria-label="Previous">‹</button>
-        <button class="lightbox-nav lightbox-nav-next" id="lightboxNext" onclick="navigateLightbox(1)" style="display: none;" aria-label="Next">›</button>
-        <img class="lightbox-image" id="lightboxImage" src="" alt="" onclick="event.stopPropagation()">
+        <button class="lightbox-nav lightbox-nav-prev" id="lightboxPrev" style="display: none;" aria-label="Previous">‹</button>
+        <button class="lightbox-nav lightbox-nav-next" id="lightboxNext" style="display: none;" aria-label="Next">›</button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="">
     </div>
 
     <!-- JavaScript -->
     {% compress js %}
     <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/lightbox.js' %}" defer></script>
     {% endcompress %}
-
-    <!-- Lightbox JavaScript -->
-    <script>
-        // Image Lightbox functionality
-        let lightboxImages = [];
-        let currentImageIndex = 0;
-
-        function initLightbox() {
-            // Get all images ONLY in article content (not on home page)
-            const articleImages = document.querySelectorAll('.article-content img, .markdown-content img');
-
-            // Only initialize if we're on article page (not home page)
-            if (articleImages.length === 0) {
-                return;
-            }
-
-            lightboxImages = Array.from(articleImages);
-
-            // Add click event to each image
-            lightboxImages.forEach((img, index) => {
-                img.style.cursor = 'pointer';
-                img.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openLightbox(index);
-                });
-            });
-
-            // Close on ESC key and arrow navigation
-            document.addEventListener('keydown', (e) => {
-                const lightbox = document.getElementById('imageLightbox');
-                if (!lightbox.classList.contains('active')) return;
-
-                if (e.key === 'Escape') closeLightbox(e);
-                if (e.key === 'ArrowLeft') navigateLightbox(-1);
-                if (e.key === 'ArrowRight') navigateLightbox(1);
-            });
-        }
-
-        function openLightbox(index) {
-            const lightbox = document.getElementById('imageLightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxCounter = document.getElementById('lightboxCounter');
-            const lightboxPrev = document.getElementById('lightboxPrev');
-            const lightboxNext = document.getElementById('lightboxNext');
-
-            currentImageIndex = index;
-            const img = lightboxImages[currentImageIndex];
-
-            lightboxImage.src = img.src;
-            lightboxImage.alt = img.alt;
-
-            // Show/hide navigation if multiple images
-            if (lightboxImages.length > 1) {
-                lightboxCounter.style.display = 'block';
-                lightboxCounter.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
-                lightboxPrev.style.display = currentImageIndex > 0 ? 'flex' : 'none';
-                lightboxNext.style.display = currentImageIndex < lightboxImages.length - 1 ? 'flex' : 'none';
-            } else {
-                lightboxCounter.style.display = 'none';
-                lightboxPrev.style.display = 'none';
-                lightboxNext.style.display = 'none';
-            }
-
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox(event) {
-            if (event) event.stopPropagation();
-
-            const lightbox = document.getElementById('imageLightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-
-            // Only close if clicking on background or close button
-            if (event && event.target !== lightbox && event.target !== document.querySelector('.lightbox-close')) {
-                return;
-            }
-
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-
-            // Clear image after animation
-            setTimeout(() => {
-                lightboxImage.src = '';
-            }, 300);
-        }
-
-        function navigateLightbox(direction) {
-            event.stopPropagation();
-
-            const newIndex = currentImageIndex + direction;
-
-            if (newIndex >= 0 && newIndex < lightboxImages.length) {
-                openLightbox(newIndex);
-            }
-        }
-
-        // Initialize on page load
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initLightbox);
-        } else {
-            initLightbox();
-        }
     </script>
 
     {% block extra_js %}{% endblock %}
