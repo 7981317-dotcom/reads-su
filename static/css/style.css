@@ -1731,6 +1731,25 @@ a:hover {
     .article-header {
         padding: var(--space-4) var(--space-3) var(--space-3);
     }
+
+    /* Mobile: reduced padding for article cards */
+    .article-card {
+        padding: var(--space-4) var(--space-3);
+    }
+
+    .article-link {
+        padding: var(--space-4) var(--space-3);
+    }
+
+    /* Mobile: reduced padding for feed header */
+    .feed-header {
+        padding: var(--space-4) var(--space-3);
+    }
+
+    /* Mobile: smaller feed title */
+    .feed-title {
+        font-size: 1.375rem;
+    }
 }
 
 
