@@ -3066,3 +3066,14 @@ a:hover {
         right: 16px;
     }
 }
+
+/* Lightbox support for article cover images */
+.article-cover-image {
+    cursor: pointer !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.article-cover-image:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}

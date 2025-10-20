@@ -7,16 +7,24 @@
     let lightboxActive = false;
 
     function initLightbox() {
-        // Get all images ONLY in article content (not on home page)
-        const articleImages = document.querySelectorAll('.article-content img, .markdown-content img');
+        // Get all images in article: cover image + content images
+        const coverImage = document.querySelector('.article-cover-image');
+        const contentImages = document.querySelectorAll('.article-content img, .markdown-content img');
+
+        // Combine cover image (if exists) with content images
+        let allImages = [];
+        if (coverImage) {
+            allImages.push(coverImage);
+        }
+        allImages = allImages.concat(Array.from(contentImages));
 
         // Only initialize if we're on article page with images
-        if (articleImages.length === 0) {
+        if (allImages.length === 0) {
             return;
         }
 
-        console.log('Initializing lightbox for', articleImages.length, 'images');
-        lightboxImages = Array.from(articleImages);
+        console.log('Initializing lightbox for', allImages.length, 'images (including cover)');
+        lightboxImages = allImages;
 
         // Add click event to each image
         lightboxImages.forEach((img, index) => {
