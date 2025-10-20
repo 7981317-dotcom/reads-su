@@ -1158,7 +1158,7 @@ a:hover {
 /* Article Content Styling - Optimized for Readability */
 .article-content {
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.5;
     color: #000000;
     padding: var(--space-6) var(--space-8);
     max-width: 680px;
@@ -1231,7 +1231,7 @@ a:hover {
 
 .article-content li {
     margin-bottom: 0.5em;
-    line-height: 1.6;
+    line-height: 1.5;
     color: #000000;
 }
 
@@ -1717,6 +1717,19 @@ a:hover {
     .article-cover {
         width: 100%;
         height: 200px;
+    }
+
+    /* Mobile: smaller title and reduced padding */
+    .article-title-main {
+        font-size: 1.375rem;
+    }
+
+    .article-content {
+        padding: var(--space-4) var(--space-3);
+    }
+
+    .article-header {
+        padding: var(--space-4) var(--space-3) var(--space-3);
     }
 }
 
