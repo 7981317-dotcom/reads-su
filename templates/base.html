@@ -349,10 +349,111 @@
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Image Lightbox -->
+    <div id="imageLightbox" class="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
+        <div class="lightbox-counter" id="lightboxCounter" style="display: none;"></div>
+        <button class="lightbox-nav lightbox-nav-prev" id="lightboxPrev" onclick="navigateLightbox(-1)" style="display: none;" aria-label="Previous">‹</button>
+        <button class="lightbox-nav lightbox-nav-next" id="lightboxNext" onclick="navigateLightbox(1)" style="display: none;" aria-label="Next">›</button>
+        <img class="lightbox-image" id="lightboxImage" src="" alt="" onclick="event.stopPropagation()">
+    </div>
+
     <!-- JavaScript -->
     {% compress js %}
     <script src="{% static 'js/main.js' %}" defer></script>
     {% endcompress %}
+
+    <!-- Lightbox JavaScript -->
+    <script>
+        // Image Lightbox functionality
+        let lightboxImages = [];
+        let currentImageIndex = 0;
+
+        function initLightbox() {
+            // Get all images in article content
+            const articleImages = document.querySelectorAll('.article-content img');
+            lightboxImages = Array.from(articleImages);
+
+            // Add click event to each image
+            lightboxImages.forEach((img, index) => {
+                img.addEventListener('click', () => openLightbox(index));
+            });
+
+            // Close on ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox(e);
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            });
+        }
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCounter = document.getElementById('lightboxCounter');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+
+            currentImageIndex = index;
+            const img = lightboxImages[currentImageIndex];
+
+            lightboxImage.src = img.src;
+            lightboxImage.alt = img.alt;
+
+            // Show/hide navigation if multiple images
+            if (lightboxImages.length > 1) {
+                lightboxCounter.style.display = 'block';
+                lightboxCounter.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
+                lightboxPrev.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+                lightboxNext.style.display = currentImageIndex < lightboxImages.length - 1 ? 'flex' : 'none';
+            } else {
+                lightboxCounter.style.display = 'none';
+                lightboxPrev.style.display = 'none';
+                lightboxNext.style.display = 'none';
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event) event.stopPropagation();
+
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+
+            // Only close if clicking on background or close button
+            if (event && event.target !== lightbox && event.target !== document.querySelector('.lightbox-close')) {
+                return;
+            }
+
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+
+            // Clear image after animation
+            setTimeout(() => {
+                lightboxImage.src = '';
+            }, 300);
+        }
+
+        function navigateLightbox(direction) {
+            event.stopPropagation();
+
+            const newIndex = currentImageIndex + direction;
+
+            if (newIndex >= 0 && newIndex < lightboxImages.length) {
+                openLightbox(newIndex);
+            }
+        }
+
+        // Initialize on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initLightbox);
+        } else {
+            initLightbox();
+        }
+    </script>
+
     {% block extra_js %}{% endblock %}
 </body>
 </html>
