@@ -3352,4 +3352,221 @@ a:hover {
         bottom: 10px;
         right: 10px;
     }
+}/* ========================================
+   ИСПРАВЛЕНИЕ ПЕРЕНОСА ТЕКСТА НА МОБИЛЬНЫХ
+   ======================================== */
+
+/* Основной контейнер статьи - предотвращаем выход за границы */
+.article-detail,
+.article-detail-content {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+/* Контент статьи - правила переноса текста */
+.article-content {
+    /* Базовые правила переноса */
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+
+    /* Ограничение ширины */
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Все текстовые элементы внутри контента */
+.article-content p,
+.article-content div,
+.article-content span,
+.article-content li,
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6,
+.article-content blockquote,
+.article-content pre,
+.article-content code,
+.article-content a {
+    /* Принудительный перенос длинных слов */
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+
+    /* Предотвращаем выход за границы */
+    max-width: 100% !important;
+}
+
+/* Особые правила для ссылок (URL часто длинные) */
+.article-content a {
+    /* Разрешаем разрыв URL в любом месте */
+    word-break: break-all !important;
+    hyphens: auto !important;
+    display: inline-block;
+    max-width: 100%;
+}
+
+/* Код и предформатированный текст */
+.article-content pre {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+}
+
+.article-content code {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+}
+
+/* Блоки цитат */
+.article-content blockquote {
+    word-wrap: break-word !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Таблицы (если есть) */
+.article-content table {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    display: block !important;
+}
+
+/* Списки */
+.article-content ul,
+.article-content ol {
+    max-width: 100% !important;
+    padding-left: var(--space-4) !important;
+}
+
+.article-content li {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Мобильная версия - дополнительные правила */
+@media (max-width: 768px) {
+    /* Весь контейнер страницы */
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .page-container {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+
+    /* Контент статьи на мобильных */
+    .article-content {
+        padding: var(--space-4) var(--space-3) !important;
+        font-size: 0.9375rem !important; /* Немного уменьшаем шрифт */
+        line-height: 1.6 !important;
+    }
+
+    /* Заголовки на мобильных */
+    .article-content h1 {
+        font-size: 1.5rem !important;
+        word-break: break-word !important;
+    }
+
+    .article-content h2 {
+        font-size: 1.25rem !important;
+        word-break: break-word !important;
+    }
+
+    .article-content h3 {
+        font-size: 1.125rem !important;
+        word-break: break-word !important;
+    }
+
+    /* Параграфы и списки */
+    .article-content p,
+    .article-content li {
+        font-size: 0.9375rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Ссылки на мобильных - особый перенос */
+    .article-content a {
+        word-break: break-all !important;
+        hyphens: manual !important;
+    }
+
+    /* Код на мобильных */
+    .article-content pre {
+        font-size: 0.8125rem !important;
+        padding: var(--space-3) !important;
+    }
+
+    .article-content code {
+        font-size: 0.8125rem !important;
+    }
+
+    /* Цитаты на мобильных */
+    .article-content blockquote {
+        padding-left: var(--space-3) !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Изображения на мобильных */
+    .article-content img {
+        max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    /* Видео и iframe на мобильных */
+    .article-content iframe,
+    .article-content video {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* Исправление для очень маленьких экранов */
+@media (max-width: 320px) {
+    .article-content {
+        padding: var(--space-3) var(--space-2) !important;
+        font-size: 0.875rem !important;
+    }
+
+    .article-content h1 {
+        font-size: 1.375rem !important;
+    }
+
+    .article-content h2 {
+        font-size: 1.125rem !important;
+    }
+
+    .article-content p,
+    .article-content li {
+        font-size: 0.875rem !important;
+    }
+}
+
+/* Дополнительные правила для Firefox */
+@-moz-document url-prefix() {
+    .article-content {
+        word-break: break-word !important;
+    }
+
+    .article-content a {
+        word-break: break-all !important;
+    }
+}
+
+/* Правила для Safari */
+@supports (-webkit-appearance: none) {
+    .article-content {
+        word-break: break-word !important;
+        -webkit-hyphens: auto !important;
+    }
+
+    .article-content a {
+        word-break: break-all !important;
+    }
 }
