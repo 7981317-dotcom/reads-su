@@ -3239,14 +3239,14 @@ a:hover {
 
 /* Мобильная версия - исправление выезда картинок за границы */
 @media (max-width: 768px) {
-    /* Обложка на мобильных */
+    /* Обложка на мобильных - с отступами и скруглением как на главной */
     .article-cover-figure {
-        margin: 0 0 var(--space-4) 0;
-        width: 100%;
+        margin: 0 var(--space-3) var(--space-4) var(--space-3);
+        width: calc(100% - var(--space-3) * 2);
     }
 
     .article-cover-image {
-        border-radius: 0;
+        border-radius: var(--radius-md);
     }
 
     /* Картинки в контенте на мобильных */

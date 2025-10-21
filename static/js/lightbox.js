@@ -55,6 +55,13 @@
 
     function setupLightboxEvents() {
         const lightbox = document.getElementById('imageLightbox');
+
+        // Check if lightbox exists
+        if (!lightbox) {
+            console.warn('Lightbox element not found');
+            return;
+        }
+
         const closeBtn = lightbox.querySelector('.lightbox-close');
         const prevBtn = document.getElementById('lightboxPrev');
         const nextBtn = document.getElementById('lightboxNext');
@@ -68,26 +75,34 @@
         });
 
         // Close button
-        closeBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            closeLightbox();
-        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                closeLightbox();
+            });
+        }
 
         // Navigation buttons
-        prevBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navigateLightbox(-1);
-        });
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navigateLightbox(-1);
+            });
+        }
 
-        nextBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navigateLightbox(1);
-        });
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navigateLightbox(1);
+            });
+        }
 
         // Prevent closing when clicking on image
-        lightboxImage.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
+        if (lightboxImage) {
+            lightboxImage.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
 
         // Keyboard navigation
         document.addEventListener('keydown', handleKeyPress);
@@ -116,6 +131,12 @@
         const lightboxPrev = document.getElementById('lightboxPrev');
         const lightboxNext = document.getElementById('lightboxNext');
 
+        // Check if elements exist
+        if (!lightbox || !lightboxImage) {
+            console.warn('Lightbox elements not found');
+            return;
+        }
+
         currentImageIndex = index;
         const img = lightboxImages[currentImageIndex];
 
@@ -125,14 +146,20 @@
 
         // Update navigation visibility
         if (lightboxImages.length > 1) {
-            lightboxCounter.style.display = 'block';
-            lightboxCounter.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
-            lightboxPrev.style.display = currentImageIndex > 0 ? 'flex' : 'none';
-            lightboxNext.style.display = currentImageIndex < lightboxImages.length - 1 ? 'flex' : 'none';
+            if (lightboxCounter) {
+                lightboxCounter.style.display = 'block';
+                lightboxCounter.textContent = `${currentImageIndex + 1} / ${lightboxImages.length}`;
+            }
+            if (lightboxPrev) {
+                lightboxPrev.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+            }
+            if (lightboxNext) {
+                lightboxNext.style.display = currentImageIndex < lightboxImages.length - 1 ? 'flex' : 'none';
+            }
         } else {
-            lightboxCounter.style.display = 'none';
-            lightboxPrev.style.display = 'none';
-            lightboxNext.style.display = 'none';
+            if (lightboxCounter) lightboxCounter.style.display = 'none';
+            if (lightboxPrev) lightboxPrev.style.display = 'none';
+            if (lightboxNext) lightboxNext.style.display = 'none';
         }
 
         // Show lightbox
@@ -145,15 +172,19 @@
         const lightbox = document.getElementById('imageLightbox');
         const lightboxImage = document.getElementById('lightboxImage');
 
+        if (!lightbox) return;
+
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
         lightboxActive = false;
 
         // Clear image after animation
-        setTimeout(() => {
-            lightboxImage.src = '';
-            lightboxImage.alt = '';
-        }, 300);
+        if (lightboxImage) {
+            setTimeout(() => {
+                lightboxImage.src = '';
+                lightboxImage.alt = '';
+            }, 300);
+        }
     }
 
     function navigateLightbox(direction) {
