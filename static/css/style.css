@@ -3190,4 +3190,166 @@ a:hover {
         bottom: 10px;
         right: 10px;
     }
+}/* ========================================
+   ИСПРАВЛЕНИЯ ДЛЯ СТАТЕЙ
+   ======================================== */
+
+/* Обложка статьи с отступами по бокам как на главной */
+.article-cover-figure {
+    margin: 0 var(--space-8) var(--space-6) var(--space-8);
+    width: calc(100% - var(--space-8) * 2);
+}
+
+.article-cover-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 600px;
+    object-fit: cover;
+    cursor: zoom-in !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    border-radius: var(--radius-lg);
+}
+
+.article-cover-image:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Картинки в контенте статьи - правильная ширина */
+.article-content img,
+.markdown-content img {
+    max-width: 100% !important;
+    width: auto !important; /* Изменено с 100% на auto для корректного отображения */
+    height: auto;
+    border-radius: 12px;
+    margin: var(--space-6) auto !important;
+    display: block;
+    cursor: zoom-in !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.article-content img:hover,
+.markdown-content img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Мобильная версия - исправление выезда картинок за границы */
+@media (max-width: 768px) {
+    /* Обложка на мобильных */
+    .article-cover-figure {
+        margin: 0 0 var(--space-4) 0;
+        width: 100%;
+    }
+
+    .article-cover-image {
+        border-radius: 0;
+    }
+
+    /* Картинки в контенте на мобильных */
+    .article-content img,
+    .markdown-content img {
+        max-width: 100% !important;
+        width: auto !important;
+        margin: var(--space-4) auto !important;
+        border-radius: 8px;
+    }
+
+    /* Контейнер контента на мобильных */
+    .article-content {
+        padding: var(--space-4) var(--space-3);
+        overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+    }
+
+    /* Iframe и видео на мобильных */
+    .article-content iframe,
+    .article-content video {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* Исправление z-index для кнопок входа и переключения темы */
+.header-minimal {
+    z-index: 1100 !important; /* Повышаем z-index хедера */
+}
+
+.btn-login,
+.btn-write,
+.theme-toggle-minimal,
+.user-menu-minimal {
+    position: relative;
+    z-index: 1101 !important; /* Гарантируем, что кнопки кликабельны */
+}
+
+/* Dropdown меню пользователя */
+.dropdown-menu-minimal {
+    z-index: 1102 !important;
+}
+
+/* Модальные окна */
+.modal-overlay {
+    z-index: 2000 !important;
+}
+
+/* Lightbox должен быть выше всего */
+.lightbox {
+    z-index: 9999 !important;
+}
+
+/* Исправление для темной темы - убедимся что переключатель работает */
+.theme-toggle-minimal {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+    pointer-events: none; /* Чтобы клик проходил на кнопку */
+}
+
+/* Исправление отображения индикатора лупы */
+.image-with-zoom {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin: var(--space-6) auto;
+    cursor: zoom-in;
+}
+
+.image-with-zoom::after {
+    content: "🔍";
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.image-with-zoom:hover::after {
+    opacity: 1;
+}
+
+/* Мобильная версия индикатора */
+@media (max-width: 768px) {
+    .image-with-zoom::after {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+        bottom: 10px;
+        right: 10px;
+    }
 }
