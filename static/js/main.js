@@ -669,6 +669,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 // Service Worker Registration (for PWA)
 // ============================================
+// Закомментировано, так как sw.js пока не создан
+// Раскомментируйте, когда добавите Service Worker для PWA функциональности
+/*
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
@@ -676,3 +679,4 @@ if ('serviceWorker' in navigator) {
             .catch(error => console.log('SW registration failed:', error));
     });
 }
+*/
