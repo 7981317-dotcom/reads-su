@@ -26,11 +26,20 @@
         console.log('Initializing lightbox for', allImages.length, 'images (including cover)');
         lightboxImages = allImages;
 
-        // Add click event to each image
+        // Add click event to each image and style for zoom
         lightboxImages.forEach((img, index) => {
-            img.style.cursor = 'pointer';
+            img.style.cursor = 'zoom-in';
             img.setAttribute('data-lightbox-index', index);
             img.addEventListener('click', handleImageClick);
+
+            // Add zoom indicator wrapper for content images (not cover)
+            if (!img.classList.contains('article-cover-image') &&
+                !img.parentElement.classList.contains('image-with-zoom')) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'image-with-zoom';
+                img.parentNode.insertBefore(wrapper, img);
+                wrapper.appendChild(img);
+            }
         });
 
         // Setup lightbox event listeners
