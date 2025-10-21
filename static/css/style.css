@@ -2969,11 +2969,13 @@ a:hover {
     opacity: 0;
     transition: opacity 0.3s ease;
     backdrop-filter: blur(8px);
+    pointer-events: none;
 }
 
 .lightbox.active {
     display: flex;
     animation: lightboxFadeIn 0.3s ease forwards;
+    pointer-events: auto;
 }
 
 @keyframes lightboxFadeIn {
