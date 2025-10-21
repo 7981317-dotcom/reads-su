@@ -692,6 +692,35 @@ a:hover {
     background: var(--bg-tertiary);
 }
 
+/* Article Statistics - под тегами */
+.article-statistics {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+    padding: var(--space-4) 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.article-statistics .stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.article-statistics .stat-item svg {
+    flex-shrink: 0;
+    color: var(--text-tertiary);
+    opacity: 0.7;
+}
+
+.article-statistics .stat-value {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
 /* ============================================
    Right Sidebar - Top Bloggers & Comments
    ============================================ */
@@ -1022,24 +1051,18 @@ a:hover {
     color: var(--text-tertiary);
 }
 
-/* Meta Stats with Icons */
+/* Meta Stats - только время чтения */
 .article-meta-stats {
     display: flex;
     align-items: center;
-    gap: var(--space-4);
+    margin-left: auto;
 }
 
-.meta-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+.meta-item.reading-time {
     font-size: 0.875rem;
     color: var(--text-tertiary);
-}
-
-.meta-item svg {
-    flex-shrink: 0;
-    opacity: 0.6;
+    display: flex;
+    align-items: center;
 }
 
 /* Large Cover Media (Image & Video) */
@@ -1759,6 +1782,21 @@ a:hover {
     /* Mobile: smaller feed title */
     .feed-title {
         font-size: 1.375rem !important;
+    }
+
+    /* Article Statistics on mobile */
+    .article-statistics {
+        gap: var(--space-4);
+        padding: var(--space-3) 0;
+    }
+
+    .article-statistics .stat-item svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .article-statistics .stat-value {
+        font-size: 0.875rem;
     }
 }
 
