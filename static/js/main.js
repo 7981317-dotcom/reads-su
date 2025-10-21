@@ -663,6 +663,55 @@ document.addEventListener('DOMContentLoaded', function() {
         searchOverlayInput.addEventListener('input', handleSearchInput);
     }
 
+    // Initialize login button
+    const loginBtn = document.querySelector('.btn-login');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', openLoginModal);
+    }
+
+    // Initialize ALL login links (for comments, etc.)
+    const loginLinks = document.querySelectorAll('.login-link');
+    loginLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            openLoginModal();
+        });
+    });
+
+    // Initialize theme toggle button
+    const themeToggle = document.querySelector('.theme-toggle-minimal');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+
+    // Initialize modal close button
+    const modalClose = document.querySelector('.modal-close');
+    if (modalClose) {
+        modalClose.addEventListener('click', closeLoginModal);
+    }
+
+    // Close modal when clicking on overlay
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.addEventListener('click', function(event) {
+            if (event.target === loginModal) {
+                closeLoginModal();
+            }
+        });
+    }
+
+    // Initialize register link in modal
+    const registerLink = document.querySelector('.modal-link');
+    if (registerLink) {
+        registerLink.addEventListener('click', showRegisterForm);
+    }
+
+    // Initialize forgot password link in modal
+    const forgotPasswordLink = document.querySelector('.forgot-password-link');
+    if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener('click', showPasswordReset);
+    }
+
     console.log('ArticleHub initialized');
 });
 
