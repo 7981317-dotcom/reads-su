@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Primary SEO Meta Tags -->
-    <title>{% block title %}Главная{% endblock %} | reads.su - Платформа для публикации статей</title>
-    <meta name="title" content="{% block meta_title %}{% block title2 %}Главная{% endblock %} | reads.su{% endblock %}">
+    <title>{% block title %}Reads.su - Платформа для публикации статей{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}Reads.su - Платформа для публикации статей{% endblock %}">
     <meta name="description" content="{% block description %}Современная платформа для публикации и чтения статей на различные темы. Технологии, бизнес, дизайн, маркетинг и многое другое.{% endblock %}">
     <meta name="keywords" content="{% block keywords %}статьи, блог, публикации, технологии, бизнес, дизайн, маркетинг, стартапы{% endblock %}">
     <meta name="author" content="{% block author %}reads.su{% endblock %}">
@@ -25,16 +25,16 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:title" content="{% block og_title %}reads.su - Платформа для публикации статей{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Reads.su - Платформа для публикации статей{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Современная платформа для публикации и чтения статей на различные темы. Технологии, бизнес, дизайн, маркетинг.{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.png' %}{% endblock %}">
-    <meta property="og:site_name" content="reads.su">
+    <meta property="og:site_name" content="Reads.su">
     <meta property="og:locale" content="ru_RU">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
     <meta name="twitter:url" content="{{ request.build_absolute_uri }}">
-    <meta name="twitter:title" content="{% block twitter_title %}reads.su - Платформа для публикации статей{% endblock %}">
+    <meta name="twitter:title" content="{% block twitter_title %}Reads.su - Платформа для публикации статей{% endblock %}">
     <meta name="twitter:description" content="{% block twitter_description %}Современная платформа для публикации и чтения статей на различные темы.{% endblock %}">
     <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-default.png' %}{% endblock %}">
     <meta name="twitter:site" content="@readssu">
@@ -64,7 +64,7 @@
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "reads.su",
+        "name": "Reads.su",
         "url": "{{ request.scheme }}://{{ request.get_host }}",
         "description": "Современная платформа для публикации и чтения статей",
         "potentialAction": {
