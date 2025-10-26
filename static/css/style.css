@@ -3267,7 +3267,7 @@ a:hover {
     background-image: inherit;
     background-size: cover;
     background-position: center;
-    filter: blur(25px) brightness(0.7);
+    filter: blur(20px) brightness(0.75);
     z-index: 0;
 }
 
@@ -3317,7 +3317,7 @@ a:hover {
     background-image: inherit;
     background-size: cover;
     background-position: center;
-    filter: blur(25px) brightness(0.7);
+    filter: blur(20px) brightness(0.75);
     z-index: 0;
 }
 
@@ -3359,7 +3359,7 @@ a:hover {
 
     /* Уменьшаем blur на мобильных для производительности */
     .article-cover-figure::before {
-        filter: blur(15px) brightness(0.7);
+        filter: blur(12px) brightness(0.75);
     }
 
     /* Картинки в контенте на мобильных - меньше высота */
@@ -3373,7 +3373,7 @@ a:hover {
     /* Уменьшаем blur на мобильных для производительности */
     .article-content p:has(img)::before,
     .markdown-content p:has(img)::before {
-        filter: blur(15px) brightness(0.7);
+        filter: blur(12px) brightness(0.75);
     }
 
     /* Контейнер контента на мобильных */
