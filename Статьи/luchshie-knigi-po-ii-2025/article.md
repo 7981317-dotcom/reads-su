@@ -1,5 +1,3 @@
-# Лучшие книги по ИИ в 2025 году
-
 Представляем вашему вниманию подборку лучших книг по искусственному интеллекту за 2025 год, получивших высокую оценку от читателей Amazon. Книги доступны как на русском, так и на английском языках.
 
 ![<b><a href="https://api.vc.ru/v2.8/redirect?to=https%3A%2F%2Fbooken.ru%2Fluchshie-knigi-po-ii-2025-booken-ru%2F%3Fcoupon%3Dvcru-best_ai_2025&postId=2288156" rel="nofollow noreferrer noopener" target="_blank">Лучшие книги по ИИ в 2025 году</a></b>](images/image_1.jpg)

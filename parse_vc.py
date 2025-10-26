@@ -200,13 +200,22 @@ class VCParser:
 
         for idx, img in enumerate(img_tags, 1):
             try:
-                # Получаем URL изображения
-                img_url = img.get('src') or img.get('data-src')
+                # Получаем URL изображения (приоритет оригиналу высокого качества)
+                img_url = (
+                    img.get('data-image-src') or  # Оригинал высокого качества
+                    img.get('data-src') or        # Lazy-loaded изображение
+                    img.get('src')                # Обычный src
+                )
                 if not img_url:
                     continue
 
                 # Преобразуем в абсолютный URL
                 img_url = urljoin(base_url, img_url)
+
+                # Удаляем параметры масштабирования из URL leonardo.osnova.io для получения оригинала
+                if 'leonardo.osnova.io' in img_url and '/-/' in img_url:
+                    # Убираем всё после /-/ чтобы получить оригинал
+                    img_url = img_url.split('/-/')[0] + '/'
 
                 # Определяем расширение
                 ext = self._get_image_extension(img_url)
@@ -341,8 +350,12 @@ class VCParser:
 
 def main():
     """Основная функция для тестирования"""
-    # URL статьи для парсинга
-    url = "https://vc.ru/ai/2288156-luchshie-knigi-po-ii-2025"
+    # URL статьи для парсинга из аргументов командной строки
+    import sys
+    if len(sys.argv) > 1:
+        url = sys.argv[1]
+    else:
+        url = "https://vc.ru/dev/2298070-apple-predstavila-swift-sdk-dlya-razrabotki-android-prilozheniy"
 
     # Создаем парсер
     parser = VCParser()
