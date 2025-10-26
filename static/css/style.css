@@ -1077,14 +1077,6 @@ a:hover {
     width: 100%;
 }
 
-.article-cover-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    max-height: 600px;
-    object-fit: cover;
-}
-
 .article-cover-video {
     width: 100%;
     height: auto;
@@ -3114,63 +3106,7 @@ a:hover {
 }
 
 /* Lightbox support for article cover images */
-.article-cover-image {
-    cursor: pointer !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-}
-
-.article-cover-image:hover {
-    transform: scale(1.01);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
 /* Обновление стилей для картинок в статьях - выравнивание по ширине текста и эффект лупы */
-
-/* Картинки на всю ширину контента с эффектом лупы */
-.article-content img,
-.markdown-content img {
-    max-width: 100% !important;
-    width: 100% !important;
-    height: auto;
-    border-radius: 12px;
-    margin: var(--space-6) 0 !important;
-    display: block;
-    cursor: zoom-in !important;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    position: relative;
-}
-
-/* Эффект увеличения при наведении */
-.article-content img:hover,
-.markdown-content img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Обертка для картинок с индикатором лупы */
-.article-content figure,
-.markdown-content figure {
-    position: relative;
-    margin: var(--space-6) 0;
-}
-
-/* Индикатор лупы при наведении */
-.article-content img::before,
-.markdown-content img::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 10;
-}
 
 /* Показываем индикатор при наведении */
 .image-with-zoom {
@@ -3204,23 +3140,6 @@ a:hover {
 }
 
 /* Обложка статьи тоже на всю ширину */
-.article-cover-image {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto;
-    display: block;
-    max-height: 600px;
-    object-fit: cover;
-    cursor: zoom-in !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-    border-radius: var(--radius-lg);
-}
-
-.article-cover-image:hover {
-    transform: scale(1.01);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
 /* Адаптация для мобильных устройств */
 @media (max-width: 768px) {
     .article-content img,
