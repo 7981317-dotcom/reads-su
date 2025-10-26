@@ -196,8 +196,8 @@ class Command(BaseCommand):
 
         return excerpt if excerpt else 'Статья с VC.ru'
 
-    def _optimize_image(self, image_path, max_width=1200, max_height=500, quality=80):
-        """Оптимизация обложки статьи с обрезкой до нужного размера"""
+    def _optimize_image(self, image_path, max_width=1200, max_height=800, quality=80):
+        """Оптимизация обложки статьи с сохранением пропорций"""
         with Image.open(image_path) as img:
             # Конвертируем в RGB если нужно
             if img.mode in ('RGBA', 'P'):
@@ -205,22 +205,14 @@ class Command(BaseCommand):
                 rgb_img.paste(img, mask=img.split()[3] if img.mode == 'RGBA' else None)
                 img = rgb_img
 
-            # Масштабируем и обрезаем до нужного размера
-            # Рассчитываем коэффициент масштабирования (заполняем всю область)
-            ratio = max(max_width / img.width, max_height / img.height)
+            # Масштабируем с сохранением пропорций
+            ratio = min(max_width / img.width, max_height / img.height)
 
-            # Масштабируем изображение
-            new_width = int(img.width * ratio)
-            new_height = int(img.height * ratio)
-            img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
-
-            # Обрезаем по центру до нужного размера
-            left = (new_width - max_width) // 2
-            top = (new_height - max_height) // 2
-            right = left + max_width
-            bottom = top + max_height
-
-            img = img.crop((left, top, right, bottom))
+            # Уменьшаем только если изображение больше максимальных размеров
+            if ratio < 1:
+                new_width = int(img.width * ratio)
+                new_height = int(img.height * ratio)
+                img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
             # Сохраняем в байты
             output = io.BytesIO()
