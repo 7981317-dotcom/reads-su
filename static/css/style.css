@@ -1332,24 +1332,6 @@ a:hover {
 }
 
 /* Images and videos in content */
-.article-content img,
-.markdown-content img {
-    max-width: 95%;
-    height: auto;
-    border-radius: 12px;
-    margin: var(--space-6) auto;
-    display: block;
-    cursor: pointer;
-    transition: all var(--transition-base);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.article-content img:hover,
-.markdown-content img:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-}
-
 .article-content video {
     max-width: 100%;
     height: auto;
@@ -3549,13 +3531,6 @@ a:hover {
         padding-left: var(--space-3) !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
-    }
-
-    /* Изображения на мобильных */
-    .article-content img {
-        max-width: 100% !important;
-        width: auto !important;
-        height: auto !important;
     }
 
     /* Видео и iframe на мобильных */
