@@ -166,20 +166,20 @@ class Article(models.Model):
         if not self.slug:
             self.slug = create_slug(self.title)
 
-        # Оптимизация обложки статьи
+        # Оптимизация обложки статьи с обрезкой до фиксированной высоты
         if self.cover_image:
             try:
                 # Проверяем, что это новое изображение
                 if not self.pk or self._state.adding:
-                    self.cover_image = optimize_image(self.cover_image, max_width=1920, max_height=1080, quality=85)
+                    self.cover_image = optimize_image(self.cover_image, max_width=1200, max_height=500, quality=85, crop=True)
                 else:
                     # Проверяем, изменилось ли изображение
                     try:
                         old_instance = Article.objects.get(pk=self.pk)
                         if old_instance.cover_image != self.cover_image:
-                            self.cover_image = optimize_image(self.cover_image, max_width=1920, max_height=1080, quality=85)
+                            self.cover_image = optimize_image(self.cover_image, max_width=1200, max_height=500, quality=85, crop=True)
                     except Article.DoesNotExist:
-                        self.cover_image = optimize_image(self.cover_image, max_width=1920, max_height=1080, quality=85)
+                        self.cover_image = optimize_image(self.cover_image, max_width=1200, max_height=500, quality=85, crop=True)
             except Exception as e:
                 # Если оптимизация не удалась, просто сохраняем оригинал
                 print(f"Ошибка оптимизации обложки статьи: {e}")

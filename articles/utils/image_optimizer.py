@@ -9,7 +9,7 @@ from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
-def optimize_image(image_field, max_width=1920, max_height=1080, quality=85):
+def optimize_image(image_field, max_width=1920, max_height=1080, quality=85, crop=False):
     """
     Оптимизирует изображение: уменьшает размер и вес
 
@@ -18,6 +18,7 @@ def optimize_image(image_field, max_width=1920, max_height=1080, quality=85):
         max_width: максимальная ширина (по умолчанию 1920px)
         max_height: максимальная высота (по умолчанию 1080px)
         quality: качество JPEG (85 - оптимальный баланс)
+        crop: обрезать изображение до точного размера (для обложек статей)
 
     Returns:
         InMemoryUploadedFile: оптимизированное изображение
@@ -42,14 +43,32 @@ def optimize_image(image_field, max_width=1920, max_height=1080, quality=85):
     # Получаем оригинальные размеры
     original_width, original_height = img.size
 
-    # Рассчитываем новые размеры с сохранением пропорций
-    ratio = min(max_width / original_width, max_height / original_height)
+    if crop:
+        # Режим обрезки: масштабируем по большей стороне и обрезаем
+        # Рассчитываем коэффициент масштабирования (заполняем всю область)
+        ratio = max(max_width / original_width, max_height / original_height)
 
-    # Уменьшаем только если изображение больше максимальных размеров
-    if ratio < 1:
+        # Масштабируем изображение
         new_width = int(original_width * ratio)
         new_height = int(original_height * ratio)
         img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+
+        # Обрезаем по центру до нужного размера
+        left = (new_width - max_width) // 2
+        top = (new_height - max_height) // 2
+        right = left + max_width
+        bottom = top + max_height
+
+        img = img.crop((left, top, right, bottom))
+    else:
+        # Обычный режим: масштабируем с сохранением пропорций
+        ratio = min(max_width / original_width, max_height / original_height)
+
+        # Уменьшаем только если изображение больше максимальных размеров
+        if ratio < 1:
+            new_width = int(original_width * ratio)
+            new_height = int(original_height * ratio)
+            img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
     # Сохраняем в буфер с оптимизацией
     output = BytesIO()
