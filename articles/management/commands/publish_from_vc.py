@@ -245,7 +245,8 @@ class Command(BaseCommand):
                     media = ArticleMedia(
                         article=article,
                         media_type='image',
-                        alt_text=img_info.get('alt', ''),
+                        title=f'Image {idx}',
+                        alt_text=img_info.get('alt', '')[:200],
                         order=idx
                     )
                     media.file.save(filename, ContentFile(f.read()), save=True)
