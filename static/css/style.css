@@ -3174,8 +3174,7 @@ a:hover {
 
 .article-cover-image {
     width: auto !important;
-    height: 100% !important;
-    min-height: 100% !important;
+    height: 400px !important;
     max-width: 100% !important;
     object-fit: contain !important;
     cursor: zoom-in;
@@ -3231,8 +3230,7 @@ a:hover {
 .article-content img,
 .markdown-content img {
     width: auto !important;
-    height: 100% !important;
-    min-height: 100% !important;
+    height: 400px !important;
     max-width: 100% !important;
     object-fit: contain !important;
     cursor: zoom-in;
@@ -3277,6 +3275,16 @@ a:hover {
     .article-content p:has(img)::before,
     .markdown-content p:has(img)::before {
         filter: blur(12px) brightness(0.75);
+    }
+
+    /* Высота изображений на мобильных - фиксированная */
+    .article-cover-image {
+        height: 300px !important;
+    }
+
+    .article-content img,
+    .markdown-content img {
+        height: 300px !important;
     }
 
     /* Контейнер контента на мобильных */
