@@ -168,7 +168,7 @@
                 {% endif %}
             </figure>
             {% elif article.cover_image %}
-            <figure class="article-cover-figure">
+            <figure class="article-cover-figure" style="background-image: url('{{ article.cover_image.url }}');">
                 <img src="{{ article.cover_image.url }}" alt="{{ article.cover_alt|default:article.title }}" class="article-cover-image">
                 {% if article.cover_alt %}
                 <figcaption class="article-cover-caption">{{ article.cover_alt }}</figcaption>
