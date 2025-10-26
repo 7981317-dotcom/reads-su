@@ -48,21 +48,20 @@ class LatestArticlesFeed(Feed):
 
     def item_enclosure_url(self, item):
         """URL обложки статьи для RSS"""
-        if item.cover:
-            from django.contrib.sites.shortcuts import get_current_site
+        if item.cover_image:
             from django.http import HttpRequest
             request = HttpRequest()
             request.META['SERVER_NAME'] = 'reads.su'
             request.META['SERVER_PORT'] = '443'
             request.META['wsgi.url_scheme'] = 'https'
-            return request.build_absolute_uri(item.cover.url)
+            return request.build_absolute_uri(item.cover_image.url)
         return None
 
     def item_enclosure_length(self, item):
         """Размер файла обложки"""
-        if item.cover:
+        if item.cover_image:
             try:
-                return item.cover.size
+                return item.cover_image.size
             except:
                 return 0
         return 0
