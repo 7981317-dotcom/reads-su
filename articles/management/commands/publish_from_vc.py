@@ -99,10 +99,11 @@ class Command(BaseCommand):
             slug = f"{slug}-{Article.objects.count() + 1}"
             self.stdout.write(f'[+] Использую новый slug: {slug}')
 
-        # Создание статьи
+        # Создание статьи (без подзаголовка, чтобы не дублировался)
         article = Article(
             title=title,
             slug=slug,
+            subtitle='',  # Оставляем пустым
             content=content,
             excerpt=self._create_excerpt(content),
             author=author,
@@ -195,8 +196,8 @@ class Command(BaseCommand):
 
         return excerpt if excerpt else 'Статья с VC.ru'
 
-    def _optimize_image(self, image_path, max_width=1200, quality=85):
-        """Оптимизация изображения"""
+    def _optimize_image(self, image_path, max_width=800, quality=80):
+        """Оптимизация изображения (меньший размер для статей)"""
         with Image.open(image_path) as img:
             # Конвертируем в RGB если нужно
             if img.mode in ('RGBA', 'P'):
@@ -224,13 +225,35 @@ class Command(BaseCommand):
         # Markdown формат: ![alt](images/image_1.jpg)
         pattern = r'!\[(.*?)\]\(images/(.*?)\)'
 
+        # Находим все совпадения
+        matches = list(re.finditer(pattern, content))
+
+        if not matches:
+            return content
+
+        # Удаляем первое изображение (оно уже обложка)
+        # Находим первое изображение и удаляем его вместе с переносами строк вокруг
+        first_match = matches[0]
+        start = first_match.start()
+        end = first_match.end()
+
+        # Удаляем переносы строк до и после
+        while start > 0 and content[start-1] in '\n\r':
+            start -= 1
+        while end < len(content) and content[end] in '\n\r':
+            end += 1
+
+        # Удаляем первое изображение
+        updated_content = content[:start] + content[end:]
+
+        # Для остальных изображений заменяем пути (если они есть)
         def replace_path(match):
             alt = match.group(1)
             filename = match.group(2)
-            # Используем обложку для всех изображений (упрощенный вариант)
+            # Используем обложку для оставшихся изображений
             if article.cover_image:
                 return f'![{alt}]({article.cover_image.url})'
             return match.group(0)
 
-        updated_content = re.sub(pattern, replace_path, content)
+        updated_content = re.sub(pattern, replace_path, updated_content)
         return updated_content
