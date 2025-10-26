@@ -72,7 +72,7 @@ class VCParser:
         content_html, images_info = self._process_images(content_html, images_folder, url)
 
         # Конвертация в Markdown
-        markdown_content = self._html_to_markdown(content_html, metadata['title'])
+        markdown_content = self._html_to_markdown(content_html)
 
         # Сохранение файлов
         self._save_files(article_folder, markdown_content, metadata, images_info)
@@ -260,13 +260,12 @@ class VCParser:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
 
-    def _html_to_markdown(self, content, title):
+    def _html_to_markdown(self, content):
         """
         Конвертация HTML в Markdown
 
         Args:
             content: BeautifulSoup контент
-            title: Заголовок статьи
 
         Returns:
             str: Текст в формате Markdown
@@ -277,8 +276,8 @@ class VCParser:
         html_str = str(content)
         markdown = self.h2t.handle(html_str)
 
-        # Добавляем заголовок статьи в начало
-        markdown = f"# {title}\n\n{markdown}"
+        # НЕ добавляем заголовок - он уже будет в title поле БД
+        # markdown = f"# {title}\n\n{markdown}"
 
         # Базовая очистка
         markdown = self._clean_markdown(markdown)

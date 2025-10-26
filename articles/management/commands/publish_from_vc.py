@@ -227,10 +227,12 @@ class Command(BaseCommand):
         # Создаем словарь: filename -> URL
         image_urls = {}
 
-        # Первое изображение уже загружено как обложка
+        # Первое изображение уже загружено как обложка - удаляем его из контента
         if images_info:
             first_filename = images_info[0]['filename']
-            image_urls[first_filename] = article.cover_image.url if article.cover_image else ''
+            # Удаляем первое изображение из контента, чтобы избежать дублирования
+            pattern_first = rf'!\[.*?\]\(images/{re.escape(first_filename)}\)\n?'
+            content = re.sub(pattern_first, '', content)
 
         # Загружаем остальные изображения через ArticleMedia
         for idx, img_info in enumerate(images_info[1:], start=2):
