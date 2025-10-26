@@ -139,41 +139,40 @@ class Command(BaseCommand):
         self.stdout.write(f'[+] Slug: {article.slug}')
         self.stdout.write(f'[+] URL: https://reads.su/article/{article.slug}/')
 
-        # Обновление контента с правильными путями к изображениям
+        # Загрузка всех изображений и обновление путей в контенте
         if images_info:
-            self.stdout.write('[...] Обновляем пути к изображениям...')
-            updated_content = self._update_image_paths(content, article)
+            self.stdout.write('[...] Загружаем изображения в контент...')
+            updated_content = self._upload_and_update_images(content, article, article_folder, images_info)
             article.content = updated_content
             article.save(update_fields=['content'])
-            self.stdout.write(self.style.SUCCESS('[+] Пути к изображениям обновлены'))
+            self.stdout.write(self.style.SUCCESS('[+] Изображения загружены и пути обновлены'))
 
     def _create_slug(self, title):
-        """Создание slug из заголовка"""
+        """Создание slug из заголовка с транслитерацией"""
         import re
-        from django.utils.text import slugify
 
-        # Транслитерация и очистка
-        slug = slugify(title, allow_unicode=False)
+        # Карта транслитерации
+        translit_map = {
+            'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+            'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+            'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+            'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+            'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya',
+            ' ': '-', '–': '-', '—': '-', ':': '', '?': '', '!': '', '.': '',
+            ',': '', '"': '', "'": '', '«': '', '»': '', '(': '', ')': ''
+        }
 
-        # Если slug пустой (только кириллица), используем транслитерацию
-        if not slug:
-            translit_map = {
-                'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
-                'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
-                'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
-                'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
-                'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya'
-            }
-            title_lower = title.lower()
-            translitted = ''
-            for char in title_lower:
-                translitted += translit_map.get(char, char)
+        title_lower = title.lower()
+        translitted = ''
+        for char in title_lower:
+            translitted += translit_map.get(char, char if char.isalnum() or char == '-' else '')
 
-            slug = re.sub(r'[^\w\s-]', '', translitted)
-            slug = re.sub(r'[-\s]+', '-', slug)
-            slug = slug.strip('-')
+        # Очистка и нормализация
+        slug = re.sub(r'[^\w-]', '', translitted)
+        slug = re.sub(r'[-]+', '-', slug)  # Множественные дефисы в один
+        slug = slug.strip('-')
 
-        return slug[:100]  # Ограничиваем длину
+        return slug[:200]  # Увеличил лимит для SEO
 
     def _create_excerpt(self, content):
         """Создание краткого описания из контента"""
@@ -220,43 +219,46 @@ class Command(BaseCommand):
             output.seek(0)
             return output.read()
 
-    def _update_image_paths(self, content, article):
-        """Обновление путей к изображениям в контенте"""
+    def _upload_and_update_images(self, content, article, article_folder, images_info):
+        """Загрузка всех изображений в ArticleMedia и обновление путей"""
         import re
+        from articles.models import ArticleMedia
 
-        # Заменяем относительные пути на абсолютные
-        # Markdown формат: ![alt](images/image_1.jpg)
+        # Создаем словарь: filename -> URL
+        image_urls = {}
+
+        # Первое изображение уже загружено как обложка
+        if images_info:
+            first_filename = images_info[0]['filename']
+            image_urls[first_filename] = article.cover_image.url if article.cover_image else ''
+
+        # Загружаем остальные изображения через ArticleMedia
+        for idx, img_info in enumerate(images_info[1:], start=2):
+            filename = img_info['filename']
+            image_path = os.path.join(article_folder, 'images', filename)
+
+            if os.path.exists(image_path):
+                self.stdout.write(f'  [{idx}/{len(images_info)}] {filename}')
+
+                # Создаем ArticleMedia объект
+                with open(image_path, 'rb') as f:
+                    media = ArticleMedia(
+                        article=article,
+                        media_type='image',
+                        alt_text=img_info.get('alt', ''),
+                        order=idx
+                    )
+                    media.file.save(filename, ContentFile(f.read()), save=True)
+                    image_urls[filename] = media.file.url
+
+        # Заменяем пути в контенте
         pattern = r'!\[(.*?)\]\(images/(.*?)\)'
 
-        # Находим все совпадения
-        matches = list(re.finditer(pattern, content))
-
-        if not matches:
-            return content
-
-        # Удаляем первое изображение (оно уже обложка)
-        # Находим первое изображение и удаляем его вместе с переносами строк вокруг
-        first_match = matches[0]
-        start = first_match.start()
-        end = first_match.end()
-
-        # Удаляем переносы строк до и после
-        while start > 0 and content[start-1] in '\n\r':
-            start -= 1
-        while end < len(content) and content[end] in '\n\r':
-            end += 1
-
-        # Удаляем первое изображение
-        updated_content = content[:start] + content[end:]
-
-        # Для остальных изображений заменяем пути (если они есть)
         def replace_path(match):
             alt = match.group(1)
             filename = match.group(2)
-            # Используем обложку для оставшихся изображений
-            if article.cover_image:
-                return f'![{alt}]({article.cover_image.url})'
-            return match.group(0)
+            url = image_urls.get(filename, '')
+            return f'![{alt}]({url})' if url else match.group(0)
 
-        updated_content = re.sub(pattern, replace_path, updated_content)
+        updated_content = re.sub(pattern, replace_path, content)
         return updated_content

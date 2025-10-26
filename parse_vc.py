@@ -343,7 +343,7 @@ class VCParser:
 def main():
     """Основная функция для тестирования"""
     # URL статьи для парсинга
-    url = "https://vc.ru/marketing/2298779-prichiny-poteri-klientov-reklamnymi-agentstvami"
+    url = "https://vc.ru/ai/2288156-luchshie-knigi-po-ii-2025"
 
     # Создаем парсер
     parser = VCParser()
