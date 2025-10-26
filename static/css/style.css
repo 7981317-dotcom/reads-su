@@ -3173,17 +3173,17 @@ a:hover {
 }
 
 .article-cover-image {
-    width: auto;
-    height: 100%;
-    min-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+    width: auto !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
     cursor: zoom-in;
     transition: transform 0.3s ease;
     border-radius: 0;
     position: relative;
     z-index: 1;
-    display: block;
+    display: block !important;
 }
 
 .article-cover-image:hover {
@@ -3231,10 +3231,10 @@ a:hover {
 .article-content img,
 .markdown-content img {
     width: auto !important;
-    height: 100%;
-    min-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+    height: 100% !important;
+    min-height: 100% !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
     cursor: zoom-in;
     transition: transform 0.3s ease;
     box-shadow: none;
@@ -3242,7 +3242,7 @@ a:hover {
     margin: 0 !important;
     position: relative;
     z-index: 1;
-    display: block;
+    display: block !important;
 }
 
 .article-content img:hover,
