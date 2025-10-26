@@ -1,11 +1,17 @@
 from django.urls import path, re_path
 from . import views
+from .feeds import LatestArticlesFeed, LatestArticlesAtomFeed
 
 app_name = 'articles'
 
 urlpatterns = [
     # Главная страница
     path('', views.home, name='home'),
+
+    # RSS/Atom фиды
+    path('feed/', LatestArticlesFeed(), name='rss_feed'),
+    path('feed/rss/', LatestArticlesFeed(), name='rss'),
+    path('feed/atom/', LatestArticlesAtomFeed(), name='atom_feed'),
 
     # Категории
     path('categories/', views.category_list, name='categories'),

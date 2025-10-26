@@ -558,7 +558,12 @@ def robots_txt(request):
         "Disallow: /media/",
         "Disallow: /static/admin/",
         "Crawl-delay: 1",
+        "",
+        "# Карта сайта",
         f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}",
+        "",
+        "# RSS фид для быстрой индексации",
+        f"RSS: {request.build_absolute_uri('/feed/')}",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
