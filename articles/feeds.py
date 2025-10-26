@@ -25,11 +25,12 @@ class LatestArticlesFeed(Feed):
 
     def item_description(self, item):
         """Описание статьи"""
-        return item.excerpt or item.content[:200]
+        description = item.excerpt or item.content[:200] if item.content else ''
+        return description
 
     def item_link(self, item):
         """Ссылка на статью"""
-        return reverse('article_detail', args=[item.slug])
+        return reverse('articles:detail', args=[item.slug])
 
     def item_pubdate(self, item):
         """Дата публикации"""
@@ -48,7 +49,13 @@ class LatestArticlesFeed(Feed):
     def item_enclosure_url(self, item):
         """URL обложки статьи для RSS"""
         if item.cover:
-            return item.cover.url
+            from django.contrib.sites.shortcuts import get_current_site
+            from django.http import HttpRequest
+            request = HttpRequest()
+            request.META['SERVER_NAME'] = 'reads.su'
+            request.META['SERVER_PORT'] = '443'
+            request.META['wsgi.url_scheme'] = 'https'
+            return request.build_absolute_uri(item.cover.url)
         return None
 
     def item_enclosure_length(self, item):
