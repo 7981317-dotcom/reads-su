@@ -480,6 +480,48 @@ def search(request):
     return render(request, 'articles/search.html', context)
 
 
+def api_search(request):
+    """API для поиска статей (возвращает JSON)"""
+    query = request.GET.get('q', '').strip()
+
+    if not query or len(query) < 2:
+        return JsonResponse({'results': []})
+
+    # Разбиваем запрос на отдельные слова
+    words = query.split()
+
+    # Создаем Q объект для поиска каждого слова
+    q_objects = Q()
+    for word in words:
+        if len(word) >= 2:  # Игнорируем слишком короткие слова
+            q_objects &= (
+                Q(title__icontains=word) |
+                Q(content__icontains=word) |
+                Q(excerpt__icontains=word)
+            )
+
+    # Ограничим результаты до 10 статей для быстрого отображения
+    articles = Article.objects.filter(
+        q_objects,
+        status='published'
+    ).select_related('author', 'category').order_by('-published_at')[:10]
+
+    results = []
+    for article in articles:
+        results.append({
+            'id': article.id,
+            'title': article.title,
+            'excerpt': article.excerpt or article.content[:150],
+            'url': article.get_absolute_url(),
+            'category': article.category.name if article.category else '',
+            'author': article.author.get_full_name() or article.author.username,
+            'published_at': article.published_at.strftime('%d %b %Y') if article.published_at else '',
+            'cover_image': article.cover_image.url if article.cover_image else None,
+        })
+
+    return JsonResponse({'results': results})
+
+
 @login_required
 def upload_media(request):
     """API для загрузки медиа файлов (изображения и видео)"""
@@ -538,6 +580,89 @@ def upload_media(request):
             'success': False,
             'error': f'Ошибка при загрузке файла: {str(e)}'
         })
+
+
+def load_more_articles(request):
+    """API для бесконечной прокрутки - загрузка статей"""
+    offset = int(request.GET.get('offset', 0))
+    limit = int(request.GET.get('limit', settings.ARTICLES_PER_PAGE))
+    category_slug = request.GET.get('category')
+
+    # Базовый запрос
+    articles_query = Article.objects.filter(status='published').select_related(
+        'author', 'category', 'author__profile'
+    ).prefetch_related('tags')
+
+    # Если указана категория - фильтруем по ней
+    if category_slug:
+        articles_query = articles_query.filter(category__slug=category_slug)
+
+    # На главной - случайный порядок ВСЕХ статей
+    # В категории - тоже случайный, но только этой категории
+    articles = articles_query.order_by('?')[offset:offset + limit]
+
+    # Формируем данные для JSON ответа
+    articles_data = []
+    for article in articles:
+        # Определяем cover
+        cover_html = ''
+        if article.cover_video:
+            cover_html = f'''
+                <a href="{article.get_absolute_url()}" class="article-cover-link">
+                    <div class="article-cover-vk article-cover-has-video">
+                        <video class="article-cover-video-preview" muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()">
+                            <source src="{article.cover_video.url}" type="video/mp4">
+                        </video>
+                        <div class="video-play-icon">▶</div>
+                    </div>
+                </a>
+            '''
+        elif article.cover_image:
+            cover_html = f'''
+                <a href="{article.get_absolute_url()}" class="article-cover-link">
+                    <div class="article-cover-vk">
+                        <img src="{article.cover_image.url}" alt="{article.title}" loading="lazy">
+                    </div>
+                </a>
+            '''
+
+        # Avatar автора
+        if article.author.profile and article.author.profile.avatar:
+            avatar_html = f'<img src="{article.author.profile.avatar.url}" alt="{article.author.username}" loading="lazy">'
+        else:
+            avatar_html = f'<div class="avatar-placeholder">{article.author.username[0].upper()}</div>'
+
+        # Полное имя или username
+        author_name = article.author.get_full_name() or article.author.username
+
+        # Время публикации
+        from django.contrib.humanize.templatetags.humanize import naturaltime
+        published_time = naturaltime(article.published_at)
+
+        # Excerpt - обрезаем до 50 слов
+        excerpt_text = article.excerpt[:500] if article.excerpt else ''
+
+        articles_data.append({
+            'id': article.id,
+            'title': article.title,
+            'url': article.get_absolute_url(),
+            'author_name': author_name,
+            'author_username': article.author.username,
+            'author_avatar_html': avatar_html,
+            'published_time': published_time,
+            'category_name': article.category.name if article.category else '',
+            'cover_html': cover_html,
+            'excerpt': excerpt_text,
+            'comments_count': article.comments_count,
+            'views_count': article.views_count,
+            'likes_count': article.likes_count,
+        })
+
+    return JsonResponse({
+        'success': True,
+        'articles': articles_data,
+        'has_more': len(articles) == limit,
+    })
 
 
 def robots_txt(request):

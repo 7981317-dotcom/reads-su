@@ -2410,23 +2410,51 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 2500;
+    padding-top: calc(var(--header-height) + 4px);
+}
+
+.search-overlay-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     animation: fadeIn 0.2s ease-out;
 }
 
+/* Container with same grid structure as page-container */
+.search-overlay-container {
+    max-width: calc(var(--sidebar-left-width) + var(--content-width) + var(--sidebar-right-width) + 32px);
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--sidebar-left-width) var(--content-width) var(--sidebar-right-width);
+    gap: 16px;
+    align-items: start;
+    justify-content: center;
+}
+
 .search-overlay-content {
+    position: relative;
     background: var(--bg-primary);
     width: 100%;
-    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
     animation: slideDown 0.3s ease-out;
+    max-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 @keyframes slideDown {
     from {
-        transform: translateY(-100%);
+        transform: translateY(-20px);
         opacity: 0;
     }
     to {
@@ -2435,55 +2463,44 @@ a:hover {
     }
 }
 
-/* Search Overlay Header */
-.search-overlay-header {
-    background: var(--bg-primary);
-    border-bottom: 1px solid var(--border-color);
-    padding: var(--space-4);
-}
-
 .search-overlay-input-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
     position: relative;
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .search-overlay-icon {
     position: absolute;
-    left: var(--space-4);
+    left: calc(var(--space-4) + 12px);
     color: var(--text-tertiary);
     pointer-events: none;
 }
 
 .search-overlay-input {
     flex: 1;
-    height: 52px;
+    height: 48px;
     padding: 0 calc(var(--space-4) + 32px) 0 calc(var(--space-4) + 32px);
-    border: 2px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    background: var(--bg-secondary);
+    border: none;
+    background: transparent;
     font-size: 1rem;
     color: var(--text-primary);
-    transition: all var(--transition-fast);
 }
 
 .search-overlay-input:focus {
     outline: none;
-    border-color: var(--accent-color);
-    background: var(--bg-primary);
 }
 
 .search-overlay-close {
     position: absolute;
-    right: var(--space-3);
+    right: var(--space-4);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border: none;
     background: transparent;
     color: var(--text-tertiary);
@@ -2497,13 +2514,10 @@ a:hover {
     color: var(--text-primary);
 }
 
-/* Search Overlay Body */
-.search-overlay-body {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: var(--space-6) var(--space-4);
-    max-height: calc(100vh - 100px);
+.search-results-container {
+    flex: 1;
     overflow-y: auto;
+    padding: var(--space-2);
 }
 
 .search-suggestions-section {
@@ -3605,4 +3619,37 @@ a:hover {
     .article-content a {
         word-break: break-all !important;
     }
+}
+
+/* ========================================
+   ИНДИКАТОР ЗАГРУЗКИ ДЛЯ БЕСКОНЕЧНОЙ ПРОКРУТКИ
+   ======================================== */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8) var(--space-4);
+    margin: var(--space-4) 0;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-indicator p {
+    margin-top: var(--space-3);
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
 }

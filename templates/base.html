@@ -92,7 +92,7 @@
 </head>
 <body class="{% block body_class %}{% endblock %}">
 
-    <!-- Header - Minimalist VC.ru Style -->
+    <!-- Header - Minimalist Reads.su Style -->
     <header class="header-minimal">
         <div class="header-container">
             <!-- Logo -->
@@ -153,13 +153,6 @@
                                 </svg>
                                 Мои статьи
                             </a>
-                            <a href="{% url 'users:settings' %}" class="dropdown-item-minimal">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M12.93 10a1.11 1.11 0 0 0 .22 1.22l.04.04a1.34 1.34 0 0 1 0 1.9 1.34 1.34 0 0 1-1.9 0l-.04-.04a1.11 1.11 0 0 0-1.22-.22 1.11 1.11 0 0 0-.67 1.01v.12a1.34 1.34 0 0 1-2.68 0v-.06a1.11 1.11 0 0 0-.73-1.01 1.11 1.11 0 0 0-1.22.22l-.04.04a1.34 1.34 0 0 1-1.9 0 1.34 1.34 0 0 1 0-1.9l.04-.04a1.11 1.11 0 0 0 .22-1.22 1.11 1.11 0 0 0-1.01-.67h-.12a1.34 1.34 0 0 1 0-2.68h.06a1.11 1.11 0 0 0 1.01-.73 1.11 1.11 0 0 0-.22-1.22l-.04-.04a1.34 1.34 0 0 1 1.9-1.9l.04.04a1.11 1.11 0 0 0 1.22.22h.05a1.11 1.11 0 0 0 .67-1.01v-.12a1.34 1.34 0 0 1 2.68 0v.06a1.11 1.11 0 0 0 .67 1.01 1.11 1.11 0 0 0 1.22-.22l.04-.04a1.34 1.34 0 0 1 1.9 0 1.34 1.34 0 0 1 0 1.9l-.04.04a1.11 1.11 0 0 0-.22 1.22v.05a1.11 1.11 0 0 0 1.01.67h.12a1.34 1.34 0 0 1 0 2.68h-.06a1.11 1.11 0 0 0-1.01.73z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Настройки
-                            </a>
                             <div class="dropdown-divider"></div>
                             <a href="{% url 'users:logout' %}" class="dropdown-item-minimal dropdown-item-danger">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -187,14 +180,14 @@
         </div>
     </header>
 
-    <!-- Login Modal (VC.ru Style with Form) -->
+    <!-- Login Modal (Reads.su Style with Form) -->
     {% if not user.is_authenticated %}
     <div class="modal-overlay" id="loginModal">
         <div class="modal-content">
             <button class="modal-close">&times;</button>
 
             <div class="modal-logo">
-                <span class="logo-icon">VC</span>
+                <span class="logo-icon">Reads.su</span>
             </div>
 
             <!-- Login Form -->
@@ -307,33 +300,26 @@
 
     <!-- Search Overlay (VC.ru Style) -->
     <div class="search-overlay" id="searchOverlay">
-        <div class="search-overlay-content">
-            <div class="search-overlay-header">
+        <div class="search-overlay-backdrop"></div>
+        <div class="search-overlay-container">
+            <div></div> <!-- Empty left column -->
+            <div class="search-overlay-content">
                 <div class="search-overlay-input-wrapper">
                     <svg class="search-overlay-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM18 18l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <input type="text" class="search-overlay-input" placeholder="Поиск по статьям..." id="searchOverlayInput" autofocus>
+                    <input type="text" class="search-overlay-input" placeholder="Поиск" id="searchOverlayInput" autofocus>
                     <button class="search-overlay-close" aria-label="Закрыть">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                             <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </button>
                 </div>
-            </div>
-            <div class="search-overlay-body">
-                <div class="search-suggestions-section">
-                    <h3 class="search-section-title">Популярные темы</h3>
-                    <div class="search-popular-tags">
-                        {% for category in categories %}
-                            <a href="{% url 'articles:category' category.slug %}" class="search-tag">{{ category.name }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
                 <div class="search-results-container" id="searchResults" style="display: none;">
                     <!-- Search results will be dynamically inserted here -->
                 </div>
             </div>
+            <div></div> <!-- Empty right column -->
         </div>
     </div>
 
